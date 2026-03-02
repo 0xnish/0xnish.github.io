@@ -47,13 +47,18 @@ nav a:hover::after{transform:scaleX(1);transform-origin:left}
 nav a.active{color:var(--a)}
 nav a.active::after{transform:scaleX(1);transform-origin:left}
 /* ─── NAV DONATE BUTTON ─── */
-nav a.nav-donate{color:var(--bg);background:var(--a);border:1px solid var(--a);padding:7px 18px;border-radius:2px;font-weight:500;letter-spacing:.2em;transition:background .3s,color .3s,box-shadow .3s,transform .2s;position:relative;overflow:hidden}
+nav a.nav-donate{color:var(--bg);background:var(--a);border:1px solid var(--a);padding:7px 18px;border-radius:2px;font-weight:500;letter-spacing:.2em;transition:background .3s,color .3s,box-shadow .3s,transform .2s;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:6px}
 nav a.nav-donate .donate-text{display:inline-block}
 nav a.nav-donate .donate-text .dl{display:inline-block;transition:color .3s ease,text-shadow .3s ease}
 nav a.nav-donate::before{display:none}
 nav a.nav-donate:hover{box-shadow:0 0 36px rgba(200,169,126,.7);transform:translateY(-1px);animation:none}
 nav a.nav-donate::after{display:none}
-.donate-icon{display:inline-block;transition:opacity .2s ease,transform .2s ease}
+.donate-icon{display:inline-block;color:#000;animation:heartbeat 2s ease infinite;will-change:transform;transform-origin:center center}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);color:#000}
+  15%{transform:scale(1.35);color:#ff1a1a}
+  30%{transform:scale(1);color:#000}
+}
 @keyframes donateRedPulse{}
 @keyframes donatePulse{
   50%{box-shadow:0 0 20px rgba(200,169,126,.7),0 0 0 6px rgba(200,169,126,0)}
@@ -512,7 +517,7 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </span>
-    <a href="#donate" class="nav-donate"><span class="donate-icon" id="donateNavIcon">₹</span> <span class="donate-text">Donate</span></a>
+    <a href="#donate" class="nav-donate"><span class="donate-icon" id="donateNavIcon">♥</span> <span class="donate-text">Donate</span></a>
   </nav>
 </header>
 
@@ -549,7 +554,7 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
       thoughtful architecture, and a passion for building things that matter.
     </p>
     <div class="hero-cta">
-      <a href="mailto:mailtonishii@gmail.com" class="btn btn-p"><span>Get in Touch</span></a>
+      <a href="/cdn-cgi/l/email-protection#0e636f67627a6160677d6667674e69636f6762206d6163" class="btn btn-p"><span>Get in Touch</span></a>
       <a href="https://github.com/coder-nishanth" target="_blank" rel="noopener" class="btn btn-g"><span>View GitHub</span></a>
     </div>
   </div>
@@ -686,9 +691,9 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
   <div class="sec-label"><span class="bracket">[ </span>Let's Connect<span class="bracket"> ]</span> <span class="sec-label-line"></span></div>
   <h2 class="rv">Let's build<br>something <em>great.</em></h2>
   <div class="contact-links" id="clinks">
-    <a href="mailto:mailtonishii@gmail.com" class="ci ci-email">
+    <a href="/cdn-cgi/l/email-protection#1e737f77726a7170776d7677775e79737f7772307d7173" class="ci ci-email">
       <div class="ci-iw"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" style="stroke:var(--a)"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
-      <div class="ci-label">Email</div><div class="ci-val">mailtonishii@gmail.com</div>
+      <div class="ci-label">Email</div><div class="ci-val"><span class="__cf_email__" data-cfemail="b7dad6dedbc3d8d9dec4dfdedef7d0dad6dedb99d4d8da">[email&#160;protected]</span></div>
     </a>
     <a href="https://github.com/coder-nishanth" target="_blank" rel="noopener" class="ci ci-github">
       <div class="ci-iw"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="rgba(255,255,255,.82)" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></div>
@@ -712,7 +717,7 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
   <p class="donate-tagline rv">Every contribution keeps me going — building, creating, and sharing freely with the world.</p>
   <div class="donate-cards">
     <div class="donate-card dc-upi rv" onclick="openDonate('upi')">
-      <div class="donate-card-icon">₹</div>
+      <div class="donate-card-icon">♥</div>
       <div class="donate-card-label">UPI / GPay</div>
       <div class="donate-card-val">Pay via UPI</div>
       <div class="donate-card-desc">Instant · India</div>
@@ -769,7 +774,7 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
   <div>Software Engineer</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ─── LOADER ───
 window.addEventListener('load',()=>{
   setTimeout(()=>{
@@ -896,7 +901,7 @@ function openDonate(type){
   amts.forEach(a=>a.classList.remove('active'));
 
   if(type==='upi'){
-    icon.textContent='₹';
+    icon.textContent='♥';
     title.textContent='Pay via UPI / GPay';
     sub.innerHTML='Copy the UPI ID below and open GPay,<br>PhonePe, or any UPI app to send support.';
     upiBlock.style.display='block';
@@ -955,51 +960,37 @@ function selectAmt(el,amt){
   if(currentType==='upi') updateUPILink(amt);
 }
 
-// Donate nav icon toggle ₹ ↔ ♥
+// Donate nav icon + text — synced heartbeat
 (function(){
-  const icons=['₹','♥'];
-  let idx=0;
-  const el=document.getElementById('donateNavIcon');
-  if(!el)return;
-  setInterval(()=>{
-    // smooth fade+scale out
-    el.style.transition='opacity .3s ease, transform .3s ease';
-    el.style.opacity='0';
-    el.style.transform='scale(0.2) rotate(90deg)';
-    setTimeout(()=>{
-      idx=(idx+1)%icons.length;
-      el.textContent=icons[idx];
-      el.style.transition='none';
-      el.style.transform='scale(0.2) rotate(-90deg)';
-      el.style.opacity='0';
-      requestAnimationFrame(()=>requestAnimationFrame(()=>{
-        // smooth spring entrance
-        el.style.transition='opacity .4s ease, transform .6s cubic-bezier(.22,1.4,.36,1)';
-        el.style.opacity='1';
-        el.style.transform='scale(1) rotate(0deg)';
-      }));
-    },320);
-  },2200);
-})();
+  const el = document.getElementById('donateNavIcon');
+  const wrap = document.querySelector('.donate-text');
 
-// Donate text - letter by letter green pulse
-(function(){
-  const wrap=document.querySelector('.donate-text');
-  if(!wrap)return;
-  const word='Donate';
-  wrap.innerHTML=word.split('').map(l=>`<span class="dl">${l}</span>`).join('');
-  const letters=wrap.querySelectorAll('.dl');
-  const on={color:'#33ff99',textShadow:'0 0 10px rgba(51,255,153,.95)'};
-  const off={color:'',textShadow:''};
-  let cur=0;
-  setInterval(()=>{
-    letters.forEach((l,i)=>{
-      const s=i===cur?on:off;
-      l.style.color=s.color;
-      l.style.textShadow=s.textShadow;
+  if(el){ el.textContent='♥'; el.style.color='#000'; }
+  if(wrap){
+    const word = 'Donate';
+    wrap.innerHTML = word.split('').map(l=>`<span class="dl">${l}</span>`).join('');
+  }
+
+  const letters = wrap ? wrap.querySelectorAll('.dl') : [];
+  const on  = {color:'#33ff99', textShadow:'0 0 10px rgba(51,255,51,.6)'};
+  const off = {color:'', textShadow:'none'};
+
+  function animateBeat(){
+    // Heart handled by CSS animation
+
+    // Letters: wave in sync with heart
+    letters.forEach((l, i)=>{
+      setTimeout(()=>{
+        l.style.transition = 'color .2s ease, text-shadow .2s ease';
+        Object.assign(l.style, on);
+        setTimeout(()=>{ Object.assign(l.style, off); }, 400);
+      }, i * 55);
     });
-    cur=(cur+1)%letters.length;
-  },400);
+  }
+
+  // Start together, repeat every 2s
+  setTimeout(animateBeat, 800);
+  setInterval(animateBeat, 2000);
 })();
 </script>
 </body>
