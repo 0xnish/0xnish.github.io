@@ -128,7 +128,7 @@ function openDonate(type){
     const coffeeAmts=['$1','$3','$5','$10'];
     amts.forEach((a,i)=>{a.textContent=coffeeAmts[i];});
     amts[1].classList.add('active');
-    btn.href='https://buymeacoffee.com/nishanth'; // ← UPDATE THIS
+    btn.href='https://buymeacoffee.com/coder.nishanth';
     btnText.textContent='Buy Me a Coffee ☕';
   } else if(type==='paypal'){
     icon.innerHTML='<svg viewBox="0 0 24 24" width="44" height="44"><path fill="#009cde" d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.243-8.413 6.243H9.97l-1.248 7.917h3.507l.532-3.365h2.035c4.655 0 7.44-2.282 8.426-6.509z"/></svg>';
