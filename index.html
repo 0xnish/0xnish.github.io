@@ -53,12 +53,7 @@ nav a.nav-donate .donate-text .dl{display:inline-block;transition:color .3s ease
 nav a.nav-donate::before{display:none}
 nav a.nav-donate:hover{box-shadow:0 0 36px rgba(200,169,126,.7);transform:translateY(-1px);animation:none}
 nav a.nav-donate::after{display:none}
-.donate-icon{display:inline-block;color:#000;animation:heartbeat 2s ease infinite;will-change:transform;transform-origin:center center}
-@keyframes heartbeat{
-  0%,100%{transform:scale(1);color:#000}
-  15%{transform:scale(1.35);color:#ff1a1a}
-  30%{transform:scale(1);color:#000}
-}
+.donate-icon{display:inline-block;color:#000;will-change:transform;transform-origin:center center}
 @keyframes donateRedPulse{}
 @keyframes donatePulse{
   50%{box-shadow:0 0 20px rgba(200,169,126,.7),0 0 0 6px rgba(200,169,126,0)}
@@ -248,17 +243,10 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
 @keyframes rca{to{transform:translate(-50%,-50%) scale(8);opacity:0}}
 
 /* ─── LOADER ─── */
-#loader{position:fixed;inset:0;background:var(--bg);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0;overflow:hidden}
+#loader{position:fixed;inset:0;background:var(--bg);z-index:99999;overflow:hidden;cursor:crosshair}
 #loader-canvas{position:absolute;inset:0;width:100%;height:100%}
-.loader-center{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:28px}
-.loader-hex{position:relative;width:90px;height:90px}
-.loader-hex svg{width:100%;height:100%}
-.loader-status{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.35em;color:var(--a);opacity:.7;text-transform:uppercase}
-.loader-bar-outer{width:160px;height:1px;background:rgba(200,169,126,.12);position:relative;overflow:hidden}
-.loader-bar-inner{height:100%;background:linear-gradient(to right,var(--a),var(--a2));width:0;animation:lbFill 2s .2s cubic-bezier(.16,1,.3,1) forwards}
-@keyframes lbFill{to{width:100%}}
-#loader.hide{animation:loaderHide .7s ease-in-out forwards}
-@keyframes loaderHide{0%{opacity:1}100%{opacity:0;pointer-events:none}}
+#loader.hide{animation:loaderHide .8s ease forwards}
+@keyframes loaderHide{to{opacity:0;pointer-events:none}}
 
 /* ─── DONATE SECTION ─── */
 .donate-section{border-top:1px solid rgba(200,169,126,.07);padding:clamp(60px,8vw,100px) var(--gutter);text-align:center;position:relative;z-index:2}
@@ -471,34 +459,6 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
 
 <div id="loader">
   <canvas id="loader-canvas"></canvas>
-  <div class="loader-center">
-    <div class="loader-hex">
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" stroke="rgba(200,169,126,0.12)" stroke-width="1" fill="none"/>
-        <polygon points="50,4 93,27.5 93,72.5 50,96 7,72.5 7,27.5" stroke="url(#hexGrad)" stroke-width="1.5" fill="none" stroke-dasharray="220" stroke-dashoffset="220">
-          <animate attributeName="stroke-dashoffset" from="220" to="0" dur="1.6s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
-        </polygon>
-        <polygon points="50,18 79,34 79,66 50,82 21,66 21,34" stroke="rgba(126,184,200,0.08)" stroke-width="1" fill="none"/>
-        <polygon points="50,18 79,34 79,66 50,82 21,66 21,34" stroke="rgba(126,184,200,0.55)" stroke-width="1" fill="none" stroke-dasharray="170" stroke-dashoffset="170">
-          <animate attributeName="stroke-dashoffset" from="170" to="0" dur="1.6s" begin="0.25s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
-        </polygon>
-        <circle cx="50" cy="50" r="6" fill="rgba(200,169,126,0.9)" filter="url(#glow)">
-          <animate attributeName="r" values="5;9;5" dur="1.4s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="1.4s" repeatCount="indefinite"/>
-        </circle>
-        <defs>
-          <linearGradient id="hexGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#c8a97e"/>
-            <stop offset="50%" stop-color="#7eb8c8"/>
-            <stop offset="100%" stop-color="#b87ec8"/>
-          </linearGradient>
-          <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-      </svg>
-    </div>
-    <div class="loader-status">Initializing</div>
-    <div class="loader-bar-outer"><div class="loader-bar-inner"></div></div>
-  </div>
 </div>
 
 <div id="sp"></div><div id="cur"></div><div id="cur-ring"></div>
@@ -776,49 +736,168 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ─── LOADER ───
+// Loader status cycling
+(function(){
+  const el = document.querySelector('.loader-status');
+  if(!el) return;
+  const msgs = ['Initializing','Loading','Almost there','Nearly done'];
+  let i = 0;
+  const iv = setInterval(()=>{
+    i = (i+1) % msgs.length;
+    el.style.opacity = '0';
+    setTimeout(()=>{ el.textContent = msgs[i]; el.style.opacity = '.7'; }, 200);
+  }, 1800);
+  window.addEventListener('load', ()=> clearInterval(iv));
+})();
+
 window.addEventListener('load',()=>{
   setTimeout(()=>{
     const ld=document.getElementById('loader');
     ld.classList.add('hide');
     setTimeout(()=>{ld.style.display='none'},800);
-  },1000);
+  },400);
 });
 
-// ─── LOADER CANVAS ───
+// ─── LOADER CANVAS — Fullscreen Fluid Ripple ───
 (function(){
-  const c=document.getElementById('loader-canvas');if(!c)return;
-  const ctx=c.getContext('2d');
-  let W,H,particles=[],mouse={x:null,y:null};
-  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
-  resize();window.addEventListener('resize',resize);
-  document.getElementById('loader').addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
-  document.getElementById('loader').addEventListener('mouseleave',()=>{mouse.x=null;mouse.y=null});
-  const colors=['rgba(200,169,126,','rgba(126,184,200,','rgba(184,126,200,','rgba(126,200,154,'];
-  for(let i=0;i<100;i++){
-    const angle=Math.random()*Math.PI*2;
-    const dist=60+Math.random()*Math.min(W,H)*.42;
-    particles.push({x:W/2+Math.cos(angle)*dist,y:H/2+Math.sin(angle)*dist,ox:W/2+Math.cos(angle)*dist,oy:H/2+Math.sin(angle)*dist,vx:0,vy:0,r:Math.random()*1.8+.3,a:Math.random()*.7+.2,da:Math.random()*.008+.003,c:colors[Math.floor(Math.random()*colors.length)],speed:Math.random()*.4+.1,angle:angle,dist:dist});
+  const loader = document.getElementById('loader');
+  const c = document.getElementById('loader-canvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, mouse = {x: -999, y: -999}, ripples = [], particles = [];
+
+  function resize(){
+    W = c.width = window.innerWidth;
+    H = c.height = window.innerHeight;
   }
+  resize();
+  window.addEventListener('resize', resize);
+
+  loader.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  loader.addEventListener('touchmove', e => {
+    e.preventDefault();
+    mouse.x = e.touches[0].clientX;
+    mouse.y = e.touches[0].clientY;
+  }, {passive: false});
+  loader.addEventListener('click', e => {
+    addRipple(e.clientX, e.clientY, 3);
+  });
+
+  function addRipple(x, y, count = 1){
+    for(let k = 0; k < count; k++){
+      ripples.push({ x, y, r: 0, maxR: 120 + Math.random() * 180, a: 0.7, speed: 2.5 + Math.random() * 2, color: ['#c8a97e','#7eb8c8','#b87ec8','#7ec89a'][Math.floor(Math.random()*4)], delay: k * 120 });
+    }
+  }
+
+  // Spawn auto ripples from random positions while loading
+  setInterval(() => {
+    addRipple(Math.random() * W, Math.random() * H, 1);
+  }, 800);
+
+  // Initial ripples
+  for(let i = 0; i < 5; i++){
+    setTimeout(() => addRipple(Math.random() * W, Math.random() * H), i * 300);
+  }
+
+  // Fluid particles — fill whole screen
+  const colors = ['rgba(200,169,126,', 'rgba(126,184,200,', 'rgba(184,126,200,', 'rgba(126,200,154,'];
+  for(let i = 0; i < 200; i++){
+    particles.push({
+      x: Math.random() * (typeof W !== 'undefined' ? W : window.innerWidth),
+      y: Math.random() * (typeof H !== 'undefined' ? H : window.innerHeight),
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      r: Math.random() * 1.6 + 0.3,
+      a: Math.random() * 0.5 + 0.1,
+      da: (Math.random() * 0.005 + 0.002) * (Math.random() > 0.5 ? 1 : -1),
+      c: colors[Math.floor(Math.random() * colors.length)]
+    });
+  }
+
+  let frame = 0;
   function draw(){
-    ctx.clearRect(0,0,W,H);
-    particles.forEach((p,i)=>{
-      particles.slice(i+1).forEach(q=>{
-        const dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<100){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(200,169,126,${.07*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke()}
-      });
+    frame++;
+    // Trail fade
+    ctx.fillStyle = 'rgba(6,6,15,0.15)';
+    ctx.fillRect(0, 0, W, H);
+
+    // Draw ripples
+    ripples = ripples.filter(rp => {
+      if(rp.delay > 0){ rp.delay -= 16; return true; }
+      rp.r += rp.speed;
+      rp.a *= 0.97;
+      if(rp.r >= rp.maxR || rp.a < 0.01) return false;
+      ctx.beginPath();
+      ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+      ctx.strokeStyle = rp.color.replace('#', 'rgba(') + `, ${rp.a})`.replace('rgba(', '#').replace(`, ${rp.a})`, '');
+      // Draw properly
+      ctx.strokeStyle = hexToRgba(rp.color, rp.a);
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      // Inner subtle fill
+      const grad = ctx.createRadialGradient(rp.x, rp.y, rp.r * 0.7, rp.x, rp.y, rp.r);
+      grad.addColorStop(0, hexToRgba(rp.color, rp.a * 0.06));
+      grad.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.beginPath();
+      ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+      return true;
     });
-    particles.forEach(p=>{
-      if(mouse.x!==null){const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);if(d<140){p.vx+=dx/d*2.5;p.vy+=dy/d*2.5}}
-      p.vx*=.87;p.vy*=.87;
-      p.angle+=p.speed*.012;
-      p.x=p.ox+Math.cos(p.angle)*p.dist*.2+p.vx;
-      p.y=p.oy+Math.sin(p.angle)*p.dist*.2+p.vy;
-      p.a+=p.da;if(p.a>1||p.a<.15)p.da*=-1;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=p.c+p.a+')';ctx.fill();
-    });
+
+    // Mouse ripple trail
+    if(frame % 8 === 0 && mouse.x > 0){
+      addRipple(mouse.x + (Math.random()-0.5)*20, mouse.y + (Math.random()-0.5)*20);
+    }
+
+    // Particles
+    for(let i = 0; i < particles.length; i++){
+      const p = particles[i];
+      // Pull toward mouse
+      const dx = mouse.x - p.x, dy = mouse.y - p.y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if(d < 180 && d > 0){
+        p.vx += (dx/d) * 0.12;
+        p.vy += (dy/d) * 0.12;
+      }
+      p.vx *= 0.97; p.vy *= 0.97;
+      p.x += p.vx; p.y += p.vy;
+      // Wrap around edges
+      if(p.x < 0) p.x = W; if(p.x > W) p.x = 0;
+      if(p.y < 0) p.y = H; if(p.y > H) p.y = 0;
+      p.a += p.da;
+      if(p.a > 0.7 || p.a < 0.05) p.da *= -1;
+
+      const near = d < 120;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, near ? p.r * 2.5 : p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.c + (near ? Math.min(p.a * 3, 1) : p.a) + ')';
+      ctx.fill();
+
+      // Connect nearby particles
+      for(let j = i+1; j < particles.length; j++){
+        const q = particles[j];
+        const ex = p.x-q.x, ey = p.y-q.y;
+        const ed = Math.sqrt(ex*ex+ey*ey);
+        if(ed < 70){
+          ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
+          ctx.strokeStyle = `rgba(200,169,126,${0.05*(1-ed/70)})`;
+          ctx.lineWidth = 0.4; ctx.stroke();
+        }
+      }
+    }
+
     requestAnimationFrame(draw);
   }
+
+  function hexToRgba(hex, a){
+    const r = parseInt(hex.slice(1,3),16);
+    const g = parseInt(hex.slice(3,5),16);
+    const b = parseInt(hex.slice(5,7),16);
+    return `rgba(${r},${g},${b},${a})`;
+  }
+
   draw();
 })();
 
@@ -960,15 +1039,14 @@ function selectAmt(el,amt){
   if(currentType==='upi') updateUPILink(amt);
 }
 
-// Donate nav icon + text — synced heartbeat
+// Heart + letters — perfectly synced
 (function(){
   const el = document.getElementById('donateNavIcon');
   const wrap = document.querySelector('.donate-text');
 
   if(el){ el.textContent='♥'; el.style.color='#000'; }
   if(wrap){
-    const word = 'Donate';
-    wrap.innerHTML = word.split('').map(l=>`<span class="dl">${l}</span>`).join('');
+    wrap.innerHTML = 'Donate'.split('').map(l=>`<span class="dl">${l}</span>`).join('');
   }
 
   const letters = wrap ? wrap.querySelectorAll('.dl') : [];
@@ -976,19 +1054,28 @@ function selectAmt(el,amt){
   const off = {color:'', textShadow:'none'};
 
   function animateBeat(){
-    // Heart handled by CSS animation
-
-    // Letters: wave in sync with heart
+    if(el){
+      el.style.transition = 'transform .18s ease, color .18s ease';
+      el.style.transform  = 'scale(1.4)';
+      el.style.color      = '#ff1a1a';
+      setTimeout(()=>{
+        el.style.transition = 'transform .22s ease, color .3s ease';
+        el.style.transform  = 'scale(1)';
+        el.style.color      = '#000';
+      }, 200);
+    }
     letters.forEach((l, i)=>{
       setTimeout(()=>{
-        l.style.transition = 'color .2s ease, text-shadow .2s ease';
+        l.style.transition = 'color .18s ease, text-shadow .18s ease';
         Object.assign(l.style, on);
-        setTimeout(()=>{ Object.assign(l.style, off); }, 400);
+        setTimeout(()=>{
+          l.style.transition = 'color .3s ease, text-shadow .3s ease';
+          Object.assign(l.style, off);
+        }, 300);
       }, i * 55);
     });
   }
 
-  // Start together, repeat every 2s
   setTimeout(animateBeat, 800);
   setInterval(animateBeat, 2000);
 })();
