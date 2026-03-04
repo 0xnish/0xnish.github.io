@@ -7,7 +7,6 @@ window.addEventListener('load',()=>{
   },400);
 });
 
-// ─── LOADER — Simple Initializing ───
 // ─── SCROLL PROGRESS ───
 window.addEventListener('scroll',()=>{const sp=document.getElementById('sp');const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;sp.style.width=pct+'%'});
 
@@ -15,7 +14,6 @@ window.addEventListener('scroll',()=>{const sp=document.getElementById('sp');con
 (function(){
   const c=document.getElementById('starCanvas');
   const isMobile = window.innerWidth <= 768 || navigator.maxTouchPoints > 0;
-  // Skip canvas animation on mobile entirely
   if(isMobile){ c.style.display='none'; return; }
   const ctx=c.getContext('2d');
   let W,H,stars=[];
@@ -90,97 +88,81 @@ const cl=document.getElementById('clinks');if(cl)cio.observe(cl);
 // ─── NAV ACTIVE ───
 (function(){const sections=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');function onScroll(){const scrollY=window.scrollY;let current='';sections.forEach(sec=>{if(scrollY>=sec.offsetTop-120)current=sec.id});if(window.innerHeight+scrollY>=document.body.scrollHeight-60)current=sections[sections.length-1].id;navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+current)});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
 
-// ─── DONATE MODAL ───
-let currentType='upi';
-const UPI_ID='coder-nishanth@airtel'; // ← UPDATE THIS
+// ─── UPI INLINE ───
+const UPI_ID = 'coder-nishanth@airtel';
 
-function openDonate(type){
-  currentType=type;
-  const overlay=document.getElementById('donateOverlay');
-  const icon=document.getElementById('dmIcon');
-  const title=document.getElementById('dmTitle');
-  const sub=document.getElementById('dmSub');
-  const upiBlock=document.getElementById('dmUpiBlock');
-  const btn=document.getElementById('dmBtn');
-  const btnText=document.getElementById('dmBtnText');
-  const amts=document.querySelectorAll('.dma');
-  const divider=document.getElementById('dmDivider');
-  amts.forEach(a=>a.classList.remove('active'));
-
-  if(type==='upi'){
-    icon.textContent='♥';
-    title.textContent='Pay via UPI / GPay';
-    sub.innerHTML='Copy the UPI ID below and open GPay,<br>PhonePe, or any UPI app to send support.';
-    upiBlock.style.display='block';
-    divider.style.display='flex';
-    document.getElementById('dmUpiId').textContent=UPI_ID;
-    const upiAmts=['₹49','₹99','₹199','₹499'];
-    amts.forEach((a,i)=>{a.textContent=upiAmts[i];});
-    amts[1].classList.add('active');
-    updateUPILink('99');
-    btnText.textContent='Open UPI App ♥';
-  } else if(type==='coffee'){
-    icon.textContent='☕';
-    title.textContent='Buy Me a Coffee';
-    sub.innerHTML='Every coffee keeps me going!<br>Click below to support on Buy Me a Coffee.';
-    upiBlock.style.display='none';
-    divider.style.display='none';
-    const coffeeAmts=['$1','$3','$5','$10'];
-    amts.forEach((a,i)=>{a.textContent=coffeeAmts[i];});
-    amts[1].classList.add('active');
-    btn.href='https://buymeacoffee.com/coder.nishanth';
-    btnText.textContent='Buy Me a Coffee ☕';
-  } else if(type==='paypal'){
-    icon.innerHTML='<svg viewBox="0 0 24 24" width="44" height="44"><path fill="#009cde" d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.243-8.413 6.243H9.97l-1.248 7.917h3.507l.532-3.365h2.035c4.655 0 7.44-2.282 8.426-6.509z"/></svg>';
-    title.textContent='Donate via PayPal';
-    sub.innerHTML='Send support from anywhere in the world.<br>Every bit counts — thank you! ♥';
-    upiBlock.style.display='none';
-    divider.style.display='none';
-    const ppAmts=['$1','$5','$10','$25'];
-    amts.forEach((a,i)=>{a.textContent=ppAmts[i];});
-    amts[1].classList.add('active');
-    btn.href='https://paypal.me/nishanthjp'; // ← UPDATE THIS
-    btnText.textContent='Donate via PayPal ♥';
+function updateUPILink(amt) {
+  const btn = document.getElementById('upiPayBtn');
+  const label = document.getElementById('upiPayAmt');
+  const amtEl = document.getElementById('upiAmt');
+  if (!amt || isNaN(amt) || +amt < 1) {
+    btn.href = `upi://pay?pa=${UPI_ID}&pn=Nishanth%20JP&cu=INR`;
+    if (label) label.textContent = '';
+    return;
   }
-  overlay.classList.add('open');
-  document.body.style.overflow='hidden';
+  btn.href = `upi://pay?pa=${UPI_ID}&pn=Nishanth%20JP&am=${amt}&cu=INR`;
+  if (label) label.textContent = '₹' + amt;
 }
 
-function updateUPILink(amt){
-  document.getElementById('dmBtn').href=`upi://pay?pa=${UPI_ID}&pn=Nishanth JP&am=${amt}&cu=INR`;
+function syncUPIInput(el) {
+  updateUPILink(el.value);
 }
 
-function closeDonate(){document.getElementById('donateOverlay').classList.remove('open');document.body.style.overflow='';}
-function closeDonateOutside(e){if(e.target===document.getElementById('donateOverlay'))closeDonate();}
-
-function copyUPI(){
-  navigator.clipboard.writeText(UPI_ID).catch(()=>{});
-  const hint=document.getElementById('dmCopyHint');
-  hint.textContent='✓ Copied to clipboard!';
+function copyUPI() {
+  navigator.clipboard.writeText(UPI_ID).catch(() => {});
+  const hint = document.getElementById('upiCopyHint');
+  const label = document.getElementById('upiCopyLabel');
+  if (label) label.textContent = 'copied!';
   hint.classList.add('copied');
-  setTimeout(()=>{hint.textContent='↑ tap to copy UPI ID';hint.classList.remove('copied')},2500);
+  setTimeout(() => {
+    if (label) label.textContent = 'copy';
+    hint.classList.remove('copied');
+  }, 2500);
 }
 
-function selectAmt(el,amt){
-  document.querySelectorAll('.dma').forEach(a=>a.classList.remove('active'));
+// ─── BMC INLINE ───
+let _bmcCurrency = 'INR';
+const BMC_URL = 'https://buymeacoffee.com/nishanth';
+
+function setBMCCurrency(cur, el) {
+  _bmcCurrency = cur;
+  document.querySelectorAll('#bmcCurINR, #bmcCurUSD').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
-  if(currentType==='upi') updateUPILink(amt);
+  document.getElementById('bmcSymbol').innerHTML    = cur === 'INR' ? '&#8377;' : '$';
+  document.getElementById('bmcSymbolBtn').innerHTML = cur === 'INR' ? '&#8377;' : '$';
+  // Clear amount on currency switch
+  document.getElementById('bmcAmt').value = '';
+  document.getElementById('bmcPayAmt').textContent = '';
+  document.getElementById('bmcPayBtn').href = BMC_URL;
 }
 
-// Heart + letters — perfectly synced
+function syncBMCInput(el) {
+  updateBMCLink(el.value);
+}
+
+function updateBMCLink(amt) {
+  const btn   = document.getElementById('bmcPayBtn');
+  const amtEl = document.getElementById('bmcPayAmt');
+  if (!amt || isNaN(amt) || +amt < 1) {
+    amtEl.textContent = '';
+    btn.href = BMC_URL;
+    return;
+  }
+  amtEl.textContent = amt;
+  btn.href = `${BMC_URL}?amount=${amt}&currency=${_bmcCurrency}`;
+}
+
+// ─── DONATE HEART ANIMATION ───
 (function(){
   const el = document.getElementById('donateNavIcon');
   const wrap = document.querySelector('.donate-text');
-
   if(el){ el.textContent='♥'; el.style.color='#000'; }
   if(wrap){
     wrap.innerHTML = 'Donate'.split('').map(l=>`<span class="dl">${l}</span>`).join('');
   }
-
   const letters = wrap ? wrap.querySelectorAll('.dl') : [];
   const on  = {color:'#33ff99', textShadow:'0 0 10px rgba(51,255,51,.6)'};
   const off = {color:'', textShadow:'none'};
-
   function animateBeat(){
     if(el){
       el.style.transition = 'transform .18s ease, color .18s ease';
@@ -203,7 +185,6 @@ function selectAmt(el,amt){
       }, i * 55);
     });
   }
-
   setTimeout(animateBeat, 800);
   setInterval(animateBeat, 2000);
 })();
