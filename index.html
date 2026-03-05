@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nishanth - Software Engineer</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='ng' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23c8a97e'/%3E%3Cstop offset='50%25' stop-color='%23a888b0'/%3E%3Cstop offset='100%25' stop-color='%237eb8c8'/%3E%3C/linearGradient%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230a0a1a'/%3E%3Cstop offset='100%25' stop-color='%2306060f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23bg)'/%3E%3Crect width='64' height='64' rx='14' fill='none' stroke='url(%23ng)' stroke-width='1.5' opacity='0.4'/%3E%3Cpath d='M13 13 L13 51 L22 51 L22 30 L42 51 L51 51 L51 13 L42 13 L42 34 L22 13 Z' fill='url(%23ng)'/%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -34,6 +35,30 @@
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </span>
+    <button class="nav-theme" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle light mode">
+      <span class="theme-icon-dark">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </span>
+      <span class="theme-icon-light">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </span>
+    </button>
+    <button class="nav-music" id="musicBtn" onclick="toggleMusic()" aria-label="Toggle music">
+      <span class="mnote" id="mNote">
+        <span class="mnote-inner">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="14.5" y1="3" x2="14.5" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M14.5 3 C17 3.8, 20 3.2, 21 5 C20 5.8, 17 6.4, 14.5 5.6Z" fill="currentColor"/>
+            <ellipse cx="11.5" cy="15.5" rx="3.2" ry="2.2" transform="rotate(-15 11.5 15.5)" fill="currentColor"/>
+          </svg>
+        </span>
+      </span>
+      <span class="mdiv"></span>
+      <span class="mplay" id="mPlay">
+        <svg class="ico-play" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+        <svg class="ico-pause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="3" width="4" height="18" rx="1.5"/><rect x="15" y="3" width="4" height="18" rx="1.5"/></svg>
+      </span>
+    </button>
     <a href="#donate" class="nav-donate"><span class="donate-icon" id="donateNavIcon">&#9829;</span> <span class="donate-text">Donate</span></a>
   </nav>
 </header>
@@ -140,7 +165,7 @@
   <div class="exp-bento">
     <div class="eb-tile eb-header rv">
       <div class="eb-header-label">Career Path</div>
-      <div class="eb-header-title">Where I've<br><em>been &amp; grown.</em></div>
+      <div class="eb-header-title"><span class="eb-title-line1">Where I've</span><em>been &amp; grown.</em></div>
       <p class="eb-header-desc">From managing front desks at luxury hill-station resorts to building software — a journey driven by curiosity, grit, and a love for craft.</p>
       <div class="eb-header-stats">
         <div class="eb-stat"><span class="eb-stat-val">2</span><span class="eb-stat-key">Roles</span></div>
@@ -208,10 +233,10 @@
   <div class="contact-links" id="clinks">
     <a href="mailto:mailtonishii@gmail.com" class="ci ci-email">
       <div class="ci-iw"><svg viewBox="0 0 48 48" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><path fill="#4caf50" d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"/><path fill="#1e88e5" d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"/><polygon fill="#e53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"/><path fill="#c62828" d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"/><path fill="#fbc02d" d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0 C43.076,8,45,9.924,45,12.298z"/></svg></div>
-      <div class="ci-label">Email</div><div class="ci-val"><span class="__cf_email__" data-cfemail="fe939f97928a9190978d969797be99939f9792d09d9193">mailtonishii@gmail.com</span></div>
+      <div class="ci-label">Email</div><div class="ci-val">mailtonishii@gmail.com</div>
     </a>
     <a href="https://github.com/coder-nishanth" target="_blank" rel="noopener" class="ci ci-github">
-      <div class="ci-iw"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="rgba(255,255,255,.82)" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></div>
+      <div class="ci-iw"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="#ffffff" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></div>
       <div class="ci-label">GitHub</div><div class="ci-val">coder-nishanth</div>
     </a>
     <a href="https://www.linkedin.com/in/nishanth-jp" target="_blank" rel="noopener" class="ci ci-linkedin">
