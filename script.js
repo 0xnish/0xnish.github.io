@@ -1,3 +1,53 @@
+// ─── ANIMATED FAVICON ───
+(function(){
+  const S        = 64;
+  const CHAR     = '\u0BA8\u0BBF'; // நி
+  const FLIP_DUR  = 500;
+  const PAUSE_DUR = 2500;
+  const CYCLE     = FLIP_DUR + PAUSE_DUR;
+
+  const old = document.getElementById('faviconEl');
+  if(old) old.remove();
+  const link = document.createElement('link');
+  link.rel  = 'icon';
+  link.type = 'image/png';
+  document.head.appendChild(link);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = S;
+  const ctx = canvas.getContext('2d');
+
+  const start = performance.now();
+
+  function draw(){
+    const e  = performance.now() - start;
+    const cp = e % CYCLE;
+    const scaleX = cp < FLIP_DUR ? Math.cos((cp / FLIP_DUR) * Math.PI) : 1;
+
+    ctx.clearRect(0, 0, S, S);
+    ctx.save();
+    ctx.translate(S/2, S/2);
+    ctx.scale(scaleX, 1);
+    ctx.font = "bold 44px 'Noto Sans Tamil', sans-serif";
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle    = '#ff6600';
+    ctx.fillText(CHAR, 0, 2);
+    ctx.restore();
+
+    link.href = canvas.toDataURL('image/png');
+  }
+
+  function loop(){
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  document.fonts.load("bold 44px 'Noto Sans Tamil'").then(() => {
+    requestAnimationFrame(loop);
+  }).catch(() => requestAnimationFrame(loop));
+})();
+
 // ─── LOADER ───
 window.addEventListener('load',()=>{
   setTimeout(()=>{
@@ -83,7 +133,7 @@ setTimeout(type,2200);
 
 // ─── SCROLL ANIMATIONS ───
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.1});
-document.querySelectorAll('.rv,.rl,.rr,.sk,.exp-item').forEach(el=>io.observe(el));
+document.querySelectorAll('.rv,.rl,.rr,.sk').forEach(el=>io.observe(el));
 document.querySelectorAll('.sk').forEach((c,i)=>{c.style.transitionDelay=(i*.09)+'s'});
 
 // ─── COUNT UP ───
@@ -103,84 +153,32 @@ const cl=document.getElementById('clinks');if(cl)cio.observe(cl);
 // ─── NAV ACTIVE ───
 (function(){const sections=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');function onScroll(){const scrollY=window.scrollY;let current='';sections.forEach(sec=>{if(scrollY>=sec.offsetTop-120)current=sec.id});if(window.innerHeight+scrollY>=document.body.scrollHeight-60)current=sections[sections.length-1].id;navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+current)});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
 
-// ─── UPI INLINE ───
-const UPI_ID = 'coder-nishanth@airtel';
-
-function updateUPILink(amt) {
-  const btn = document.getElementById('upiPayBtn');
-  const label = document.getElementById('upiPayAmt');
-  const amtEl = document.getElementById('upiAmt');
-  if (!amt || isNaN(amt) || +amt < 1) {
-    btn.href = `upi://pay?pa=${UPI_ID}&pn=Nishanth%20JP&cu=INR`;
-    if (label) label.textContent = '';
-    return;
-  }
-  btn.href = `upi://pay?pa=${UPI_ID}&pn=Nishanth%20JP&am=${amt}&cu=INR`;
-  if (label) label.textContent = '₹' + amt;
-}
-
-function syncUPIInput(el) {
-  updateUPILink(el.value);
-}
-
-function copyUPI() {
-  navigator.clipboard.writeText(UPI_ID).catch(() => {});
-  const hint = document.getElementById('upiCopyHint');
-  const label = document.getElementById('upiCopyLabel');
-  if (label) label.textContent = 'copied!';
-  hint.classList.add('copied');
-  setTimeout(() => {
-    if (label) label.textContent = 'copy';
-    hint.classList.remove('copied');
-  }, 2500);
-}
-
 // ─── BMC INLINE ───
-let _bmcCurrency = 'INR';
-const BMC_URL = 'https://buymeacoffee.com/nishanth';
-
-function setBMCCurrency(cur, el) {
-  _bmcCurrency = cur;
-  document.querySelectorAll('#bmcCurINR, #bmcCurUSD').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('bmcSymbol').innerHTML    = cur === 'INR' ? '&#8377;' : '$';
-  document.getElementById('bmcSymbolBtn').innerHTML = cur === 'INR' ? '&#8377;' : '$';
-  // Clear amount on currency switch
-  document.getElementById('bmcAmt').value = '';
-  document.getElementById('bmcPayAmt').textContent = '';
-  document.getElementById('bmcPayBtn').href = BMC_URL;
-}
-
-function syncBMCInput(el) {
-  updateBMCLink(el.value);
-}
-
-function updateBMCLink(amt) {
-  const btn   = document.getElementById('bmcPayBtn');
-  const amtEl = document.getElementById('bmcPayAmt');
-  if (!amt || isNaN(amt) || +amt < 1) {
-    amtEl.textContent = '';
-    btn.href = BMC_URL;
-    return;
-  }
-  amtEl.textContent = amt;
-  btn.href = `${BMC_URL}?amount=${amt}&currency=${_bmcCurrency}`;
-}
+// Input removed — direct link to BMC page
 
 // ─── THEME TOGGLE ───
 (function(){
   const btn = document.getElementById('themeBtn');
-  const saved = localStorage.getItem('theme');
-  if(saved === 'light') document.body.classList.add('light');
+  if(document.documentElement.classList.contains('light-init')){
+    document.body.classList.add('light');
+    document.documentElement.classList.remove('light-init');
+  }
 
   window.toggleTheme = function(){
     btn.classList.add('theme-spinning');
     setTimeout(() => btn.classList.remove('theme-spinning'), 520);
-    const isLight = document.body.classList.toggle('light');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    btn.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
-    const heart = document.getElementById('donateNavIcon');
-    if(heart) heart.style.color = isLight ? '#fff' : '#000';
+
+    document.body.classList.add('theme-transitioning');
+
+    requestAnimationFrame(() => {
+      const isLight = document.body.classList.toggle('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      btn.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+      const heart = document.getElementById('donateNavIcon');
+      if(heart) heart.style.color = isLight ? '#fff' : '#000';
+
+      setTimeout(() => document.body.classList.remove('theme-transitioning'), 500);
+    });
   };
 })();
 
@@ -248,4 +246,139 @@ function updateBMCLink(amt) {
   }
   setTimeout(animateBeat, 800);
   setInterval(animateBeat, 2000);
+})();
+// ─── UPI COMET BORDER ───
+(function(){
+  const configs = [
+    { sel: '.db-upi-gpay',    color: '#60b4ff', tail: 'rgba(96,180,255,0)',    delay: 0    },
+    { sel: '.db-upi-phonepe', color: '#d4a0ff', tail: 'rgba(212,160,255,0)',   delay: 0.6  },
+    { sel: '.db-upi-paytm',   color: '#80e8ff', tail: 'rgba(128,232,255,0)',   delay: 1.2  },
+    { sel: '.db-upi-airtel',  color: '#ff9090', tail: 'rgba(255,144,144,0)',   delay: 1.8  },
+  ];
+
+  configs.forEach(({ sel, color, tail, delay }) => {
+    const btn = document.querySelector(sel);
+    if (!btn) return;
+
+    // Build inline SVG
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('class', 'upi-svgborder');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible;border-radius:6px';
+
+    const defs = document.createElementNS(ns, 'defs');
+
+    // Gradient for comet head → transparent tail
+    const grad = document.createElementNS(ns, 'linearGradient');
+    const gid = 'upi-g-' + sel.replace(/[^a-z]/g,'');
+    grad.setAttribute('id', gid);
+    grad.setAttribute('gradientUnits', 'userSpaceOnUse');
+    // will update x1/y1/x2/y2 dynamically; static fallback
+    grad.innerHTML = `<stop offset="0%" stop-color="${tail}"/><stop offset="100%" stop-color="${color}"/>`;
+    defs.appendChild(grad);
+    svg.appendChild(defs);
+
+    const rect = document.createElementNS(ns, 'rect');
+    rect.setAttribute('fill', 'none');
+    rect.setAttribute('stroke', color);
+    rect.setAttribute('stroke-width', '1.8');
+    rect.setAttribute('rx', '6');
+    rect.setAttribute('ry', '6');
+    rect.style.cssText = 'x:1px;y:1px;';
+    svg.appendChild(rect);
+
+    btn.appendChild(svg);
+
+    // Animate via JS so perimeter is dynamic
+    let raf;
+    function run() {
+      const W = btn.offsetWidth;
+      const H = btn.offsetHeight;
+      const R = 6;
+      // perimeter approx (rectangle with rounded corners)
+      const perim = 2 * (W + H - 4*R) + 2 * Math.PI * R;
+      const tailLen = perim * 0.22; // comet tail = 22% of perimeter
+
+      rect.setAttribute('width',  W - 2);
+      rect.setAttribute('height', H - 2);
+      rect.setAttribute('x', '1');
+      rect.setAttribute('y', '1');
+      rect.setAttribute('stroke-dasharray', `${tailLen} ${perim - tailLen}`);
+
+      const duration = 1800; // ms per lap
+      const startTime = performance.now() - delay * 1000;
+
+      function frame(now) {
+        const elapsed = (now - startTime) % duration;
+        const offset  = -(perim * elapsed / duration);
+        rect.setAttribute('stroke-dashoffset', offset);
+
+        // optional: vary opacity for head brightness
+        const headFrac = ((perim * elapsed / duration) % perim) / perim;
+        rect.setAttribute('stroke-opacity', '1');
+
+        raf = requestAnimationFrame(frame);
+      }
+      raf = requestAnimationFrame(frame);
+    }
+
+    // Start after layout is ready
+    requestAnimationFrame(run);
+
+    // Re-calc on resize
+    window.addEventListener('resize', () => {
+      cancelAnimationFrame(raf);
+      run();
+    });
+  });
+})();
+
+// ─── BMC COMET BORDER ───
+(function(){
+  const btn = document.getElementById('bmcPayBtn');
+  if (!btn) return;
+
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('class', 'bmc-svgborder');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible;';
+
+  const rect = document.createElementNS(ns, 'rect');
+  rect.setAttribute('fill', 'none');
+  rect.setAttribute('stroke', '#ffffff');
+  rect.setAttribute('stroke-width', '1.8');
+  rect.setAttribute('rx', '0');
+  rect.setAttribute('ry', '0');
+  svg.appendChild(rect);
+  btn.appendChild(svg);
+
+  let raf;
+  function run() {
+    const W = btn.offsetWidth;
+    const H = btn.offsetHeight;
+    const perim = 2 * (W + H);
+    const tailLen = perim * 0.22;
+
+    rect.setAttribute('width',  W - 2);
+    rect.setAttribute('height', H - 2);
+    rect.setAttribute('x', '1');
+    rect.setAttribute('y', '1');
+    rect.setAttribute('stroke-dasharray', `${tailLen} ${perim - tailLen}`);
+
+    const duration = 1800;
+    const startTime = performance.now();
+
+    function frame(now) {
+      const elapsed = (now - startTime) % duration;
+      const offset  = -(perim * elapsed / duration);
+      rect.setAttribute('stroke-dashoffset', offset);
+      raf = requestAnimationFrame(frame);
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(run);
+  window.addEventListener('resize', () => { cancelAnimationFrame(raf); run(); });
 })();
