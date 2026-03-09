@@ -141,8 +141,8 @@ body.light .db-tile{background:var(--bg)}
 body.light .db-tile:hover{background:rgba(193,61,16,.03)}
 body.light .db-tile::before{background:linear-gradient(to right,transparent,rgba(193,61,16,.3),transparent)}
 body.light .db-header-eyebrow{color:rgba(193,61,16,.8)}
-body.light .db-header-desc{color:rgba(28,24,20,.75)}
-body.light .db-tile-label{color:rgba(28,24,20,.5)}
+body.light .db-header-desc{color:rgba(28,24,20,.85)}
+body.light .db-tile-label{color:rgba(28,24,20,.65)}
 
 body.light .db-btn{border-color:rgba(193,61,16,.3);color:rgba(193,61,16,.8)}
 body.light .db-btn:hover{color:#fff;border-color:var(--a);box-shadow:0 8px 30px rgba(193,61,16,.2)}
@@ -151,7 +151,7 @@ body.light .db-btn-bmc::before{display:none}
 body.light .db-btn-bmc:hover{color:#1a1200;box-shadow:0 8px 32px rgba(255,221,0,.45)}
 body.light 
 /* ── BMC description ── */
-.db-bmc-desc{font-size:.52rem !important;color:rgba(210,208,220,.75);line-height:1.7;letter-spacing:.06em;margin-top:4px;flex:1;font-family:'DM Mono',monospace}
+.db-bmc-desc{font-size:.57rem !important;color:rgba(210,208,220,.75);line-height:1.7;letter-spacing:.06em;margin-top:4px;flex:1;font-family:'DM Mono',monospace}
 body.light .db-bmc-desc{color:rgba(28,24,20,.65)}
 .db-tile-badge{color:rgba(28,24,20,.5)}
 
@@ -516,13 +516,13 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
 /* ── Tile base ── */
 .db-tile{
   background:var(--bg);
-  padding:clamp(28px,3.5vw,44px) clamp(24px,3vw,40px);
+  padding:clamp(24px,3vw,36px) clamp(24px,3vw,40px);
   position:relative;
   overflow:hidden;
   transition:background .35s ease;
   display:flex;
   flex-direction:column;
-  gap:16px;
+  gap:0;
 }
 .db-tile::after{
   content:'';position:absolute;inset:0;
@@ -541,8 +541,8 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
 
 /* ── Grid placement ── */
 .db-header{grid-column:1;grid-row:1}
-.db-upi   {grid-column:2;grid-row:1}
-.db-bmc   {grid-column:3;grid-row:1}
+.db-upi   {grid-column:2;grid-row:1;justify-content:space-between}
+.db-bmc   {grid-column:3;grid-row:1;justify-content:space-between}
 
 /* ── Animated border on UPI & BMC tiles ── */
 @property --ba{syntax:'<angle>';initial-value:0deg;inherits:false}
@@ -583,6 +583,8 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
 .db-tile-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,2.2vw,2rem);font-weight:300;color:var(--fg);line-height:1.1;margin-bottom:4px}
 .db-tile-heading em{font-style:italic;color:var(--a)}
 .db-bmc .db-tile-heading em{color:var(--a2)}
+.db-bmc-desc{font-size:.6rem !important;color:rgba(210,208,220,.75) !important;line-height:1.6;letter-spacing:.05em;font-family:'DM Mono',monospace;margin-top:0 !important}
+body.light .db-bmc-desc{color:rgba(28,24,20,.6) !important}
 
 
 
@@ -598,7 +600,6 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
   color:rgba(200,169,126,.75);
   background:transparent;
   transition:color .35s,box-shadow .35s,transform .2s,border-color .35s;
-  margin-top:auto;
 }
 .db-btn::before{
   content:'';position:absolute;bottom:0;left:0;
@@ -630,8 +631,9 @@ footer{border-top:1px solid rgba(200,169,126,.07);padding:clamp(20px,2.5vw,32px)
 .db-tile-badge{
   display:inline-flex;align-items:center;gap:6px;
   font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(200,200,215,.88);margin-top:auto;
+  color:rgba(200,200,215,.88);
 }
+body.light .db-tile-badge{color:rgba(28,24,20,.6)}
 .db-dot{width:5px;height:5px;border-radius:50%;display:inline-block;flex-shrink:0}
 .db-dot-green{background:rgba(126,200,154,.7);box-shadow:0 0 6px rgba(126,200,154,.5)}
 .db-dot-yellow{background:rgba(255,210,0,.7);box-shadow:0 0 6px rgba(255,210,0,.4)}
@@ -706,63 +708,147 @@ body.light .nav-theme:hover{background:rgba(160,120,64,.2);border-color:var(--a)
 @media(max-width:360px){nav{gap:5px}.nav-theme{width:28px;height:28px}.nav-music{height:26px}.nav-donate{padding:6px 9px}}
 
 /* ═══════════════════════════════════
-   UPI PAYMENT — 2×2 grid
+   UPI PAYMENT — QR
 ═══════════════════════════════════ */
-.db-upi-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1}
 
-.db-upi-btn{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  text-decoration:none;
-  padding:14px 10px;
-  font-family:'DM Mono',monospace;font-size:.58rem;
-  font-weight:500;letter-spacing:.14em;text-transform:uppercase;
-  color:#fff;
-  border-radius:6px;
+/* Animations */
+@keyframes qrBorderBlink{0%,100%{box-shadow:0 0 0 0 rgba(200,169,126,0)}50%{box-shadow:0 0 0 3px rgba(200,169,126,.9),0 0 18px rgba(200,169,126,.4)}}
+
+/* QR wrapper */
+.db-upi-qr{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:16px;
+}
+
+/* QR frame — blink border */
+.db-qr-frame{
+  position:relative;
+  border-radius:16px;
+  padding:2px;
+  background:rgba(200,169,126,.25);
+  animation:qrBorderBlink 1.8s ease-in-out infinite;
+}
+.db-qr-inner{
+  background:#c8a97e;
+  border-radius:14px;
+  padding:10px;
+  display:block;
+}
+.db-qr-img{
+  display:block;
+  width:135px;height:135px;
+  object-fit:contain;
+  border-radius:4px;
+}
+
+/* UPI ID + copy — SVG comet border (same as BMC) */
+.db-upi-id-row-wrap{position:relative;width:100%}
+.db-upi-id-row{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;gap:10px;
+  background:#c8a97e;
   border:none;
+  border-radius:0;
+  padding:13px 16px;
   position:relative;overflow:hidden;
-  transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s ease;
-  z-index:0;
+  cursor:pointer;
+  transition:box-shadow .3s,transform .2s;
+  text-decoration:none;
 }
-
-/* shimmer */
-.db-upi-btn::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.15) 50%,transparent 65%);
-  transform:translateX(-150%);
-  transition:transform .5s cubic-bezier(.16,1,.3,1);
-  pointer-events:none;
-  z-index:3;
+.db-upi-id-row:hover{box-shadow:0 8px 32px rgba(200,169,126,.5);transform:translateY(-2px)}
+.db-upi-id-row:active{transform:scale(.98)}
+.db-upi-id{
+  font-family:'DM Mono',monospace;font-size:.6rem;
+  letter-spacing:.04em;text-transform:lowercase;
+  font-weight:600;
+  color:#1a1200;
+  user-select:all;position:relative;z-index:1;
 }
-.db-upi-btn:hover::after{transform:translateX(150%)}
-.db-upi-btn:hover{transform:translateY(-2px)}
-.db-upi-btn:active{transform:scale(.97);transition-duration:.08s}
-
-.db-upi-dot{display:none}
-
-/* ── Unique comet border: SVG stroke-dashoffset racing around each button ── */
-.db-upi-btn .upi-svgborder{
-  position:absolute;inset:0;width:100%;height:100%;
-  pointer-events:none;z-index:2;border-radius:6px;overflow:visible;
+.db-upi-copy{
+  display:inline-flex;align-items:center;gap:6px;
+  background:transparent;border:none;
+  color:#1a1200;
+  font-family:'DM Mono',monospace;font-size:.56rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;
+  padding:0;cursor:pointer;
+  white-space:nowrap;flex-shrink:0;
+  position:relative;z-index:1;
 }
-.db-upi-btn .upi-svgborder rect{fill:none;stroke-width:1.5;rx:6;ry:6}
-
-/* Google Pay */
-.db-upi-gpay{background:#1a73e8}
-.db-upi-gpay:hover{box-shadow:0 8px 28px rgba(26,115,232,.7)}
-
-/* PhonePe */
-.db-upi-phonepe{background:#5F259F}
-.db-upi-phonepe:hover{box-shadow:0 8px 28px rgba(95,37,159,.75)}
-
-/* Paytm */
-.db-upi-paytm{background:#00a8dc}
-.db-upi-paytm:hover{box-shadow:0 8px 28px rgba(0,168,220,.7)}
-
-/* Airtel */
-.db-upi-airtel{background:#d50000}
-.db-upi-airtel:hover{box-shadow:0 8px 28px rgba(213,0,0,.7)}
 
 /* light mode */
-body.light .db-upi-btn{border-color:rgba(0,0,0,.1)}
+body.light .db-qr-frame{background:rgba(193,61,16,.2);animation:qrBorderBlinkLight 1.8s ease-in-out infinite}
+body.light .db-qr-inner{background:#f0ebe0}
+body.light .db-upi-id-row{background:#c13d10;box-shadow:none}
+body.light .db-upi-id-row:hover{box-shadow:0 8px 32px rgba(193,61,16,.4)}
+body.light .db-upi-id{color:#fff}
+body.light .db-upi-copy{color:#fff}
 
-@media(max-width:768px){.db-upi-btn{padding:12px 8px;font-size:.54rem}}
+@media(max-width:768px){.db-qr-img{width:110px;height:110px}.db-upi-id{font-size:.56rem}}
+/* ── Commit log (header tile) ── */
+.db-commit-log{
+  display:flex;flex-direction:column;gap:5px;
+  border:1px solid rgba(200,169,126,.15);
+  border-radius:6px;
+  padding:10px 12px;
+  background:rgba(200,169,126,.06);
+}
+.db-commit-row{
+  display:flex;align-items:baseline;gap:10px;
+  font-family:'DM Mono',monospace;font-size:.56rem;
+  line-height:1.6;
+}
+.db-commit-hash{
+  color:var(--a);letter-spacing:.06em;flex-shrink:0;
+}
+.db-commit-msg{
+  color:rgba(210,208,220,.85);letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.db-header-cta-note{
+  font-family:'DM Mono',monospace;font-size:.52rem;
+  letter-spacing:.06em;color:rgba(200,169,126,.6);
+  text-align:center;
+}
+body.light .db-commit-log{background:rgba(193,61,16,.05);border-color:rgba(193,61,16,.15)}
+body.light .db-commit-hash{color:var(--a)}
+body.light .db-commit-msg{color:rgba(28,24,20,.82)}
+body.light .db-header-cta-note{color:rgba(193,61,16,.55)}
+
+/* ── BMC perks list ── */
+.db-bmc-perks{
+  list-style:none;display:flex;flex-direction:column;gap:6px;
+  padding:0;margin:0;
+}
+.db-bmc-perks li{
+  display:flex;align-items:center;gap:9px;
+  font-family:'DM Mono',monospace;font-size:.57rem;
+  letter-spacing:.03em;color:rgba(210,208,220,.85);
+  line-height:1.5;
+}
+.db-perk-dot{
+  width:4px;height:4px;border-radius:50%;flex-shrink:0;
+  background:var(--a2);box-shadow:0 0 5px rgba(126,184,200,.5);
+}
+body.light .db-bmc-perks li{color:rgba(28,24,20,.82)}
+body.light .db-perk-dot{background:var(--a2);box-shadow:none}
+
+/* ── Tile bottom group (button + badge pinned to bottom) ── */
+.db-tile-bottom{display:flex;flex-direction:column;gap:10px;padding-top:16px}
+
+/* ── BMC divider ── */
+.db-bmc-divider{
+  width:100%;height:1px;
+  background:linear-gradient(to right,transparent,rgba(126,184,200,.35),transparent);
+}
+body.light .db-bmc-divider{background:linear-gradient(to right,transparent,rgba(184,68,90,.25),transparent)}
+
+/* ── BMC middle wrapper fills the stretch row ── */
+.db-bmc-middle{display:flex;flex-direction:column;gap:10px}
+
+/* ── Tile top group ── */
+.db-tile-top{display:flex;flex-direction:column;gap:12px;flex:1}
+
+@keyframes qrBorderBlinkLight{
+  0%,100%{box-shadow:0 0 0 0 rgba(193,61,16,0)}
+  50%{box-shadow:0 0 0 3px rgba(193,61,16,.8),0 0 16px rgba(193,61,16,.3)}
+}
