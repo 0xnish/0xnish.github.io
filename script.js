@@ -382,3 +382,50 @@ const cl=document.getElementById('clinks');if(cl)cio.observe(cl);
   requestAnimationFrame(run);
   window.addEventListener('resize', () => { cancelAnimationFrame(raf); run(); });
 })();
+// ─── UPI ID COMET BORDER ───
+(function(){
+  const btn = document.querySelector('.db-upi-id-row');
+  if (!btn) return;
+
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible;';
+
+  const rect = document.createElementNS(ns, 'rect');
+  rect.setAttribute('fill', 'none');
+  rect.setAttribute('stroke', '#ffffff');
+  rect.setAttribute('stroke-width', '1.8');
+  rect.setAttribute('rx', '0');
+  rect.setAttribute('ry', '0');
+  svg.appendChild(rect);
+  btn.appendChild(svg);
+
+  let raf;
+  function run() {
+    const W = btn.offsetWidth;
+    const H = btn.offsetHeight;
+    const perim = 2 * (W + H);
+    const tailLen = perim * 0.22;
+
+    rect.setAttribute('width',  W - 2);
+    rect.setAttribute('height', H - 2);
+    rect.setAttribute('x', '1');
+    rect.setAttribute('y', '1');
+    rect.setAttribute('stroke-dasharray', `${tailLen} ${perim - tailLen}`);
+
+    const duration = 1800;
+    const startTime = performance.now();
+
+    function frame(now) {
+      const elapsed = (now - startTime) % duration;
+      const offset  = -(perim * elapsed / duration);
+      rect.setAttribute('stroke-dashoffset', offset);
+      raf = requestAnimationFrame(frame);
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(run);
+  window.addEventListener('resize', () => { cancelAnimationFrame(raf); run(); });
+})();
