@@ -153,9 +153,6 @@ const cl=document.getElementById('clinks');if(cl)cio.observe(cl);
 // ─── NAV ACTIVE ───
 (function(){const sections=document.querySelectorAll('section[id]');const navLinks=document.querySelectorAll('nav a');function onScroll(){const scrollY=window.scrollY;let current='';sections.forEach(sec=>{if(scrollY>=sec.offsetTop-120)current=sec.id});if(window.innerHeight+scrollY>=document.body.scrollHeight-60)current=sections[sections.length-1].id;navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+current)});}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
 
-// ─── BMC INLINE ───
-// Input removed — direct link to BMC page
-
 // ─── THEME TOGGLE ───
 (function(){
   const btn = document.getElementById('themeBtn');
@@ -247,138 +244,195 @@ const cl=document.getElementById('clinks');if(cl)cio.observe(cl);
   setTimeout(animateBeat, 800);
   setInterval(animateBeat, 2000);
 })();
-// ─── UPI COMET BORDER ───
+
+// ─── COPY UPI ID ───
+window.copyUPI = function() {
+  const upiId = 'coder-nishanth@airtel';
+  const btn = document.getElementById('upiCopyBtn');
+  const icoCopy = btn.querySelector('.ico-copy');
+  const icoCheck = btn.querySelector('.ico-check');
+  const label = btn.querySelector('.copy-label');
+
+  function onCopied() {
+    btn.classList.add('copied');
+    if(icoCopy) icoCopy.style.display = 'none';
+    if(icoCheck) icoCheck.style.display = 'block';
+    if(label) label.textContent = 'Copied';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      if(icoCopy) icoCopy.style.display = 'block';
+      if(icoCheck) icoCheck.style.display = 'none';
+      if(label) label.textContent = 'Copy';
+    }, 2000);
+  }
+
+  navigator.clipboard.writeText(upiId).then(onCopied).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = upiId;
+    ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+    onCopied();
+  });
+};
+
+
+// ─── BUTTON COMET BORDERS ───
 (function(){
   const configs = [
-    { sel: '.db-upi-gpay',    color: '#60b4ff', tail: 'rgba(96,180,255,0)',    delay: 0    },
-    { sel: '.db-upi-phonepe', color: '#d4a0ff', tail: 'rgba(212,160,255,0)',   delay: 0.6  },
-    { sel: '.db-upi-paytm',   color: '#80e8ff', tail: 'rgba(128,232,255,0)',   delay: 1.2  },
-    { sel: '.db-upi-airtel',  color: '#ff9090', tail: 'rgba(255,144,144,0)',   delay: 1.8  },
+    { id: 'upiCopyBtn', color: '#ff0000' },
+    { id: 'bmcPayBtn',  color: '#0099ff' },
   ];
 
-  configs.forEach(({ sel, color, tail, delay }) => {
-    const btn = document.querySelector(sel);
+  const phases = [
+    { name: 'forward',     duration: 2000 },
+    { name: 'reverse',     duration: 2000 },
+    { name: 'blink',       duration: 2000 },
+    { name: 'fast',        duration: 1500 },
+    { name: 'pause',       duration: 800  },
+    { name: 'double',      duration: 2000 },
+    { name: 'stretch',     duration: 2000 },
+    { name: 'strobe',      duration: 1500 },
+    { name: 'crawl',       duration: 3000 },
+    { name: 'pingpong',    duration: 2000 },
+    { name: 'breathe',     duration: 2000 },
+    { name: 'accelerate',  duration: 2000 },
+  ];
+  const totalCycle = phases.reduce((s, p) => s + p.duration, 0);
+
+  function getPhase(elapsed) {
+    let t = elapsed % totalCycle;
+    for (const p of phases) {
+      if (t < p.duration) return { phase: p.name, t, duration: p.duration };
+      t -= p.duration;
+    }
+  }
+
+  configs.forEach(({ id, color }) => {
+    const btn = document.getElementById(id);
     if (!btn) return;
 
-    // Build inline SVG
     const ns = 'http://www.w3.org/2000/svg';
     const svg = document.createElementNS(ns, 'svg');
-    svg.setAttribute('class', 'upi-svgborder');
     svg.setAttribute('aria-hidden', 'true');
-    svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible;border-radius:6px';
+    svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible;';
 
-    const defs = document.createElementNS(ns, 'defs');
-
-    // Gradient for comet head → transparent tail
-    const grad = document.createElementNS(ns, 'linearGradient');
-    const gid = 'upi-g-' + sel.replace(/[^a-z]/g,'');
-    grad.setAttribute('id', gid);
-    grad.setAttribute('gradientUnits', 'userSpaceOnUse');
-    // will update x1/y1/x2/y2 dynamically; static fallback
-    grad.innerHTML = `<stop offset="0%" stop-color="${tail}"/><stop offset="100%" stop-color="${color}"/>`;
-    defs.appendChild(grad);
-    svg.appendChild(defs);
-
-    const rect = document.createElementNS(ns, 'rect');
-    rect.setAttribute('fill', 'none');
-    rect.setAttribute('stroke', color);
-    rect.setAttribute('stroke-width', '1.8');
-    rect.setAttribute('rx', '6');
-    rect.setAttribute('ry', '6');
-    rect.style.cssText = 'x:1px;y:1px;';
-    svg.appendChild(rect);
-
+    // Two rects for double comet pattern
+    const rect1 = document.createElementNS(ns, 'rect');
+    const rect2 = document.createElementNS(ns, 'rect');
+    [rect1, rect2].forEach(r => {
+      r.setAttribute('fill', 'none');
+      r.setAttribute('stroke', color);
+      r.setAttribute('stroke-width', '2');
+      r.setAttribute('stroke-opacity', '0.9');
+      svg.appendChild(r);
+    });
+    rect2.style.display = 'none';
     btn.appendChild(svg);
 
-    // Animate via JS so perimeter is dynamic
     let raf;
+    const startTime = performance.now();
+
     function run() {
       const W = btn.offsetWidth;
       const H = btn.offsetHeight;
-      const R = 6;
-      // perimeter approx (rectangle with rounded corners)
-      const perim = 2 * (W + H - 4*R) + 2 * Math.PI * R;
-      const tailLen = perim * 0.22; // comet tail = 22% of perimeter
+      const perim = 2 * (W + H);
 
-      rect.setAttribute('width',  W - 2);
-      rect.setAttribute('height', H - 2);
-      rect.setAttribute('x', '1');
-      rect.setAttribute('y', '1');
-      rect.setAttribute('stroke-dasharray', `${tailLen} ${perim - tailLen}`);
-
-      const duration = 1800; // ms per lap
-      const startTime = performance.now() - delay * 1000;
+      [rect1, rect2].forEach(r => {
+        r.setAttribute('width',  W - 2);
+        r.setAttribute('height', H - 2);
+        r.setAttribute('x', '1');
+        r.setAttribute('y', '1');
+      });
 
       function frame(now) {
-        const elapsed = (now - startTime) % duration;
-        const offset  = -(perim * elapsed / duration);
-        rect.setAttribute('stroke-dashoffset', offset);
+        const elapsed = now - startTime;
+        const { phase, t, duration } = getPhase(elapsed);
+        const progress = t / duration; // 0 to 1
 
-        // optional: vary opacity for head brightness
-        const headFrac = ((perim * elapsed / duration) % perim) / perim;
-        rect.setAttribute('stroke-opacity', '1');
+        let tail = perim * 0.2;
+        let offset = 0;
+        let opacity = '0.9';
+        let showRect2 = false;
+
+        if (phase === 'forward') {
+          offset = -(perim * progress);
+
+        } else if (phase === 'reverse') {
+          offset = perim * progress;
+
+        } else if (phase === 'blink') {
+          const blink = Math.sin(progress * Math.PI * 8);
+          opacity = blink > 0 ? '0.9' : '0';
+          offset = -(perim * progress);
+
+        } else if (phase === 'fast') {
+          offset = -(perim * progress / 0.4);
+          tail = perim * 0.1;
+
+        } else if (phase === 'pause') {
+          offset = 0;
+          opacity = '0.2';
+
+        } else if (phase === 'double') {
+          // Two comets opposite each other
+          showRect2 = true;
+          tail = perim * 0.15;
+          offset = -(perim * progress);
+          rect2.setAttribute('stroke-dasharray', `${tail} ${perim - tail}`);
+          rect2.setAttribute('stroke-dashoffset', -(perim * progress) + perim / 2);
+          rect2.setAttribute('stroke-opacity', '0.9');
+
+        } else if (phase === 'stretch') {
+          // Tail grows and shrinks
+          tail = perim * (0.05 + 0.45 * Math.sin(progress * Math.PI));
+          offset = -(perim * progress);
+
+        } else if (phase === 'strobe') {
+          // Fast flicker
+          const strobe = Math.floor(progress * 20) % 2;
+          opacity = strobe === 0 ? '0.9' : '0';
+          offset = -(perim * progress * 2);
+          tail = perim * 0.12;
+
+        } else if (phase === 'crawl') {
+          // Very slow, long tail
+          offset = -(perim * progress * 0.5);
+          tail = perim * 0.4;
+          opacity = '0.6';
+
+        } else if (phase === 'pingpong') {
+          // Bounces back and forth
+          const bounce = Math.sin(progress * Math.PI * 2);
+          offset = -(perim * 0.5 * (1 + bounce) * 0.5);
+          tail = perim * 0.15;
+
+        } else if (phase === 'breathe') {
+          // Opacity pulses, slow movement
+          opacity = String(0.2 + 0.7 * Math.abs(Math.sin(progress * Math.PI * 2)));
+          offset = -(perim * progress * 0.5);
+          tail = perim * 0.25;
+
+        } else if (phase === 'accelerate') {
+          // Starts slow, ends fast (ease-in)
+          offset = -(perim * progress * progress);
+          tail = perim * (0.05 + 0.2 * progress);
+        }
+
+        rect1.setAttribute('stroke-dasharray', `${tail} ${perim - tail}`);
+        rect1.setAttribute('stroke-dashoffset', offset);
+        rect1.setAttribute('stroke-opacity', opacity);
+        rect2.style.display = showRect2 ? '' : 'none';
 
         raf = requestAnimationFrame(frame);
       }
-      raf = requestAnimationFrame(frame);
-    }
-
-    // Start after layout is ready
-    requestAnimationFrame(run);
-
-    // Re-calc on resize
-    window.addEventListener('resize', () => {
       cancelAnimationFrame(raf);
-      run();
-    });
-  });
-})();
-
-// ─── BMC COMET BORDER ───
-(function(){
-  const btn = document.getElementById('bmcPayBtn');
-  if (!btn) return;
-
-  const ns = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(ns, 'svg');
-  svg.setAttribute('class', 'bmc-svgborder');
-  svg.setAttribute('aria-hidden', 'true');
-  svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible;';
-
-  const rect = document.createElementNS(ns, 'rect');
-  rect.setAttribute('fill', 'none');
-  rect.setAttribute('stroke', '#ffffff');
-  rect.setAttribute('stroke-width', '1.8');
-  rect.setAttribute('rx', '0');
-  rect.setAttribute('ry', '0');
-  svg.appendChild(rect);
-  btn.appendChild(svg);
-
-  let raf;
-  function run() {
-    const W = btn.offsetWidth;
-    const H = btn.offsetHeight;
-    const perim = 2 * (W + H);
-    const tailLen = perim * 0.22;
-
-    rect.setAttribute('width',  W - 2);
-    rect.setAttribute('height', H - 2);
-    rect.setAttribute('x', '1');
-    rect.setAttribute('y', '1');
-    rect.setAttribute('stroke-dasharray', `${tailLen} ${perim - tailLen}`);
-
-    const duration = 1800;
-    const startTime = performance.now();
-
-    function frame(now) {
-      const elapsed = (now - startTime) % duration;
-      const offset  = -(perim * elapsed / duration);
-      rect.setAttribute('stroke-dashoffset', offset);
       raf = requestAnimationFrame(frame);
     }
-    raf = requestAnimationFrame(frame);
-  }
 
-  requestAnimationFrame(run);
-  window.addEventListener('resize', () => { cancelAnimationFrame(raf); run(); });
+    requestAnimationFrame(run);
+    window.addEventListener('resize', () => { cancelAnimationFrame(raf); run(); });
+  });
 })();
