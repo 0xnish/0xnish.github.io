@@ -1,12 +1,6 @@
-import { useEffect, useRef } from 'react'
-
-function CometBorder({ color }) {
-  return null // Handled via CSS animation from portfolio.css
-}
+import { useEffect } from 'react'
 
 export default function Donate() {
-  const upiRef = useRef(null)
-
   useEffect(() => {
     // Comet border animation for UPI and BMC buttons
     const configs = [
@@ -16,26 +10,13 @@ export default function Donate() {
     const phases = [
       { name: 'forward', duration: 2000 },
       { name: 'reverse', duration: 2000 },
-      { name: 'blink', duration: 2000 },
-      { name: 'fast', duration: 1500 },
-      { name: 'pause', duration: 800 },
-      { name: 'double', duration: 2000 },
-      { name: 'stretch', duration: 2000 },
-      { name: 'strobe', duration: 1500 },
-      { name: 'crawl', duration: 3000 },
-      { name: 'pingpong', duration: 2000 },
-      { name: 'breathe', duration: 2000 },
-      { name: 'accelerate', duration: 2000 },
+      { name: 'blink', duration: 1500 },
+      { name: 'fast', duration: 1000 },
+      { name: 'double', duration: 1500 },
+      { name: 'strobe', duration: 1000 },
+      { name: 'accelerate', duration: 1500 },
     ]
     const totalCycle = phases.reduce((s, p) => s + p.duration, 0)
-
-    function getPhase(elapsed) {
-      let t = elapsed % totalCycle
-      for (const p of phases) {
-        if (t < p.duration) return { phase: p.name, t, duration: p.duration }
-        t -= p.duration
-      }
-    }
 
     const rafs = []
     configs.forEach(({ id, color }) => {
@@ -45,54 +26,79 @@ export default function Donate() {
       const svg = document.createElementNS(ns, 'svg')
       svg.setAttribute('aria-hidden', 'true')
       svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible;'
-      const rect1 = document.createElementNS(ns, 'rect')
-      const rect2 = document.createElementNS(ns, 'rect')
-      ;[rect1, rect2].forEach(r => {
+      const path1 = document.createElementNS(ns, 'polyline')
+      const path2 = document.createElementNS(ns, 'polyline')
+      ;[path1, path2].forEach(r => {
         r.setAttribute('fill', 'none')
         r.setAttribute('stroke', color)
         r.setAttribute('stroke-width', '2')
         r.setAttribute('stroke-opacity', '0.9')
+        r.setAttribute('stroke-linejoin', 'round')
         svg.appendChild(r)
       })
-      rect2.style.display = 'none'
+      path2.style.display = 'none'
       btn.appendChild(svg)
 
       let raf
       const startTime = performance.now()
+      let cycleOffset = 0
+
+      function getEndOffset(phaseName, perim) {
+        switch (phaseName) {
+          case 'forward':    return -(perim * 1)
+          case 'reverse':    return perim * 1
+          case 'blink':      return -(perim * 1)
+          case 'fast':       return -(perim * 2.5)
+          case 'double':     return -(perim * 1)
+          case 'strobe':     return -(perim * 3.5)
+          case 'accelerate': return -(perim * 3)
+          default:           return 0
+        }
+      }
 
       function run() {
         const W = btn.offsetWidth, H = btn.offsetHeight
         const perim = 2 * (W + H)
-        ;[rect1, rect2].forEach(r => {
-          r.setAttribute('width', W - 2)
-          r.setAttribute('height', H - 2)
-          r.setAttribute('x', '1')
-          r.setAttribute('y', '1')
-        })
+        const mx = W / 2
+        const pts = `${mx},1 ${W-1},1 ${W-1},${H-1} 1,${H-1} 1,1 ${mx},1`
+        ;[path1, path2].forEach(r => r.setAttribute('points', pts))
+        cycleOffset = phases.reduce((s, p) => s + getEndOffset(p.name, perim), 0)
 
         function frame(now) {
           const elapsed = now - startTime
-          const { phase, t, duration } = getPhase(elapsed)
-          const progress = t / duration
-          let tail = perim * 0.2, offset = 0, opacity = '0.9', showRect2 = false
+          const cycleTime = elapsed % totalCycle
+          let t = cycleTime
+          let phaseName = '', phaseDuration = 0
+          for (const p of phases) {
+            if (t < p.duration) { phaseName = p.name; phaseDuration = p.duration; break }
+            t -= p.duration
+          }
+          const progress = t / phaseDuration
+          let tail = perim * 0.2, opacity = '0.9', showRect2 = false
 
-          if (phase === 'forward') offset = -(perim * progress)
-          else if (phase === 'reverse') offset = perim * progress
-          else if (phase === 'blink') { opacity = Math.sin(progress * Math.PI * 8) > 0 ? '0.9' : '0'; offset = -(perim * progress) }
-          else if (phase === 'fast') { offset = -(perim * progress / 0.4); tail = perim * 0.1 }
-          else if (phase === 'pause') { offset = 0; opacity = '0.2' }
-          else if (phase === 'double') { showRect2 = true; tail = perim * 0.15; offset = -(perim * progress); rect2.setAttribute('stroke-dasharray', `${tail} ${perim - tail}`); rect2.setAttribute('stroke-dashoffset', -(perim * progress) + perim / 2); rect2.setAttribute('stroke-opacity', '0.9') }
-          else if (phase === 'stretch') { tail = perim * (0.05 + 0.45 * Math.sin(progress * Math.PI)); offset = -(perim * progress) }
-          else if (phase === 'strobe') { opacity = Math.floor(progress * 20) % 2 === 0 ? '0.9' : '0'; offset = -(perim * progress * 2); tail = perim * 0.12 }
-          else if (phase === 'crawl') { offset = -(perim * progress * 0.5); tail = perim * 0.4; opacity = '0.6' }
-          else if (phase === 'pingpong') { offset = -(perim * 0.5 * (1 + Math.sin(progress * Math.PI * 2)) * 0.5); tail = perim * 0.15 }
-          else if (phase === 'breathe') { opacity = String(0.2 + 0.7 * Math.abs(Math.sin(progress * Math.PI * 2))); offset = -(perim * progress * 0.5); tail = perim * 0.25 }
-          else if (phase === 'accelerate') { offset = -(perim * progress * progress); tail = perim * (0.05 + 0.2 * progress) }
+          const cycleCount = Math.floor(elapsed / totalCycle)
+          let withinCycleOffset = 0
+          for (const p of phases) {
+            if (p.name === phaseName) break
+            withinCycleOffset += getEndOffset(p.name, perim)
+          }
+          const baseOffset = cycleCount * cycleOffset + withinCycleOffset
 
-          rect1.setAttribute('stroke-dasharray', `${tail} ${perim - tail}`)
-          rect1.setAttribute('stroke-dashoffset', offset)
-          rect1.setAttribute('stroke-opacity', opacity)
-          rect2.style.display = showRect2 ? '' : 'none'
+          let deltaOffset = 0
+          if (phaseName === 'forward')    deltaOffset = -(perim * progress)
+          else if (phaseName === 'reverse')    deltaOffset = perim * progress
+          else if (phaseName === 'blink')      { opacity = Math.sin(progress * Math.PI * 8) > 0 ? '0.9' : '0'; deltaOffset = -(perim * progress) }
+          else if (phaseName === 'fast')       { deltaOffset = -(perim * progress * 2.5); tail = perim * 0.1 }
+          else if (phaseName === 'double')     { showRect2 = true; tail = perim * 0.15; deltaOffset = -(perim * progress); path2.setAttribute('stroke-dasharray', `${tail} ${perim - tail}`); path2.setAttribute('stroke-dashoffset', baseOffset + deltaOffset + perim / 2); path2.setAttribute('stroke-opacity', '0.9') }
+          else if (phaseName === 'strobe')     { opacity = Math.floor(progress * 20) % 2 === 0 ? '0.9' : '0'; deltaOffset = -(perim * (1.5 + progress * 2)); tail = perim * 0.12 }
+          else if (phaseName === 'accelerate') { deltaOffset = -(perim * (1 + progress * progress * 2)); tail = perim * (0.05 + 0.2 * progress) }
+
+          const offset = baseOffset + deltaOffset
+
+          path1.setAttribute('stroke-dasharray', `${tail} ${perim - tail}`)
+          path1.setAttribute('stroke-dashoffset', offset)
+          path1.setAttribute('stroke-opacity', opacity)
+          path2.style.display = showRect2 ? '' : 'none'
           raf = requestAnimationFrame(frame)
         }
         cancelAnimationFrame(raf)
