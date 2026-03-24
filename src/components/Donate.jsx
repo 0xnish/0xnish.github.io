@@ -5,7 +5,7 @@ export default function Donate() {
     // Comet border animation for UPI and BMC buttons
     const configs = [
       { id: 'upiCopyBtn', color: '#ff0000' },
-      { id: 'bmcPayBtn', color: '#0099ff' },
+      { id: 'bmcPayBtn', color: '#ff0000' },
     ]
     const phases = [
       { name: 'forward', duration: 2000 },
