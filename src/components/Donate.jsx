@@ -199,6 +199,15 @@ export default function Donate() {
           <div className="db-tile-badge"><span className="db-dot db-dot-yellow"></span>Global &middot; Card &middot; PayPal</div>
         </div>
       </div>
+
+      {/* Dark mode override for description text */}
+      <style>{`
+        @media (prefers-color-scheme: dark) {
+          .db-bmc-desc {
+            color: #888 !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }
