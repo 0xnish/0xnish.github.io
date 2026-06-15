@@ -204,7 +204,7 @@ export default function Donate() {
       <style>{`
         @media (prefers-color-scheme: dark) {
           .db-bmc-desc {
-            color: #888 !important;
+            color: #aaa !important;
           }
         }
       `}</style>
