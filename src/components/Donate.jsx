@@ -190,7 +190,7 @@ export default function Donate() {
           <div className="db-bmc-desc" style={{ fontSize: '.63rem', lineHeight: '1.85', letterSpacing: '.05em', color: '#333', fontFamily: "'DM Mono',monospace", marginTop: '4px' }}>
             Support my work from anywhere in the world via card, PayPal, or UPI.
           </div>
-          <a className="db-btn db-btn-bmc" id="bmcPayBtn" href="https://buymeacoffee.com/nishanth" target="_blank" rel="noopener" style={{ position: 'relative' }}>
+          <a className="db-btn db-btn-bmc" id="bmcPayBtn" href="https://buymeacoffee.com/coder.nishanth" target="_blank" rel="noopener" style={{ position: 'relative' }}>
             <span>Support on BMC</span>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7"/>
