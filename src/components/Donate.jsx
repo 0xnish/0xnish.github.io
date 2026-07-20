@@ -164,7 +164,7 @@ export default function Donate() {
           <div className="db-tile-border"></div>
           <div className="db-tile-label">01 &mdash; UPI Payment</div>
           <div className="db-tile-heading">Pay via <em>UPI</em></div>
-          <div className="db-bmc-desc" style={{ fontSize: '.63rem', lineHeight: '1.85', letterSpacing: '.05em', color: '#333', fontFamily: "'DM Mono',monospace", marginTop: '4px' }}>
+          <div className="db-bmc-desc" style={{ fontSize: '.63rem', lineHeight: '1.85', letterSpacing: '.05em', color: '#333', fontFamily: "'Alan Sans',sans-serif", marginTop: '4px' }}>
             Support my work instantly via UPI from any app — zero fees, India only.
           </div>
           <button className="db-btn db-btn-upi db-btn-bmc" id="upiCopyBtn" onClick={copyUPI} aria-label="Copy UPI ID" style={{ position: 'relative' }}>
@@ -187,7 +187,7 @@ export default function Donate() {
           <div className="db-tile-border"></div>
           <div className="db-tile-label">02 &mdash; Buy Me a Coffee</div>
           <div className="db-tile-heading">Global <em>Support</em></div>
-          <div className="db-bmc-desc" style={{ fontSize: '.63rem', lineHeight: '1.85', letterSpacing: '.05em', color: '#333', fontFamily: "'DM Mono',monospace", marginTop: '4px' }}>
+          <div className="db-bmc-desc" style={{ fontSize: '.63rem', lineHeight: '1.85', letterSpacing: '.05em', color: '#333', fontFamily: "'Alan Sans',sans-serif", marginTop: '4px' }}>
             Support my work from anywhere in the world via card, PayPal, or UPI.
           </div>
           <a className="db-btn db-btn-bmc" id="bmcPayBtn" href="https://buymeacoffee.com/coder.nishanth" target="_blank" rel="noopener" style={{ position: 'relative' }}>
