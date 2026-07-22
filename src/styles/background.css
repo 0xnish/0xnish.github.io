@@ -1,0 +1,63 @@
+#starCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.45;
+}
+.grid-bg {
+  display: none;
+}
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+  opacity: 0.55;
+}
+.b1 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(200, 169, 126, 0.09),
+    transparent 70%
+  );
+  top: -200px;
+  right: -200px;
+}
+.b2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(126, 184, 200, 0.07),
+    transparent 70%
+  );
+  bottom: 50px;
+  left: -150px;
+}
+.b3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(
+    circle,
+    rgba(184, 126, 200, 0.06),
+    transparent 70%
+  );
+  top: 35%;
+  right: 10%;
+}
+.b4 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(
+    circle,
+    rgba(126, 200, 154, 0.05),
+    transparent 70%
+  );
+  top: 60%;
+  left: 20%;
+}

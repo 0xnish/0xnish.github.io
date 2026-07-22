@@ -1,28 +1,31 @@
 import { useEffect } from 'react'
 import { useTheme } from './hooks/useTheme'
 import { useScrollReveal } from './hooks/useScrollReveal'
+import Features from './helper/features'
 
-import AnimatedFavicon from './components/AnimatedFavicon'
-import Loader from './components/Loader'
-import StarCanvas from './components/StarCanvas'
-import CustomCursor from './components/CustomCursor'
-import ScrollProgress from './components/ScrollProgress'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import Marquee from './components/Marquee'
-import About from './components/About'
-import StatsBar from './components/StatsBar'
-import Skills from './components/Skills'
-import Experience from './components/Experience'
-import Contact from './components/Contact'
-import Donate from './components/Donate'
-import Footer from './components/Footer'
+import './styles/base.css'
+import './styles/cursor.css'
+import './styles/background.css'
+import './styles/header.css'
+import './styles/hero.css'
+import './styles/marquee.css'
+import './styles/about.css'
+import './styles/stats.css'
+import './styles/skills.css'
+import './styles/experience.css'
+import './styles/contact.css'
+import './styles/footer.css'
+import './styles/animations.css'
+import './styles/loader.css'
+import './styles/donate.css'
+import './styles/responsive.css'
+import './styles/music.css'
+import './styles/theme-toggle.css'
 
 export default function App() {
   const { isLight, toggle } = useTheme()
   useScrollReveal()
 
-  // Nav active state
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]')
     const navLinks = document.querySelectorAll('nav a')
@@ -41,30 +44,5 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  return (
-    <>
-      <AnimatedFavicon />
-      <Loader />
-      <div id="sp"></div>
-      <CustomCursor />
-      <StarCanvas isLight={isLight} />
-      <div className="grid-bg"></div>
-      <div className="blob b1"></div>
-      <div className="blob b2"></div>
-      <div className="blob b3"></div>
-      <div className="blob b4"></div>
-      <div className="ptc" id="ptc"></div>
-      <ScrollProgress />
-      <Header isLight={isLight} toggleTheme={toggle} />
-      <Hero />
-      <Marquee />
-      <About />
-      <StatsBar />
-      <Skills />
-      <Experience />
-      <Contact />
-      <Donate />
-      <Footer />
-    </>
-  )
+  return <Features isLight={isLight} toggleTheme={toggle} />
 }

@@ -1,0 +1,41 @@
+#cur {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--a);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  transition:
+    width 0.2s,
+    height 0.2s,
+    background 0.2s,
+    border-radius 0.2s;
+}
+#cur-ring {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(200, 169, 126, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.3s,
+    height 0.3s,
+    border-color 0.3s;
+}
+#cur.h {
+  width: 24px;
+  height: 24px;
+  background: var(--a2);
+  border-radius: 3px;
+}
+#cur-ring.h {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(126, 184, 200, 0.5);
+}

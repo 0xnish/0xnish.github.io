@@ -1,0 +1,215 @@
+.contact-section {
+  border-top: 1px solid rgba(200, 169, 126, 0.18);
+  text-align: center;
+}
+.contact-section h2 {
+  font-family: "Alan Sans", sans-serif;
+  font-size: clamp(3rem, 7vw, 7.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  margin-bottom: 80px;
+}
+.contact-section h2 em {
+  font-style: italic;
+  color: var(--a);
+}
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.ci {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  text-decoration: none;
+  padding: 34px 38px;
+  border: 1px solid rgba(200, 169, 126, 0.20);
+  min-width: 182px;
+  width: 182px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.35s,
+    transform 0.35s,
+    box-shadow 0.35s,
+    opacity 0.65s ease;
+  background: rgba(200, 169, 126, 0.01);
+  opacity: 0;
+  transform: translateY(28px);
+}
+.ci.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ci::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 60%
+  );
+  transform: translateX(-200%);
+  transition: transform 0.7s ease;
+}
+.ci:hover::before {
+  transform: translateX(200%);
+}
+.ci::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s ease;
+}
+.ci:hover {
+  border-color: rgba(200, 169, 126, 0.28);
+  transform: translateY(-5px);
+}
+.ci.ci-email:hover::after {
+  background: var(--a);
+  transform: scaleX(1);
+}
+.ci.ci-github:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.ci.ci-github:hover::after {
+  background: #fff;
+  transform: scaleX(1);
+}
+.ci.ci-linkedin:hover {
+  border-color: rgba(10, 102, 194, 0.4);
+}
+.ci.ci-linkedin:hover::after {
+  background: #0a66c2;
+  transform: scaleX(1);
+}
+.ci.ci-instagram:hover {
+  border-color: rgba(225, 48, 108, 0.3);
+}
+.ci.ci-instagram:hover::after {
+  background: linear-gradient(to right, #f09433, #dc2743, #bc1888);
+  transform: scaleX(1);
+}
+.ci-iw {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s;
+  position: relative;
+}
+.ci-iw::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transition:
+    border-color 0.35s,
+    transform 0.5s;
+}
+.ci:hover .ci-iw::after {
+  transform: rotate(180deg);
+}
+.ci.ci-email:hover {
+  border-color: rgba(234, 67, 53, 0.3);
+}
+.ci.ci-email:hover::after {
+  background: linear-gradient(to right, #4285f4, #34a853, #fbbc05, #ea4335);
+  transform: scaleX(1);
+}
+.ci.ci-email .ci-iw {
+  background: rgba(234, 67, 53, 0.1);
+}
+.ci.ci-email:hover .ci-iw {
+  background: rgba(234, 67, 53, 0.18);
+  box-shadow: 0 0 35px rgba(234, 67, 53, 0.22);
+}
+.ci.ci-email:hover .ci-iw::after {
+  border-color: rgba(234, 67, 53, 0.4);
+}
+.ci.ci-email:hover .ci-label,
+.ci.ci-email:hover .ci-val {
+  color: #ea4335;
+}
+.ci.ci-github .ci-iw {
+  background: rgba(255, 255, 255, 0.05);
+}
+.ci.ci-github:hover .ci-iw {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.18);
+}
+.ci.ci-github:hover .ci-iw::after {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.ci.ci-linkedin .ci-iw {
+  background: rgba(10, 102, 194, 0.1);
+}
+.ci.ci-linkedin:hover .ci-iw {
+  background: rgba(10, 102, 194, 0.22);
+  box-shadow: 0 0 35px rgba(10, 102, 194, 0.22);
+}
+.ci.ci-linkedin:hover .ci-iw::after {
+  border-color: rgba(10, 102, 194, 0.4);
+}
+.ci.ci-instagram .ci-iw {
+  background: rgba(220, 39, 67, 0.1);
+}
+.ci.ci-instagram:hover .ci-iw {
+  background: rgba(220, 39, 67, 0.18);
+  box-shadow: 0 0 35px rgba(220, 39, 67, 0.22);
+}
+.ci.ci-instagram:hover .ci-iw::after {
+  border-color: rgba(220, 39, 67, 0.4);
+}
+.ci-iw svg {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.35s;
+}
+.ci:hover .ci-iw svg {
+  transform: scale(1.18) rotate(-5deg);
+}
+.ci-label {
+  font-size: 0.54rem;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: rgba(232, 228, 220, 0.95);
+  transition: color 0.3s;
+}
+.ci-val {
+  font-size: 0.68rem;
+  color: var(--fg);
+  transition: color 0.3s;
+  letter-spacing: 0.06em;
+}
+.ci:hover .ci-label,
+.ci:hover .ci-val {
+  color: var(--a);
+}
+.ci.ci-github:hover .ci-label,
+.ci.ci-github:hover .ci-val {
+  color: #fff;
+}
+.ci.ci-linkedin:hover .ci-label,
+.ci.ci-linkedin:hover .ci-val {
+  color: #5aacff;
+}
+.ci.ci-instagram:hover .ci-label,
+.ci.ci-instagram:hover .ci-val {
+  color: #f06;
+}

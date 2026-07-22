@@ -1,0 +1,379 @@
+.exp-section {
+  border-top: 1px solid rgba(200, 169, 126, 0.18);
+  padding: clamp(60px, 8vw, 100px) var(--gutter);
+}
+.exp-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(200, 169, 126, 0.06);
+}
+.eb-tile {
+  background: var(--bg);
+  padding: clamp(28px, 3.5vw, 44px) clamp(24px, 3vw, 40px);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.35s ease;
+}
+.eb-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 80% 20%,
+    rgba(200, 169, 126, 0.05),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.eb-tile:hover::after {
+  opacity: 1;
+}
+.eb-tile:hover {
+  background: rgba(200, 169, 126, 0.018);
+}
+.eb-header {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+}
+.eb-header-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(200, 169, 126, 0.88);
+}
+.eb-header-title {
+  font-family: "Alan Sans", sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.12;
+  color: var(--fg);
+  flex: 1;
+  display: block;
+}
+.eb-title-line1 {
+  display: block;
+  margin-bottom: 0.06em;
+}
+.eb-header-title em {
+  font-style: italic;
+  color: var(--a);
+}
+.eb-header-desc {
+  font-size: 0.68rem;
+  color: rgba(232, 228, 220, 0.96);
+  line-height: 2.1;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.eb-header-stats {
+  display: flex;
+  gap: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(200, 169, 126, 0.20);
+}
+.eb-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.eb-stat-val {
+  font-family: "Alan Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--a);
+  line-height: 1;
+}
+.eb-stat-key {
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 220, 0.96);
+}
+.eb-journey {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.eb-journey-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(200, 169, 126, 0.88);
+  margin-bottom: 28px;
+}
+.eb-journey-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding-left: 24px;
+}
+.eb-journey-line {
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(200, 169, 126, 0.15),
+    rgba(126, 200, 154, 0.5) 50%,
+    rgba(255, 77, 77, 0.6)
+  );
+}
+.eb-journey-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+}
+.eb-journey-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid var(--a);
+  background: var(--a);
+  flex-shrink: 0;
+  margin-top: 2px;
+  margin-left: -5px;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s,
+    background 0.3s;
+}
+.eb-journey-dot--mid {
+  border-color: var(--a4);
+  background: var(--a4);
+  box-shadow: 0 0 8px rgba(126, 200, 154, 0.55);
+}
+.eb-journey-dot--now {
+  border-color: #ff1a1a;
+  background: #ff1a1a;
+  box-shadow: 0 0 12px rgba(255, 26, 26, 0.85);
+  animation: redPulse 2.5s ease-in-out infinite;
+}
+@keyframes redPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 26, 26, 0.8);
+  }
+  60% {
+    box-shadow: 0 0 0 8px rgba(255, 26, 26, 0);
+  }
+}
+.eb-journey:hover .eb-journey-dot {
+  border-color: var(--a);
+}
+.eb-journey-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.eb-journey-year {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: rgba(232, 228, 220, 0.92);
+  text-transform: uppercase;
+}
+.eb-journey-role {
+  font-size: 0.88rem;
+  color: rgba(232, 228, 220, 0.95);
+  letter-spacing: 0.04em;
+}
+.eb-role {
+  grid-column: 1;
+  grid-row: 2;
+}
+.eb-role--featured {
+  grid-column: 2;
+  grid-row: 2;
+}
+.eb-role-num {
+  font-size: 0.5rem;
+  letter-spacing: 0.32em;
+  color: rgba(232, 228, 220, 0.96);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.eb-role-period {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: rgba(232, 228, 220, 0.92);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.eb-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(200, 169, 126, 0.35);
+  flex-shrink: 0;
+}
+.eb-dot--active {
+  background: var(--a4);
+  box-shadow: 0 0 7px rgba(126, 200, 154, 0.7);
+  animation: activePulse 2.5s ease-in-out infinite;
+}
+.eb-role-title {
+  font-family: "Alan Sans", sans-serif;
+  font-size: clamp(1.6rem, 2.4vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.08;
+  color: var(--fg);
+  margin-bottom: 10px;
+}
+.eb-role-title em {
+  font-style: italic;
+  color: var(--a);
+}
+.eb-role--featured .eb-role-title em {
+  color: var(--a4);
+}
+.eb-role-company {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--a2);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.eb-role-desc {
+  font-size: 0.67rem;
+  color: rgba(232, 228, 220, 0.95);
+  line-height: 2.1;
+  margin-bottom: 24px;
+  transition: color 0.35s;
+}
+.eb-role:hover .eb-role-desc,
+.eb-role--featured:hover .eb-role-desc {
+  color: rgba(232, 228, 220, 0.96);
+}
+.eb-highlights-row {
+  display: flex;
+  gap: 24px;
+  padding: 16px 20px;
+  background: rgba(200, 169, 126, 0.02);
+  border: 1px solid rgba(200, 169, 126, 0.20);
+  border-left: 2px solid rgba(200, 169, 126, 0.35);
+  margin-bottom: 22px;
+  transition:
+    border-left-color 0.35s,
+    background 0.35s;
+}
+.eb-role .eb-highlights-row {
+  background: rgba(200, 169, 126, 0.02);
+  border-color: rgba(200, 169, 126, 0.20);
+  border-left-color: rgba(200, 169, 126, 0.58);
+}
+.eb-role:hover .eb-highlights-row {
+  border-left-color: var(--a);
+  background: rgba(200, 169, 126, 0.045);
+}
+.eb-role--featured .eb-highlights-row {
+  background: rgba(126, 200, 154, 0.02);
+  border-color: rgba(126, 200, 154, 0.20);
+  border-left-color: rgba(126, 200, 154, 0.35);
+}
+.eb-role--featured:hover .eb-highlights-row {
+  border-left-color: var(--a4);
+  background: rgba(126, 200, 154, 0.045);
+}
+.eb-hl {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.eb-hl-val {
+  font-family: "Alan Sans", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 300;
+  color: var(--a);
+  line-height: 1;
+}
+.eb-role--featured .eb-hl-val {
+  color: var(--a4);
+}
+.eb-hl-key {
+  font-size: 0.49rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 220, 0.92);
+}
+.eb-role-tags {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.eb-role-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  color: rgba(232, 228, 220, 0.96);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.eb-role-location svg {
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.eb-tag {
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 220, 0.92);
+  border: 1px solid rgba(200, 169, 126, 0.28);
+  padding: 4px 12px;
+  transition:
+    color 0.3s,
+    border-color 0.3s,
+    background 0.3s;
+}
+.eb-tag:hover {
+  color: var(--a);
+  border-color: rgba(200, 169, 126, 0.3);
+  background: rgba(200, 169, 126, 0.05);
+}
+.eb-pivot-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(200, 169, 126, 0.20);
+  margin-top: auto;
+}
+.eb-pivot-inline-from {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: rgba(232, 228, 220, 0.92);
+  text-transform: uppercase;
+}
+.eb-pivot-inline svg {
+  color: rgba(200, 169, 126, 0.85);
+  flex-shrink: 0;
+}
+.eb-pivot-inline-to {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--a);
+  text-transform: uppercase;
+}
+.eb-pivot-inline-label {
+  font-size: 0.56rem;
+  letter-spacing: 0.22em;
+  color: rgba(232, 228, 220, 0.92);
+  text-transform: uppercase;
+  margin-left: auto;
+}

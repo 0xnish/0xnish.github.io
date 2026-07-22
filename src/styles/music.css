@@ -1,0 +1,234 @@
+/* ─── MUSIC PILL BUTTON ─── */
+.nav-music {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(200, 169, 126, 0.13);
+  border: 1px solid rgba(200, 169, 126, 0.28);
+  border-radius: 999px;
+  padding: 0;
+  height: 32px;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  flex-shrink: 0;
+  will-change: transform;
+  transition:
+    border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-music:not(.music-playing):hover {
+  border-color: rgba(200, 169, 126, 0.7);
+  background: rgba(200, 169, 126, 0.13);
+  box-shadow:
+    0 0 18px rgba(200, 169, 126, 0.22),
+    0 0 6px rgba(200, 169, 126, 0.22);
+  transform: scale(1.05);
+}
+.nav-music.music-playing:hover {
+  border-color: rgba(126, 184, 200, 0.75);
+  background: rgba(126, 184, 200, 0.13);
+  box-shadow:
+    0 0 18px rgba(126, 184, 200, 0.25),
+    0 0 6px rgba(126, 184, 200, 0.13);
+  transform: scale(1.05);
+}
+.nav-music:active {
+  transform: scale(0.96) !important;
+  transition-duration: 0.1s;
+}
+.nav-music.music-playing {
+  border-color: rgba(126, 184, 200, 0.5);
+  background: rgba(126, 184, 200, 0.07);
+  box-shadow: 0 0 14px rgba(126, 184, 200, 0.15);
+}
+.mnote svg {
+  display: block;
+}
+.mnote-inner {
+  display: flex;
+  will-change: transform;
+  animation: noteFloat 3s ease-in-out infinite;
+}
+.mnote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 32px;
+  color: var(--a);
+  flex-shrink: 0;
+  transition:
+    color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-music:hover .mnote {
+  transform: scale(1.18);
+}
+.nav-music.music-playing .mnote {
+  color: var(--a2);
+}
+.nav-music.music-playing .mnote-inner {
+  animation: noteBeat 0.5s ease-in-out infinite alternate;
+}
+.nav-music.music-playing:hover .mnote {
+  transform: scale(1.18);
+}
+@keyframes noteFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+}
+@keyframes noteBeat {
+  0% {
+    transform: scale(1) rotate(-5deg);
+  }
+  100% {
+    transform: scale(1.3) rotate(4deg);
+  }
+}
+.mdiv {
+  width: 1px;
+  height: 16px;
+  background: rgba(200, 169, 126, 0.25);
+  flex-shrink: 0;
+  transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-music.music-playing .mdiv {
+  background: rgba(126, 184, 200, 0.3);
+}
+.mplay {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 32px;
+  flex-shrink: 0;
+  color: var(--a);
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-music.music-playing .mplay {
+  color: var(--a2);
+}
+.ico-play,
+.ico-pause {
+  position: absolute;
+  will-change: transform, opacity;
+  transition:
+    opacity 0.25s ease,
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ico-play {
+  opacity: 1;
+  transform: scale(1);
+}
+.ico-pause {
+  opacity: 0;
+  transform: scale(0.65);
+  pointer-events: none;
+}
+.nav-music.music-playing .ico-play {
+  opacity: 0;
+  transform: scale(0.65);
+  pointer-events: none;
+}
+.nav-music.music-playing .ico-pause {
+  opacity: 1;
+  transform: scale(1);
+}
+.nav-music:not(.music-playing):hover .ico-play {
+  transform: scale(1.2);
+}
+.nav-music.music-playing:hover .ico-pause {
+  transform: scale(1.2);
+}
+@media (max-width: 900px) {
+  .nav-music {
+    height: 30px;
+  }
+  .mnote,
+  .mplay {
+    height: 30px;
+  }
+  .mnote {
+    width: 28px;
+  }
+  .mplay {
+    width: 26px;
+  }
+}
+@media (max-width: 768px) {
+  .nav-music {
+    height: 30px;
+    margin-right: 4px;
+  }
+  .mnote {
+    width: 26px;
+    height: 30px;
+  }
+  .mplay {
+    width: 24px;
+    height: 30px;
+  }
+  .mnote svg {
+    width: 13px;
+    height: 13px;
+  }
+  .mplay svg {
+    width: 10px;
+    height: 10px;
+  }
+  .mdiv {
+    height: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .nav-music {
+    height: 28px;
+  }
+  .mnote {
+    width: 24px;
+    height: 28px;
+  }
+  .mplay {
+    width: 22px;
+    height: 28px;
+  }
+  .mnote svg {
+    width: 12px;
+    height: 12px;
+  }
+  .mplay svg {
+    width: 9px;
+    height: 9px;
+  }
+}
+@media (max-width: 360px) {
+  .nav-music {
+    height: 26px;
+  }
+  .mnote {
+    width: 22px;
+    height: 26px;
+  }
+  .mplay {
+    width: 20px;
+    height: 26px;
+  }
+  .mnote svg {
+    width: 11px;
+    height: 11px;
+  }
+  .mplay svg {
+    width: 8px;
+    height: 8px;
+  }
+}

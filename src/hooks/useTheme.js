@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 export function useTheme() {
   const [isLight, setIsLight] = useState(() => {
-    return localStorage.getItem('theme') === 'light' ||
+    return localStorage.getItem('theme') !== 'dark' ||
       document.documentElement.classList.contains('light-init')
   })
 

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { stats } from '../helper/constants'
 
 function StatItem({ target, label, isInfinity, delay }) {
   const numRef = useRef(null)
@@ -44,7 +45,7 @@ function StatItem({ target, label, isInfinity, delay }) {
   return (
     <div className="stat rv" style={{ transitionDelay: delay }} ref={itemRef} onClick={handleClick}>
       <div className="stat-num" ref={numRef} data-target={target}>
-        {isInfinity ? '∞' : '0'}
+        {isInfinity ? '\u221e' : '0'}
       </div>
       <div className="stat-label">{label}</div>
     </div>
@@ -54,10 +55,9 @@ function StatItem({ target, label, isInfinity, delay }) {
 export default function StatsBar() {
   return (
     <div className="stats-bar">
-      <StatItem target={50} label="Projects Shipped" delay="0s" />
-      <StatItem target={1} label="Years Coding" delay=".1s" />
-      <StatItem target={24} label="Hours / Day Dedicated" delay=".2s" />
-      <StatItem isInfinity label="Cups of Coffee" delay=".3s" />
+      {stats.map((s, i) => (
+        <StatItem key={i} target={s.target} label={s.label} isInfinity={s.isInfinity} delay={s.delay} />
+      ))}
     </div>
   )
 }

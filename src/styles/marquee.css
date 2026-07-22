@@ -1,0 +1,45 @@
+.mq-wrap {
+  border-top: 1px solid rgba(200, 169, 126, 0.55);
+  border-bottom: 1px solid rgba(200, 169, 126, 0.55);
+  overflow: hidden;
+  padding: 10px 0;
+  background: rgba(200, 169, 126, 0.012);
+  position: relative;
+  z-index: 2;
+}
+.mq-track {
+  display: flex;
+  width: max-content;
+  animation: mqA 24s linear infinite;
+}
+.mq-content {
+  display: flex;
+  gap: 70px;
+  flex-shrink: 0;
+  padding-right: 70px;
+}
+.mq-item {
+  font-family: "Alan Sans", sans-serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(232, 228, 220, 0.96);
+  white-space: nowrap;
+  transition: color 0.3s;
+  letter-spacing: 0.06em;
+}
+.mq-item:hover {
+  color: var(--a);
+}
+.md {
+  color: var(--a);
+  font-style: normal;
+  margin-left: 8px;
+}
+@keyframes mqA {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { roles, links } from '../helper/constants'
 
 export default function Hero() {
   const h1Ref = useRef(null)
@@ -80,7 +81,6 @@ export default function Hero() {
 
   // Typed roles
   useEffect(() => {
-    const roles = ['Software Engineer', 'Full Stack Developer', 'System Architect', 'Problem Solver', 'Code Craftsman']
     let ri = 0, ci = 0, deleting = false
     const tel = typedRef.current
     if (!tel) return
@@ -107,12 +107,6 @@ export default function Hero() {
           <div className="photo-ambient"></div>
           <div className="orbit-ring orbit-ring-1"></div>
           <div className="orbit-ring orbit-ring-2"></div>
-          <div className="photo-dots-tl">
-            {Array.from({ length: 20 }).map((_, i) => <div key={i} className="pdot"></div>)}
-          </div>
-          <div className="photo-dots-br">
-            {Array.from({ length: 12 }).map((_, i) => <div key={i} className="pdot"></div>)}
-          </div>
           <div className="photo-bar top"></div>
           <div className="photo-bar bot"></div>
           <div className="photo-main">
@@ -138,8 +132,8 @@ export default function Hero() {
           Crafting elegant digital experiences through clean code, thoughtful architecture, and a passion for building things that matter.
         </p>
         <div className="hero-cta">
-          <a href="mailto:mailtonishii@gmail.com" className="btn btn-p"><span>Get in Touch</span></a>
-          <a href="https://github.com/coder-nishanth" target="_blank" rel="noopener" className="btn btn-g"><span>View GitHub</span></a>
+          <a href={links.email} className="btn btn-p"><span>Get in Touch</span></a>
+          <a href={links.github} target="_blank" rel="noopener" className="btn btn-g"><span>View GitHub</span></a>
         </div>
       </div>
     </section>

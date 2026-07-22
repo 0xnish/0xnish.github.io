@@ -1,0 +1,329 @@
+/* ═══════════════════════════════════
+   DONATE SECTION — bento grid
+═══════════════════════════════════ */
+.donate-section {
+  border-top: 1px solid rgba(200, 169, 126, 0.18);
+  padding: clamp(60px, 8vw, 100px) var(--gutter);
+  position: relative;
+  z-index: 2;
+}
+.donate-section .sec-label {
+  margin-bottom: 52px;
+}
+.donate-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1px;
+  background: rgba(200, 169, 126, 0.06);
+}
+
+/* ── Tile base ── */
+.db-tile {
+  background: var(--bg);
+  padding: clamp(28px, 3.5vw, 44px) clamp(24px, 3vw, 40px);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.db-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 80% 20%,
+    rgba(200, 169, 126, 0.05),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.db-tile:hover::after {
+  opacity: 1;
+}
+.db-tile:hover {
+  background: rgba(200, 169, 126, 0.018);
+}
+.db-tile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(200, 169, 126, 0.4),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+.db-tile:hover::before {
+  left: 100%;
+}
+
+/* ── Grid placement ── */
+.db-header {
+  grid-column: 1;
+  grid-row: 1;
+}
+.db-upi {
+  grid-column: 2;
+  grid-row: 1;
+}
+.db-bmc {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+/* ── Animated border on UPI & BMC tiles ── */
+@property --ba {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes borderTravel {
+  to {
+    --ba: 360deg;
+  }
+}
+
+.db-upi,
+.db-bmc {
+  overflow: visible;
+}
+
+.db-upi .db-tile-border,
+.db-bmc .db-tile-border {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+.db-upi .db-tile-border::before,
+.db-bmc .db-tile-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--ba),
+    transparent 0deg,
+    transparent 300deg,
+    #c8a97e 330deg,
+    #e8d5b0 345deg,
+    #c8a97e 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderTravel 3s linear infinite;
+}
+.db-bmc .db-tile-border::before {
+  background: conic-gradient(
+    from var(--ba),
+    transparent 0deg,
+    transparent 300deg,
+    #7eb8c8 330deg,
+    #b0d8e8 345deg,
+    #7eb8c8 360deg
+  );
+}
+
+/* ── Header tile ── */
+.db-header-eyebrow {
+  font-size: 0.52rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(200, 169, 126, 0.95);
+}
+.db-header-title {
+  font-family: "Alan Sans", sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--fg);
+}
+.db-header-title em {
+  font-style: italic;
+  color: var(--a);
+}
+.db-header-desc {
+  font-size: 0.68rem;
+  color: rgba(232, 228, 220, 0.95);
+  line-height: 2.1;
+  letter-spacing: 0.04em;
+}
+
+/* ── Tile label / heading ── */
+.db-tile-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 220, 0.96);
+}
+.db-tile-heading {
+  font-family: "Alan Sans", sans-serif;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 300;
+  color: var(--fg);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.db-tile-heading em {
+  font-style: italic;
+  color: var(--a);
+}
+.db-bmc .db-tile-heading em {
+  color: var(--a2);
+}
+
+/* ── Pay buttons ── */
+.db-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 16px;
+  text-decoration: none;
+  font-family: "Alan Sans", sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(200, 169, 126, 0.28);
+  color: rgba(200, 169, 126, 0.92);
+  background: transparent;
+  transition:
+    color 0.35s,
+    box-shadow 0.35s,
+    transform 0.2s,
+    border-color 0.35s;
+  margin-top: auto;
+}
+.db-btn::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: var(--a);
+  z-index: 0;
+  transition: height 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.db-btn > * {
+  position: relative;
+  z-index: 1;
+}
+.db-btn:hover::before {
+  height: 100%;
+}
+.db-btn:hover {
+  color: var(--bg);
+  border-color: var(--a);
+  box-shadow: 0 8px 40px rgba(200, 169, 126, 0.22);
+  transform: translateY(-1px);
+}
+.db-btn:active {
+  transform: scale(0.98);
+}
+.db-btn svg {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+.db-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.db-btn-bmc {
+  border: none;
+  background: #ffdd00;
+  color: #1a1200;
+  font-weight: 600;
+}
+.db-btn-bmc::before {
+  display: none;
+}
+.db-btn-bmc:hover {
+  color: #1a1200;
+  box-shadow: 0 8px 32px rgba(255, 221, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ── Badge ── */
+.db-tile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 220, 0.96);
+  margin-top: auto;
+}
+.db-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.db-dot-green {
+  background: rgba(126, 200, 154, 0.7);
+  box-shadow: 0 0 6px rgba(126, 200, 154, 0.5);
+}
+.db-dot-yellow {
+  background: rgba(255, 210, 0, 0.7);
+  box-shadow: 0 0 6px rgba(255, 210, 0, 0.4);
+}
+
+/* ── BMC description ── */
+.db-bmc-desc {
+  font-size: 0.52rem;
+  color: rgba(232, 228, 220, 0.92);
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  flex: 1;
+  font-family: "Alan Sans", sans-serif;
+}
+body.light .db-bmc-desc {
+  color: rgba(28, 24, 20, 0.65);
+}
+
+/* ═══════════════════════════════════
+   UPI ID display + copy
+═══════════════════════════════════ */
+.db-btn-upi.copied {
+  background: #22c55e;
+  color: #fff;
+}
+.db-btn-upi.copied:hover {
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(34, 197, 94, 0.4);
+}
+.db-btn-upi {
+  transition:
+    background 0.4s ease,
+    color 0.4s ease,
+    box-shadow 0.35s ease,
+    transform 0.2s ease;
+}
+.upi-copy-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+}

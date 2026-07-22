@@ -1,0 +1,57 @@
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+}
+.loader-text {
+  font-family: "Alan Sans", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: rgba(200, 169, 126, 0.9);
+}
+.loader-dots::after {
+  content: "";
+  animation: ldots 1.4s steps(4, end) infinite;
+}
+@keyframes ldots {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
+  100% {
+    content: "";
+  }
+}
+#loader.hide {
+  animation: loaderHide 0.6s ease forwards;
+}
+@keyframes loaderHide {
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+#sp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--a), var(--a2), var(--a3));
+  z-index: 9995;
+  width: 0;
+  transition: width 0.1s;
+}
