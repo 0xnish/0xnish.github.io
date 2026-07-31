@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 const ENDPOINT =
-  'https://script.google.com/macros/s/AKfycbxDzQktCrxKCDtLZG17V3bLf5nzV9WDwQcjHrsQz4rMFMd3dm2CgTqPF2AcgyAIuLbY/exec'
+  'https://script.google.com/macros/s/AKfycbxnFOVMXINLyma9CiOK_HfElJ9ZkElWxm1mopITQBS4gic5ZxeYpBlfbT9nvY2U3T9w/exec'
 
 function detectDevice() {
   const ua = navigator.userAgent
