@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useTheme } from './hooks/useTheme'
 import { useScrollReveal } from './hooks/useScrollReveal'
+import useVisitorTracker from './hooks/useVisitorTracker'
 import Features from './helper/features'
 
 import './styles/base.css'
@@ -25,6 +26,7 @@ import './styles/theme-toggle.css'
 export default function App() {
   const { isLight, toggle } = useTheme()
   useScrollReveal()
+  useVisitorTracker()
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]')
