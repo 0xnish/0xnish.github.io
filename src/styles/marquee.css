@@ -1,9 +1,9 @@
 .mq-wrap {
-  border-top: 1px solid rgba(200, 169, 126, 0.55);
-  border-bottom: 1px solid rgba(200, 169, 126, 0.55);
+  border-top: 1px solid rgba(255, 179, 71, 0.7);
+  border-bottom: 1px solid rgba(255, 179, 71, 0.7);
   overflow: hidden;
   padding: 10px 0;
-  background: rgba(200, 169, 126, 0.012);
+  background: rgba(255, 179, 71, 0.012);
   position: relative;
   z-index: 2;
 }
@@ -22,13 +22,14 @@
   font-family: "Alan Sans", sans-serif;
   font-size: 1.05rem;
   font-style: italic;
-  color: rgba(232, 228, 220, 0.96);
+  color: rgba(232, 228, 220, 1);
   white-space: nowrap;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: 0.06em;
 }
 .mq-item:hover {
   color: var(--a);
+  transform: translateY(-2px);
 }
 .md {
   color: var(--a);

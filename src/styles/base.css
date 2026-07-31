@@ -56,12 +56,12 @@ body.light nav a::after {
 }
 body.light .term {
   background: rgba(255, 252, 248, 0.98);
-  border-color: rgba(193, 61, 16, 0.18);
+  border-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
 }
 body.light .term-hd {
   background: rgba(193, 61, 16, 0.06);
-  border-bottom-color: rgba(193, 61, 16, 0.12);
+  border-bottom-color: rgba(255, 255, 255, 0.4);
 }
 body.light .term-title {
   color: rgba(28, 24, 20, 0.55);
@@ -123,7 +123,7 @@ body.light .about-text p {
 }
 body.light .pill {
   color: var(--a);
-  border-color: rgba(193, 61, 16, 0.28);
+  border-color: rgba(193, 61, 16, 0.7);
 }
 body.light .pill:hover {
   background: rgba(193, 61, 16, 0.08);
@@ -185,14 +185,13 @@ body.light .eb-tile {
   background: var(--bg);
 }
 body.light .eb-tile:hover {
-  background: rgba(193, 61, 16, 0.03);
+  background: rgba(193, 61, 16, 0.14);
+}
+body.light .eb-tile::before {
+  background: linear-gradient(to right, transparent, var(--a), transparent);
 }
 body.light .eb-tile::after {
-  background: radial-gradient(
-    circle at 80% 20%,
-    rgba(193, 61, 16, 0.06),
-    transparent 65%
-  );
+  background: linear-gradient(to bottom, transparent, var(--a), transparent);
 }
 body.light .eb-header-label,
 body.light .eb-journey-label {
@@ -252,6 +251,10 @@ body.light .eb-hl-key {
 body.light .eb-role-location {
   color: rgba(28, 24, 20, 0.5);
 }
+body.light .eb-role-location svg {
+  color: var(--a);
+  filter: drop-shadow(0 0 6px rgba(193, 61, 16, 0.8));
+}
 body.light .eb-tag {
   color: rgba(28, 24, 20, 0.55);
   border-color: rgba(193, 61, 16, 0.22);
@@ -277,7 +280,7 @@ body.light .contact-section {
   border-top-color: rgba(193, 61, 16, 0.12);
 }
 body.light .ci {
-  border-color: rgba(193, 61, 16, 0.12);
+  border-color: rgba(193, 61, 16, 0.7);
   background: rgba(193, 61, 16, 0.02);
 }
 body.light .ci:hover {
@@ -313,15 +316,7 @@ body.light .db-tile {
   background: var(--bg);
 }
 body.light .db-tile:hover {
-  background: rgba(193, 61, 16, 0.03);
-}
-body.light .db-tile::before {
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(193, 61, 16, 0.3),
-    transparent
-  );
+  background: rgba(193, 61, 16, 0.14);
 }
 body.light .db-header-eyebrow {
   color: rgba(193, 61, 16, 0.8);
@@ -428,18 +423,6 @@ body.light nav a.nav-donate {
   border-color: var(--a);
   color: #fff;
 }
-body.light .photo-border-track {
-  background: conic-gradient(
-    from 0deg,
-    rgba(193, 61, 16, 0) 0deg,
-    rgba(193, 61, 16, 0.95) 55deg,
-    rgba(184, 68, 90, 0.9) 110deg,
-    rgba(232, 160, 32, 0.85) 170deg,
-    rgba(193, 61, 16, 0.7) 230deg,
-    rgba(184, 68, 90, 0.9) 290deg,
-    rgba(193, 61, 16, 0) 360deg
-  );
-}
 body.light .orbit-ring-1 {
   border-color: rgba(193, 61, 16, 0.18);
 }
@@ -455,14 +438,6 @@ body.light .orbit-ring-2::before {
   box-shadow:
     0 0 14px 4px rgba(184, 68, 90, 0.7),
     0 0 36px 8px rgba(184, 68, 90, 0.2);
-}
-body.light .photo-ambient {
-  background: radial-gradient(
-    ellipse,
-    rgba(193, 61, 16, 0.08) 0%,
-    rgba(184, 68, 90, 0.04) 45%,
-    transparent 70%
-  );
 }
 body.light .photo-dots-tl {
   opacity: 0.5;
@@ -483,21 +458,6 @@ body.light .photo-bar {
     rgba(193, 61, 16, 0.45),
     transparent
   );
-}
-body.light .photo-scan::after {
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(193, 61, 16, 0.55),
-    transparent
-  );
-}
-body.light .photo-corner {
-  border-color: rgba(193, 61, 16, 0.65);
-}
-body.light .hero-photo-col:hover .photo-corner {
-  border-color: var(--a);
-  filter: drop-shadow(0 0 6px rgba(193, 61, 16, 0.5));
 }
 body.light h1 {
   color: var(--fg);

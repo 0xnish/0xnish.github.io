@@ -3,6 +3,42 @@ import { useEffect } from 'react'
 const ENDPOINT =
   'https://script.google.com/macros/s/AKfycbxDzQktCrxKCDtLZG17V3bLf5nzV9WDwQcjHrsQz4rMFMd3dm2CgTqPF2AcgyAIuLbY/exec'
 
+function detectOs(ua) {
+  const android = ua.match(/Android ([\d.]+)/)
+  if (android) return `Android ${android[1]}`
+  if (/iPhone|iPad|iPod/.test(ua)) {
+    const m = ua.match(/OS ([\d_]+)/)
+    return m ? `iOS ${m[1].replace(/_/g, '.')}` : 'iOS'
+  }
+  if (/Windows/.test(ua)) {
+    const m = ua.match(/Windows NT ([\d.]+)/)
+    const names = {
+      '10.0': 'Windows 10',
+      '6.3': 'Windows 8.1',
+      '6.2': 'Windows 8',
+      '6.1': 'Windows 7',
+      '6.0': 'Windows Vista',
+      '5.1': 'Windows XP',
+    }
+    return m ? names[m[1]] || `Windows ${m[1]}` : 'Windows'
+  }
+  if (/Mac OS X/.test(ua)) {
+    const m = ua.match(/Mac OS X ([\d_.]+)/)
+    return m ? `macOS ${m[1].replace(/_/g, '.')}` : 'macOS'
+  }
+  if (/CrOS/.test(ua)) return 'Chrome OS'
+  if (/Linux/.test(ua)) return 'Linux'
+  return ''
+}
+
+function detectDeviceModel(ua) {
+  if (/iPhone/.test(ua)) return 'iPhone'
+  if (/iPad/.test(ua)) return 'iPad'
+  if (/Macintosh/.test(ua)) return 'Macintosh'
+  const m = ua.match(/; ?([^;]+) Build\//)
+  return m ? m[1].trim() : ''
+}
+
 function detectDevice() {
   const ua = navigator.userAgent
   const device = /Mobi|Android|iPhone/i.test(ua)
@@ -10,18 +46,10 @@ function detectDevice() {
       ? 'Tablet'
       : 'Mobile'
     : 'Desktop'
-  const osMatch = ua.match(/Windows NT [\d.]+|Android [\d.]+|iPhone OS [\d_]+|Mac OS X [\d_]+|Linux/)
-  const os = (osMatch ? osMatch[0].replace(/_/g, '.') : '')
-    .replace('Windows NT 10.0', 'Windows 10')
-    .replace('Windows NT 6.3', 'Windows 8.1')
-    .replace('Windows NT 6.1', 'Windows 7')
-    .replace('Windows NT 5.1', 'Windows XP')
-    .replace('Mac OS X', 'macOS')
-    .replace('iPhone OS', 'iOS')
+  const os = detectOs(ua)
   const browserMatch = ua.match(/(Edg|Chrome|Firefox|Safari|OPR|MSIE)[/\s]([\d.]+)/)
   const browser = browserMatch ? `${browserMatch[1]} ${browserMatch[2]}` : 'Unknown'
-  const modelMatch = ua.match(/(SM-[A-Za-z0-9]+|Pixel [\dA-Za-z]+|iPhone|iPad|Macintosh)/)
-  const deviceModel = modelMatch ? modelMatch[1] : ''
+  const deviceModel = detectDeviceModel(ua)
   return { device, deviceModel, os, browser }
 }
 
@@ -49,6 +77,7 @@ export default function useVisitorTracker() {
     sessionStorage.setItem('vt', '1')
 
     ;(async () => {
+      const referrer = document.referrer || ''
       const info = await getIpInfo()
       const { device, deviceModel, os, browser } = detectDevice()
       fetch(ENDPOINT, {
@@ -63,7 +92,7 @@ export default function useVisitorTracker() {
           os,
           browser,
           screen: `${screen.width}x${screen.height}`,
-          referrer: document.referrer || '',
+          referrer,
         }),
       }).catch(() => {
         // tracking is best-effort, never block the page

@@ -22,6 +22,7 @@ import './styles/donate.css'
 import './styles/responsive.css'
 import './styles/music.css'
 import './styles/theme-toggle.css'
+import './styles/transitions.css'
 
 export default function App() {
   const { isLight, toggle } = useTheme()

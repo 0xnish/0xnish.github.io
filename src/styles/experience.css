@@ -1,38 +1,58 @@
 .exp-section {
-  border-top: 1px solid rgba(200, 169, 126, 0.18);
+  border-top: 1px solid rgba(255, 179, 71, 0.18);
   padding: clamp(60px, 8vw, 100px) var(--gutter);
 }
 .exp-bento {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: rgba(200, 169, 126, 0.06);
+  gap: 20px;
 }
 .eb-tile {
-  background: var(--bg);
   padding: clamp(28px, 3.5vw, 44px) clamp(24px, 3vw, 40px);
   position: relative;
   overflow: hidden;
   transition: background 0.35s ease;
 }
+.eb-tile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--a), transparent);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
 .eb-tile::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 80% 20%,
-    rgba(200, 169, 126, 0.05),
-    transparent 65%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  top: -100%;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--a), transparent);
+  transition: top 0.7s ease;
   pointer-events: none;
 }
+.eb-tile:hover::before {
+  left: 100%;
+}
 .eb-tile:hover::after {
-  opacity: 1;
+  top: 100%;
+}
+.eb-header::before,
+.eb-journey::before {
+  top: auto;
+  bottom: 0;
+}
+.eb-journey::after,
+.eb-role--featured::after {
+  right: auto;
+  left: 0;
 }
 .eb-tile:hover {
-  background: rgba(200, 169, 126, 0.018);
+  background: rgba(255, 179, 71, 0.14);
 }
 .eb-header {
   grid-column: 1;
@@ -43,10 +63,10 @@
   gap: 28px;
 }
 .eb-header-label {
-  font-size: 0.52rem;
+  font-size: 0.6rem;
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: rgba(200, 169, 126, 0.88);
+  color: rgba(255, 179, 71, 1);
 }
 .eb-header-title {
   font-family: "Alan Sans", sans-serif;
@@ -67,7 +87,7 @@
 }
 .eb-header-desc {
   font-size: 0.68rem;
-  color: rgba(232, 228, 220, 0.96);
+  color: rgba(232, 228, 220, 1);
   line-height: 2.1;
   letter-spacing: 0.04em;
   margin-bottom: 8px;
@@ -76,7 +96,7 @@
   display: flex;
   gap: 32px;
   padding-top: 24px;
-  border-top: 1px solid rgba(200, 169, 126, 0.20);
+  border-top: 1px solid rgba(255, 179, 71, 0.7);
 }
 .eb-stat {
   display: flex;
@@ -94,7 +114,7 @@
   font-size: 0.5rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(232, 228, 220, 0.96);
+  color: rgba(232, 228, 220, 1);
 }
 .eb-journey {
   grid-column: 2;
@@ -104,10 +124,10 @@
   gap: 20px;
 }
 .eb-journey-label {
-  font-size: 0.52rem;
+  font-size: 0.6rem;
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: rgba(200, 169, 126, 0.88);
+  color: rgba(255, 179, 71, 1);
   margin-bottom: 28px;
 }
 .eb-journey-track {
@@ -125,7 +145,7 @@
   width: 1px;
   background: linear-gradient(
     to bottom,
-    rgba(200, 169, 126, 0.15),
+    rgba(255, 179, 71, 0.15),
     rgba(126, 200, 154, 0.5) 50%,
     rgba(255, 77, 77, 0.6)
   );
@@ -181,12 +201,12 @@
 .eb-journey-year {
   font-size: 0.62rem;
   letter-spacing: 0.16em;
-  color: rgba(232, 228, 220, 0.92);
+  color: rgba(232, 228, 220, 1);
   text-transform: uppercase;
 }
 .eb-journey-role {
   font-size: 0.88rem;
-  color: rgba(232, 228, 220, 0.95);
+  color: rgba(232, 228, 220, 1);
   letter-spacing: 0.04em;
 }
 .eb-role {
@@ -200,7 +220,7 @@
 .eb-role-num {
   font-size: 0.5rem;
   letter-spacing: 0.32em;
-  color: rgba(232, 228, 220, 0.96);
+  color: rgba(232, 228, 220, 1);
   text-transform: uppercase;
   margin-bottom: 18px;
 }
@@ -210,7 +230,7 @@
   gap: 9px;
   font-size: 0.55rem;
   letter-spacing: 0.18em;
-  color: rgba(232, 228, 220, 0.92);
+  color: rgba(232, 228, 220, 1);
   text-transform: uppercase;
   margin-bottom: 16px;
 }
@@ -218,7 +238,8 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(200, 169, 126, 0.35);
+  background: var(--a);
+  box-shadow: 0 0 8px rgba(255, 179, 71, 0.8);
   flex-shrink: 0;
 }
 .eb-dot--active {
@@ -244,46 +265,46 @@
 .eb-role-company {
   font-size: 0.62rem;
   letter-spacing: 0.18em;
-  color: var(--a2);
+  color: #87ceeb;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
 .eb-role-desc {
   font-size: 0.67rem;
-  color: rgba(232, 228, 220, 0.95);
+  color: rgba(232, 228, 220, 1);
   line-height: 2.1;
   margin-bottom: 24px;
   transition: color 0.35s;
 }
 .eb-role:hover .eb-role-desc,
 .eb-role--featured:hover .eb-role-desc {
-  color: rgba(232, 228, 220, 0.96);
+  color: rgba(232, 228, 220, 1);
 }
 .eb-highlights-row {
   display: flex;
   gap: 24px;
   padding: 16px 20px;
-  background: rgba(200, 169, 126, 0.02);
-  border: 1px solid rgba(200, 169, 126, 0.20);
-  border-left: 2px solid rgba(200, 169, 126, 0.35);
+  background: rgba(255, 179, 71, 0.02);
+  border: 1px solid rgba(255, 179, 71, 0.7);
+  border-left: 4px solid rgba(255, 179, 71, 0.7);
   margin-bottom: 22px;
   transition:
     border-left-color 0.35s,
     background 0.35s;
 }
 .eb-role .eb-highlights-row {
-  background: rgba(200, 169, 126, 0.02);
-  border-color: rgba(200, 169, 126, 0.20);
-  border-left-color: rgba(200, 169, 126, 0.58);
+  background: rgba(255, 179, 71, 0.02);
+  border-color: rgba(255, 179, 71, 0.7);
+  border-left-color: rgba(255, 179, 71, 0.7);
 }
 .eb-role:hover .eb-highlights-row {
   border-left-color: var(--a);
-  background: rgba(200, 169, 126, 0.045);
+  background: rgba(255, 179, 71, 0.045);
 }
 .eb-role--featured .eb-highlights-row {
   background: rgba(126, 200, 154, 0.02);
-  border-color: rgba(126, 200, 154, 0.20);
-  border-left-color: rgba(126, 200, 154, 0.35);
+  border-color: rgba(126, 200, 154, 0.7);
+  border-left-color: rgba(126, 200, 154, 0.7);
 }
 .eb-role--featured:hover .eb-highlights-row {
   border-left-color: var(--a4);
@@ -308,7 +329,7 @@
   font-size: 0.49rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: rgba(232, 228, 220, 0.92);
+  color: rgba(232, 228, 220, 1);
 }
 .eb-role-tags {
   display: flex;
@@ -321,20 +342,22 @@
   gap: 5px;
   font-size: 0.55rem;
   letter-spacing: 0.14em;
-  color: rgba(232, 228, 220, 0.96);
+  color: rgba(232, 228, 220, 1);
   text-transform: uppercase;
   margin-bottom: 4px;
 }
 .eb-role-location svg {
-  opacity: 0.5;
+  opacity: 1;
   flex-shrink: 0;
+  color: #ffffff;
+  filter: drop-shadow(0 0 6px rgba(255, 179, 71, 0.8));
 }
 .eb-tag {
   font-size: 0.5rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(232, 228, 220, 0.92);
-  border: 1px solid rgba(200, 169, 126, 0.28);
+  color: rgba(232, 228, 220, 1);
+  border: 1px solid rgba(255, 179, 71, 0.7);
   padding: 4px 12px;
   transition:
     color 0.3s,
@@ -343,25 +366,25 @@
 }
 .eb-tag:hover {
   color: var(--a);
-  border-color: rgba(200, 169, 126, 0.3);
-  background: rgba(200, 169, 126, 0.05);
+  border-color: var(--a);
+  background: rgba(255, 179, 71, 0.05);
 }
 .eb-pivot-inline {
   display: flex;
   align-items: center;
   gap: 10px;
   padding-top: 20px;
-  border-top: 1px solid rgba(200, 169, 126, 0.20);
+  border-top: 1px solid rgba(255, 179, 71, 0.7);
   margin-top: auto;
 }
 .eb-pivot-inline-from {
   font-size: 0.72rem;
   letter-spacing: 0.14em;
-  color: rgba(232, 228, 220, 0.92);
+  color: rgba(232, 228, 220, 1);
   text-transform: uppercase;
 }
 .eb-pivot-inline svg {
-  color: rgba(200, 169, 126, 0.85);
+  color: rgba(255, 179, 71, 0.85);
   flex-shrink: 0;
 }
 .eb-pivot-inline-to {
@@ -373,7 +396,7 @@
 .eb-pivot-inline-label {
   font-size: 0.56rem;
   letter-spacing: 0.22em;
-  color: rgba(232, 228, 220, 0.92);
+  color: rgba(232, 228, 220, 1);
   text-transform: uppercase;
   margin-left: auto;
 }

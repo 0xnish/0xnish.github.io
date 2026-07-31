@@ -5,6 +5,7 @@ export default function Hero() {
   const h1Ref = useRef(null)
   const typedRef = useRef(null)
 
+
   // Name animation
   useEffect(() => {
     const h1el = h1Ref.current
@@ -104,22 +105,14 @@ export default function Hero() {
     <section className="hero" id="home">
       <div className="hero-photo-col">
         <div className="photo-scene">
-          <div className="photo-ambient"></div>
-          <div className="orbit-ring orbit-ring-1"></div>
-          <div className="orbit-ring orbit-ring-2"></div>
-          <div className="photo-bar top"></div>
-          <div className="photo-bar bot"></div>
           <div className="photo-main">
-            <div className="photo-border-track"><div className="photo-border-fill"></div></div>
-            <div className="photo-img-container">
-              <img src="/photo.jpg" alt="Nishanth J P" loading="eager" />
-              <div className="photo-scan"></div>
+            <div className="photo-wrap">
+              <div className="photo-ring"></div>
+              <div className="photo-img-container">
+                <img src="/photo.jpg" alt="Nishanth J P" loading="eager" />
+              </div>
             </div>
           </div>
-          <div className="photo-corner tl"></div>
-          <div className="photo-corner tr"></div>
-          <div className="photo-corner bl"></div>
-          <div className="photo-corner br"></div>
         </div>
       </div>
       <div className="hero-content">

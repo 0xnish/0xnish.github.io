@@ -1,12 +1,11 @@
 .skills-section {
-  border-top: 1px solid rgba(200, 169, 126, 0.25);
+  border-top: 1px solid rgba(255, 179, 71, 0.25);
 }
 
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(200, 169, 126, 0.05);
+  gap: 20px;
 }
 .sk {
   background: var(--bg);
@@ -17,7 +16,8 @@
   transform: translateY(38px) scale(0.97);
   transition:
     opacity 0.7s ease,
-    transform 0.7s ease;
+    transform 0.7s ease,
+    background 0.35s ease;
 }
 .sk.on {
   opacity: 1;
@@ -54,28 +54,28 @@
   inset: 0;
   background: radial-gradient(
     circle at 25% 40%,
-    rgba(200, 169, 126, 0.07),
+    rgba(255, 179, 71, 0.07),
     transparent 65%
   );
   opacity: 0;
   transition: opacity 0.45s;
 }
 .sk:hover {
-  background: rgba(200, 169, 126, 0.025);
+  background: rgba(255, 179, 71, 0.025);
 }
 .sk:hover .sk-glow {
   opacity: 1;
 }
 .sk-num {
   font-size: 0.57rem;
-  color: rgba(232, 228, 220, 0.96);
+  color: rgba(232, 228, 220, 1);
   letter-spacing: 0.22em;
   margin-bottom: 24px;
 }
 .sk-iw {
   width: 50px;
   height: 50px;
-  border: 1px solid rgba(200, 169, 126, 0.24);
+  border: 1px solid rgba(255, 179, 71, 0.7);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -87,8 +87,8 @@
     transform 0.35s;
 }
 .sk:hover .sk-iw {
-  border-color: rgba(200, 169, 126, 0.45);
-  box-shadow: 0 0 24px rgba(200, 169, 126, 0.22);
+  border-color: var(--a);
+  box-shadow: 0 0 24px rgba(255, 179, 71, 0.22);
   transform: rotate(5deg) scale(1.08);
 }
 .sk-iw svg {
@@ -108,6 +108,6 @@
 }
 .sk-desc {
   font-size: 0.75rem;
-  color: rgba(232, 228, 220, 0.97);
+  color: rgba(232, 228, 220, 1);
   line-height: 1.95;
 }
