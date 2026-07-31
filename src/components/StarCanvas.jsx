@@ -28,15 +28,15 @@ export default function StarCanvas({ isLight }) {
     let rafId
     function draw() {
       ctx.clearRect(0, 0, W, H)
-      const light = document.body.classList.contains('light')
+      const light = isLight
       const cols = light
         ? ['rgba(193,61,16,', 'rgba(220,50,30,']
-        : ['rgba(200,169,126,', 'rgba(126,184,200,']
+        : ['rgba(255,179,71,', 'rgba(255,179,71,']
       stars.forEach(s => {
         s.a += s.da
         if (s.a > 1 || s.a < 0) s.da *= -1
-        const alpha = light ? Math.max(s.a, 0.28) : s.a
-        const radius = light ? s.r * 1.3 : s.r
+        const alpha = Math.max(s.a, 0.75)
+        const radius = s.r * 1.3
         ctx.beginPath()
         ctx.arc(s.x, s.y, radius, 0, Math.PI * 2)
         ctx.fillStyle = cols[s.t] + alpha + ')'
@@ -52,7 +52,7 @@ export default function StarCanvas({ isLight }) {
       cancelAnimationFrame(rafId)
       window.removeEventListener('resize', resize)
     }
-  }, [])
+  }, [isLight])
 
   return <canvas id="starCanvas" ref={canvasRef} />
 }

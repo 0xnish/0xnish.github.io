@@ -125,10 +125,10 @@ export default function Header({ isLight, toggleTheme }) {
         >
           <span className="mnote" id="mNote">
             <span className="mnote-inner">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="14.5" y1="3" x2="14.5" y2="15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                <path d="M14.5 3 C17 3.8, 20 3.2, 21 5 C20 5.8, 17 6.4, 14.5 5.6Z" fill="currentColor"/>
-                <ellipse cx="11.5" cy="15.5" rx="3.2" ry="2.2" transform="rotate(-15 11.5 15.5)" fill="currentColor"/>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
               </svg>
             </span>
           </span>

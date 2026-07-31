@@ -45,59 +45,15 @@ body.light .theme-icon-dark {
 body.light .theme-icon-light {
   display: flex;
 }
-@keyframes themeSpin {
-  0% {
-    transform: rotate(0deg) scale(1);
-    opacity: 1;
-  }
-  40% {
-    transform: rotate(200deg) scale(0);
-    opacity: 0;
-  }
-  60% {
-    transform: rotate(-160deg) scale(0);
-    opacity: 0;
-  }
-  100% {
-    transform: rotate(0deg) scale(1);
-    opacity: 1;
-  }
-}
-.nav-theme.theme-spinning .theme-icon-dark svg,
-.nav-theme.theme-spinning .theme-icon-light svg {
-  animation: themeSpin 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
 .theme-icon-dark svg {
   transition:
     filter 0.3s ease,
     transform 0.3s ease;
-  animation: moonDrift 4s ease-in-out infinite;
-}
-@keyframes moonDrift {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 1px rgba(200, 169, 126, 0.15));
-  }
-  50% {
-    filter: drop-shadow(0 0 5px rgba(200, 169, 126, 0.55));
-  }
 }
 body.light .theme-icon-light svg {
   transition:
     filter 0.3s ease,
     transform 0.3s ease;
-  animation: sunPulse 3s ease-in-out infinite;
-}
-@keyframes sunPulse {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 2px rgba(193, 61, 16, 0.1));
-    transform: rotate(0deg);
-  }
-  50% {
-    filter: drop-shadow(0 0 7px rgba(193, 61, 16, 0.6));
-    transform: rotate(18deg);
-  }
 }
 body.light .nav-theme {
   background: rgba(160, 120, 64, 0.1);

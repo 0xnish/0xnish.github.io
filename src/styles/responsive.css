@@ -103,7 +103,7 @@
     display: none;
   }
   nav {
-    gap: 0;
+    gap: 10px;
   }
   .blob {
     filter: blur(60px);

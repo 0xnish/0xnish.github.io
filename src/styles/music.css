@@ -51,7 +51,6 @@
 .mnote-inner {
   display: flex;
   will-change: transform;
-  animation: noteFloat 3s ease-in-out infinite;
 }
 .mnote {
   display: flex;
@@ -72,27 +71,14 @@
   color: var(--a2);
 }
 .nav-music.music-playing .mnote-inner {
-  animation: noteBeat 0.5s ease-in-out infinite alternate;
+  transform: none;
 }
 .nav-music.music-playing:hover .mnote {
   transform: scale(1.18);
 }
-@keyframes noteFloat {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-5deg);
-  }
-  50% {
-    transform: translateY(-2px) rotate(4deg);
-  }
-}
-@keyframes noteBeat {
-  0% {
-    transform: scale(1) rotate(-5deg);
-  }
-  100% {
-    transform: scale(1.3) rotate(4deg);
-  }
+.eq-bar {
+  transform-box: fill-box;
+  transform-origin: center bottom;
 }
 .mdiv {
   width: 1px;
