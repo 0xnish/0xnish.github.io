@@ -1,119 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { upiId, bmcLink } from '../helper/constants'
 
 export default function Donate() {
-  useEffect(() => {
-    // Comet border animation for UPI and BMC buttons
-    const configs = [
-      { id: 'upiCopyBtn', color: '#ff0000' },
-      { id: 'bmcPayBtn', color: '#ff0000' },
-    ]
-    const phases = [
-      { name: 'forward', duration: 2000 },
-      { name: 'reverse', duration: 2000 },
-      { name: 'blink', duration: 1500 },
-      { name: 'fast', duration: 1000 },
-      { name: 'double', duration: 1500 },
-      { name: 'strobe', duration: 1000 },
-      { name: 'accelerate', duration: 1500 },
-    ]
-    const totalCycle = phases.reduce((s, p) => s + p.duration, 0)
+  const heartTimers = useRef({})
 
-    const rafs = []
-    configs.forEach(({ id, color }) => {
-      const btn = document.getElementById(id)
-      if (!btn) return
-      const ns = 'http://www.w3.org/2000/svg'
-      const svg = document.createElementNS(ns, 'svg')
-      svg.setAttribute('aria-hidden', 'true')
-      svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible;'
-      const path1 = document.createElementNS(ns, 'polyline')
-      const path2 = document.createElementNS(ns, 'polyline')
-      ;[path1, path2].forEach(r => {
-        r.setAttribute('fill', 'none')
-        r.setAttribute('stroke', color)
-        r.setAttribute('stroke-width', '2')
-        r.setAttribute('stroke-opacity', '0.9')
-        r.setAttribute('stroke-linejoin', 'round')
-        svg.appendChild(r)
-      })
-      path2.style.display = 'none'
-      btn.appendChild(svg)
-
-      let raf
-      const startTime = performance.now()
-      let cycleOffset = 0
-
-      function getEndOffset(phaseName, perim) {
-        switch (phaseName) {
-          case 'forward':    return -(perim * 1)
-          case 'reverse':    return perim * 1
-          case 'blink':      return -(perim * 1)
-          case 'fast':       return -(perim * 2.5)
-          case 'double':     return -(perim * 1)
-          case 'strobe':     return -(perim * 3.5)
-          case 'accelerate': return -(perim * 3)
-          default:           return 0
-        }
-      }
-
-      function run() {
-        const W = btn.offsetWidth, H = btn.offsetHeight
-        const perim = 2 * (W + H)
-        const mx = W / 2
-        const pts = `${mx},1 ${W-1},1 ${W-1},${H-1} 1,${H-1} 1,1 ${mx},1`
-        ;[path1, path2].forEach(r => r.setAttribute('points', pts))
-        cycleOffset = phases.reduce((s, p) => s + getEndOffset(p.name, perim), 0)
-
-        function frame(now) {
-          const elapsed = now - startTime
-          const cycleTime = elapsed % totalCycle
-          let t = cycleTime
-          let phaseName = '', phaseDuration = 0
-          for (const p of phases) {
-            if (t < p.duration) { phaseName = p.name; phaseDuration = p.duration; break }
-            t -= p.duration
-          }
-          const progress = t / phaseDuration
-          let tail = perim * 0.2, opacity = '0.9', showRect2 = false
-
-          const cycleCount = Math.floor(elapsed / totalCycle)
-          let withinCycleOffset = 0
-          for (const p of phases) {
-            if (p.name === phaseName) break
-            withinCycleOffset += getEndOffset(p.name, perim)
-          }
-          const baseOffset = cycleCount * cycleOffset + withinCycleOffset
-
-          let deltaOffset = 0
-          if (phaseName === 'forward')    deltaOffset = -(perim * progress)
-          else if (phaseName === 'reverse')    deltaOffset = perim * progress
-          else if (phaseName === 'blink')      { opacity = Math.sin(progress * Math.PI * 8) > 0 ? '0.9' : '0'; deltaOffset = -(perim * progress) }
-          else if (phaseName === 'fast')       { deltaOffset = -(perim * progress * 2.5); tail = perim * 0.1 }
-          else if (phaseName === 'double')     { showRect2 = true; tail = perim * 0.15; deltaOffset = -(perim * progress); path2.setAttribute('stroke-dasharray', `${tail} ${perim - tail}`); path2.setAttribute('stroke-dashoffset', baseOffset + deltaOffset + perim / 2); path2.setAttribute('stroke-opacity', '0.9') }
-          else if (phaseName === 'strobe')     { opacity = Math.floor(progress * 20) % 2 === 0 ? '0.9' : '0'; deltaOffset = -(perim * (1.5 + progress * 2)); tail = perim * 0.12 }
-          else if (phaseName === 'accelerate') { deltaOffset = -(perim * (1 + progress * progress * 2)); tail = perim * (0.05 + 0.2 * progress) }
-
-          const offset = baseOffset + deltaOffset
-
-          path1.setAttribute('stroke-dasharray', `${tail} ${perim - tail}`)
-          path1.setAttribute('stroke-dashoffset', offset)
-          path1.setAttribute('stroke-opacity', opacity)
-          path2.style.display = showRect2 ? '' : 'none'
-          raf = requestAnimationFrame(frame)
-        }
-        cancelAnimationFrame(raf)
-        raf = requestAnimationFrame(frame)
-        rafs.push(() => cancelAnimationFrame(raf))
-      }
-      requestAnimationFrame(run)
-      const onResize = () => { cancelAnimationFrame(raf); run() }
-      window.addEventListener('resize', onResize)
-      rafs.push(() => window.removeEventListener('resize', onResize))
-    })
-    return () => rafs.forEach(fn => fn())
+  useEffect(() => () => {
+    Object.values(heartTimers.current).forEach(t => clearInterval(t))
   }, [])
-
   const copyUPI = () => {
     const btn = document.getElementById('upiCopyBtn')
     const icoCopy = btn?.querySelector('.ico-copy')
@@ -145,6 +38,46 @@ export default function Donate() {
     })
   }
 
+  const spawnHearts = btn => {
+    const r = btn.getBoundingClientRect()
+    const heartCount = 10
+    for (let i = 0; i < heartCount; i++) {
+      const heart = document.createElement('span')
+      heart.className = 'db-heart'
+      heart.textContent = '\u2665'
+      const angle = -Math.PI * 0.9 + Math.random() * Math.PI * 1.8
+      const dist = 34 + Math.random() * 56
+      const dx = Math.cos(angle) * dist
+      const dy = Math.sin(angle) * dist
+      const dur = 0.6 + Math.random() * 0.5
+      const size = 9 + Math.random() * 9
+      const x = r.left + Math.random() * r.width
+      const y = r.top + Math.random() * r.height
+      heart.style.left = x + 'px'
+      heart.style.top = y + 'px'
+      heart.style.fontSize = size + 'px'
+      heart.style.setProperty('--hx', dx + 'px')
+      heart.style.setProperty('--hy', dy + 'px')
+      heart.style.setProperty('--rot', (Math.random() * 120 - 60).toFixed(1) + 'deg')
+      heart.style.animationDuration = dur + 's'
+      document.body.appendChild(heart)
+      setTimeout(() => heart.remove(), dur * 1000 + 100)
+    }
+  }
+
+  const startHearts = (id, btn) => {
+    if (heartTimers.current[id]) return
+    spawnHearts(btn)
+    heartTimers.current[id] = setInterval(() => spawnHearts(btn), 240)
+  }
+
+  const stopHearts = id => {
+    if (heartTimers.current[id]) {
+      clearInterval(heartTimers.current[id])
+      heartTimers.current[id] = null
+    }
+  }
+
   return (
     <section id="donate" className="donate-section">
       <div className="sec-label rv">
@@ -160,14 +93,13 @@ export default function Donate() {
         </div>
 
         {/* UPI tile */}
-        <div className="db-tile db-upi rv" style={{ transitionDelay: '.08s' }}>
-          <div className="db-tile-border"></div>
+        <div className="db-tile db-upi rv" style={{ transitionDelay: '.09s' }}>
           <div className="db-tile-label">01 &mdash; UPI Payment</div>
           <div className="db-tile-heading">Pay via <em>UPI</em></div>
           <div className="db-bmc-desc" style={{ fontSize: '.75rem', lineHeight: '1.85', letterSpacing: '.05em', color: 'rgba(232, 228, 220, 1)', fontFamily: "'Alan Sans',sans-serif", marginTop: '4px' }}>
             Support my work instantly via UPI from any app — zero fees, India only.
           </div>
-          <button className="db-btn db-btn-upi db-btn-bmc" id="upiCopyBtn" onClick={copyUPI} aria-label="Copy UPI ID" style={{ position: 'relative' }}>
+          <button className="db-btn db-btn-upi db-btn-bmc" id="upiCopyBtn" onClick={copyUPI} onMouseEnter={e => startHearts('upi', e.currentTarget)} onMouseLeave={() => stopHearts('upi')} aria-label="Copy UPI ID" style={{ position: 'relative' }}>
             <span className="upi-id-text">coder-nishanth@airtel</span>
             <span className="upi-copy-action">
               <svg className="ico-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -183,14 +115,13 @@ export default function Donate() {
         </div>
 
         {/* BMC tile */}
-        <div className="db-tile db-bmc rv" style={{ transitionDelay: '.16s' }}>
-          <div className="db-tile-border"></div>
+        <div className="db-tile db-bmc rv" style={{ transitionDelay: '.18s' }}>
           <div className="db-tile-label">02 &mdash; Buy Me a Coffee</div>
           <div className="db-tile-heading">Global <em>Support</em></div>
           <div className="db-bmc-desc" style={{ fontSize: '.75rem', lineHeight: '1.85', letterSpacing: '.05em', color: 'rgba(232, 228, 220, 1)', fontFamily: "'Alan Sans',sans-serif", marginTop: '4px' }}>
             Support my work from anywhere in the world via card, PayPal, or UPI.
           </div>
-          <a className="db-btn db-btn-bmc" id="bmcPayBtn" href={bmcLink} target="_blank" rel="noopener" style={{ position: 'relative' }}>
+          <a className="db-btn db-btn-bmc" id="bmcPayBtn" href={bmcLink} target="_blank" rel="noopener" onMouseEnter={e => startHearts('bmc', e.currentTarget)} onMouseLeave={() => stopHearts('bmc')} style={{ position: 'relative' }}>
             <span>Support on BMC</span>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7"/>

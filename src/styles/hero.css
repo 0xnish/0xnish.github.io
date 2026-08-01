@@ -381,7 +381,7 @@ h1 {
   inset: 0;
   overflow: hidden;
   z-index: 1;
-  animation: blobMorph 14s ease-in-out infinite;
+  animation: ringBlob 19s ease-in-out infinite -3s;
 }
 .photo-ring::before {
   content: "";
@@ -397,6 +397,21 @@ h1 {
 @keyframes ringSpin {
   to {
     transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@keyframes ringBlob {
+  0%,
+  100% {
+    border-radius: 45% 55% 48% 52% / 55% 45% 52% 48%;
+  }
+  25% {
+    border-radius: 60% 40% 55% 45% / 40% 62% 38% 60%;
+  }
+  50% {
+    border-radius: 40% 60% 42% 58% / 58% 40% 60% 42%;
+  }
+  75% {
+    border-radius: 52% 48% 60% 40% / 45% 55% 42% 58%;
   }
 }
 .photo-img-container {
@@ -437,7 +452,6 @@ h1 {
     filter 0.6s ease;
 }
 .hero-photo-col:hover .photo-img-container img {
-  transform: scale(1.05);
   filter: saturate(1.18) contrast(1.08) brightness(1.04);
 }
 .photo-img-container::after {

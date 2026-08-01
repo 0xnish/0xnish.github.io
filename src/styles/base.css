@@ -138,7 +138,7 @@ body.light .stat {
 body.light .stat-label {
   color: rgba(28, 24, 20, 0.55);
 }
-body.light .stat:hover {
+body.light .stat::before {
   background: rgba(193, 61, 16, 0.04);
 }
 body.light .skills-section {
@@ -150,11 +150,16 @@ body.light .skills-grid {
 body.light .sk {
   background: var(--bg);
 }
-body.light .sk:hover {
-  background: rgba(193, 61, 16, 0.04);
+body.light .sk-glow {
+  background-image: radial-gradient(
+    circle at 25% 40%,
+    rgba(193, 61, 16, 0.08),
+    transparent 65%
+  );
+  background-color: rgba(193, 61, 16, 0.04);
 }
 body.light .sk-num {
-  color: rgba(28, 24, 20, 0.42);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .sk-desc {
   color: rgba(28, 24, 20, 0.72);
@@ -184,8 +189,13 @@ body.light .exp-bento {
 body.light .eb-tile {
   background: var(--bg);
 }
-body.light .eb-tile:hover {
-  background: rgba(193, 61, 16, 0.14);
+body.light .eb-glow {
+  background-image: radial-gradient(
+    circle at 25% 40%,
+    rgba(193, 61, 16, 0.08),
+    transparent 65%
+  );
+  background-color: rgba(193, 61, 16, 0.04);
 }
 body.light .eb-tile::before {
   background: linear-gradient(to right, transparent, var(--a), transparent);
@@ -195,7 +205,7 @@ body.light .eb-tile::after {
 }
 body.light .eb-header-label,
 body.light .eb-journey-label {
-  color: rgba(193, 61, 16, 0.6);
+  color: rgba(193, 61, 16, 0.9);
 }
 body.light .eb-header-desc {
   color: rgba(28, 24, 20, 0.72);
@@ -204,7 +214,7 @@ body.light .eb-header-stats {
   border-top-color: rgba(193, 61, 16, 0.12);
 }
 body.light .eb-stat-key {
-  color: rgba(28, 24, 20, 0.5);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .eb-journey-line {
   background: linear-gradient(
@@ -219,16 +229,16 @@ body.light .eb-journey-dot {
   background: var(--a);
 }
 body.light .eb-journey-year {
-  color: rgba(28, 24, 20, 0.52);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .eb-journey-role {
   color: rgba(28, 24, 20, 0.9);
 }
 body.light .eb-role-num {
-  color: rgba(28, 24, 20, 0.3);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .eb-role-period {
-  color: rgba(28, 24, 20, 0.45);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .eb-role-desc {
   color: rgba(28, 24, 20, 0.7);
@@ -246,17 +256,17 @@ body.light .eb-role:hover .eb-highlights-row {
   background: rgba(193, 61, 16, 0.06);
 }
 body.light .eb-hl-key {
-  color: rgba(28, 24, 20, 0.4);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .eb-role-location {
-  color: rgba(28, 24, 20, 0.5);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .eb-role-location svg {
   color: var(--a);
   filter: drop-shadow(0 0 6px rgba(193, 61, 16, 0.8));
 }
 body.light .eb-tag {
-  color: rgba(28, 24, 20, 0.55);
+  color: rgba(28, 24, 20, 0.9);
   border-color: rgba(193, 61, 16, 0.22);
 }
 body.light .eb-tag:hover {
@@ -271,7 +281,7 @@ body.light .eb-pivot-inline {
   border-top-color: rgba(193, 61, 16, 0.12);
 }
 body.light .eb-pivot-inline-from {
-  color: rgba(28, 24, 20, 0.6);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .eb-pivot-inline svg {
   color: rgba(193, 61, 16, 0.4);
@@ -315,9 +325,6 @@ body.light .donate-bento {
 body.light .db-tile {
   background: var(--bg);
 }
-body.light .db-tile:hover {
-  background: rgba(193, 61, 16, 0.14);
-}
 body.light .db-header-eyebrow {
   color: rgba(193, 61, 16, 0.8);
 }
@@ -325,7 +332,7 @@ body.light .db-header-desc {
   color: rgba(28, 24, 20, 0.75);
 }
 body.light .db-tile-label {
-  color: rgba(28, 24, 20, 0.5);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .db-btn {
   border-color: rgba(193, 61, 16, 0.3);
@@ -353,7 +360,7 @@ body.light .db-bmc-desc {
   color: rgba(28, 24, 20, 0.82) !important;
 }
 body.light .db-tile-badge {
-  color: rgba(28, 24, 20, 0.65);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light #loader {
   background: var(--bg);
@@ -511,7 +518,7 @@ body.light .eb-role--featured .eb-role-title em {
   color: var(--a4);
 }
 body.light .eb-pivot-inline-label {
-  color: rgba(28, 24, 20, 0.45);
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .eb-dot {
   background: rgba(193, 61, 16, 0.4);
@@ -537,26 +544,6 @@ body.light #cur {
 }
 body.light #cur.h {
   background: var(--a);
-}
-body.light .db-upi .db-tile-border::before {
-  background: conic-gradient(
-    from var(--ba),
-    transparent 0deg,
-    transparent 300deg,
-    #c13d10 330deg,
-    #e87050 345deg,
-    #c13d10 360deg
-  );
-}
-body.light .db-bmc .db-tile-border::before {
-  background: conic-gradient(
-    from var(--ba),
-    transparent 0deg,
-    transparent 300deg,
-    #b8445a 330deg,
-    #d87080 345deg,
-    #b8445a 360deg
-  );
 }
 body.light #sp {
   background: linear-gradient(to right, var(--a), var(--a2), var(--a3));

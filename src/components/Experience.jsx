@@ -8,6 +8,7 @@ export default function Experience() {
       <div className="exp-bento">
         {/* Header tile */}
         <div className="eb-tile eb-header rv">
+          <div className="eb-glow"></div>
           <div className="eb-header-label">Career Path</div>
           <div className="eb-header-title">
             <span className="eb-title-line1">Where I've</span>
@@ -22,7 +23,8 @@ export default function Experience() {
         </div>
 
         {/* Journey tile */}
-        <div className="eb-tile eb-journey rv" style={{ transitionDelay: '.1s' }}>
+        <div className="eb-tile eb-journey rv" style={{ transitionDelay: '.09s' }}>
+          <div className="eb-glow"></div>
           <div className="eb-journey-label">Timeline</div>
           <div className="eb-journey-track">
             <div className="eb-journey-line"></div>
@@ -59,7 +61,8 @@ export default function Experience() {
         </div>
 
         {/* Role 01 */}
-        <div className="eb-tile eb-role rv" style={{ transitionDelay: '.15s' }}>
+        <div className="eb-tile eb-role rv" style={{ transitionDelay: '.18s' }}>
+          <div className="eb-glow"></div>
           <div className="eb-role-num">01</div>
           <div className="eb-role-period"><span className="eb-dot"></span>Jan 2021 — Jun 2021 &nbsp;&middot;&nbsp; 6 months</div>
           <div className="eb-role-title">Front Office <em>Assistant</em></div>
@@ -85,7 +88,8 @@ export default function Experience() {
         </div>
 
         {/* Role 02 */}
-        <div className="eb-tile eb-role eb-role--featured rv" style={{ transitionDelay: '.22s' }}>
+        <div className="eb-tile eb-role eb-role--featured rv" style={{ transitionDelay: '.27s' }}>
+          <div className="eb-glow"></div>
           <div className="eb-role-num">02</div>
           <div className="eb-role-period"><span className="eb-dot eb-dot--active"></span>Aug 2021 — Jul 2024 &nbsp;&middot;&nbsp; 3 years</div>
           <div className="eb-role-title">Front Office <em>Executive</em></div>

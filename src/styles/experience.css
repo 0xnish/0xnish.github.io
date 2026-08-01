@@ -5,13 +5,26 @@
 .exp-bento {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 0;
 }
 .eb-tile {
   padding: clamp(28px, 3.5vw, 44px) clamp(24px, 3vw, 40px);
   position: relative;
   overflow: hidden;
+  background: rgba(255, 179, 71, 0);
   transition: background 0.35s ease;
+}
+.eb-tile.rv {
+  opacity: 0;
+  transform: translateY(38px) scale(0.97);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease,
+    background 0.35s ease;
+}
+.eb-tile.rv.on {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 .eb-tile::before {
   content: "";
@@ -51,8 +64,38 @@
   right: auto;
   left: 0;
 }
-.eb-tile:hover {
-  background: rgba(255, 179, 71, 0.14);
+.eb-glow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: rgba(255, 179, 71, 0.28);
+  background-image: radial-gradient(
+    circle at 25% 40%,
+    rgba(255, 179, 71, 0.09),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.45s;
+  pointer-events: none;
+}
+.eb-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.055) 50%,
+    transparent 60%
+  );
+  transform: translateX(-200%);
+  transition: transform 0.7s ease;
+}
+.eb-tile:hover .eb-glow {
+  opacity: 1;
+}
+.eb-tile:hover .eb-glow::before {
+  transform: translateX(200%);
 }
 .eb-header {
   grid-column: 1;

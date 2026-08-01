@@ -13,12 +13,19 @@
   border-right: 1px solid rgba(255, 179, 71, 0.16);
   position: relative;
   overflow: hidden;
+  background: rgba(255, 179, 71, 0);
   transition:
     background 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .stat:last-child {
   border-right: none;
+}
+.stat.rv {
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease,
+    background 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .stat::after {
   content: "";
@@ -31,9 +38,20 @@
   background: linear-gradient(to right, transparent, var(--a), transparent);
   transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.stat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 179, 71, 0.28);
+  opacity: 0;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
 .stat:hover {
-  background: rgba(255, 179, 71, 0.04);
   transform: translateY(-3px);
+}
+.stat:hover::before {
+  opacity: 1;
 }
 .stat:hover::after {
   width: 70%;

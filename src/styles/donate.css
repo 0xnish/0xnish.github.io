@@ -29,8 +29,17 @@
   flex-direction: column;
   gap: 16px;
 }
-.db-tile:hover {
-  background: rgba(255, 179, 71, 0.14);
+.db-tile.rv {
+  opacity: 0;
+  transform: translateY(38px) scale(0.97);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease,
+    background 0.35s ease;
+}
+.db-tile.rv.on {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 /* ── Grid placement ── */
@@ -45,62 +54,6 @@
 .db-bmc {
   grid-column: 3;
   grid-row: 1;
-}
-
-/* ── Animated border on UPI & BMC tiles ── */
-@property --ba {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-@keyframes borderTravel {
-  to {
-    --ba: 360deg;
-  }
-}
-
-.db-upi,
-.db-bmc {
-  overflow: visible;
-}
-
-.db-upi .db-tile-border,
-.db-bmc .db-tile-border {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 3;
-}
-.db-upi .db-tile-border::before,
-.db-bmc .db-tile-border::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  padding: 1px;
-  background: conic-gradient(
-    from var(--ba),
-    transparent 0deg,
-    transparent 300deg,
-    #ffb347 330deg,
-    #ffdfa6 345deg,
-    #ffb347 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: borderTravel 3s linear infinite;
-}
-.db-bmc .db-tile-border::before {
-  background: conic-gradient(
-    from var(--ba),
-    transparent 0deg,
-    transparent 300deg,
-    #8fd0e8 330deg,
-    #c8ecff 345deg,
-    #8fd0e8 360deg
-  );
 }
 
 /* ── Header tile ── */
@@ -251,6 +204,37 @@
 .db-dot-yellow {
   background: rgba(255, 210, 0, 0.7);
   box-shadow: 0 0 6px rgba(255, 210, 0, 0.4);
+}
+
+/* ── Heart sparkle on button hover ── */
+.db-heart {
+  position: fixed;
+  color: #ff2b2b;
+  text-shadow:
+    0 0 10px rgba(255, 43, 43, 0.95),
+    0 0 22px rgba(255, 43, 43, 0.7);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  animation-name: dbHeartFloat;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  will-change: transform, opacity;
+}
+@keyframes dbHeartFloat {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(0.3) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--hx), var(--hy)) scale(1.1) rotate(var(--rot));
+    opacity: 0;
+  }
 }
 
 /* ── BMC description ── */
