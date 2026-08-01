@@ -357,7 +357,7 @@ body.light .db-btn-bmc:hover {
   box-shadow: 0 8px 32px rgba(255, 221, 0, 0.45);
 }
 body.light .db-bmc-desc {
-  color: rgba(28, 24, 20, 0.82) !important;
+  color: rgba(28, 24, 20, 0.9);
 }
 body.light .db-tile-badge {
   color: rgba(28, 24, 20, 0.9);

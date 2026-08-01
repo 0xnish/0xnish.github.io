@@ -96,7 +96,7 @@ export default function Donate() {
         <div className="db-tile db-upi rv" style={{ transitionDelay: '.09s' }}>
           <div className="db-tile-label">01 &mdash; UPI Payment</div>
           <div className="db-tile-heading">Pay via <em>UPI</em></div>
-          <div className="db-bmc-desc" style={{ fontSize: '.75rem', lineHeight: '1.85', letterSpacing: '.05em', color: 'rgba(232, 228, 220, 1)', fontFamily: "'Alan Sans',sans-serif", marginTop: '4px' }}>
+          <div className="db-bmc-desc" style={{ fontSize: '.75rem', lineHeight: '1.85', letterSpacing: '.05em', fontFamily: "'Alan Sans',sans-serif", marginTop: '4px' }}>
             Support my work instantly via UPI from any app — zero fees, India only.
           </div>
           <button className="db-btn db-btn-upi db-btn-bmc" id="upiCopyBtn" onClick={copyUPI} onMouseEnter={e => startHearts('upi', e.currentTarget)} onMouseLeave={() => stopHearts('upi')} aria-label="Copy UPI ID" style={{ position: 'relative' }}>
@@ -118,7 +118,7 @@ export default function Donate() {
         <div className="db-tile db-bmc rv" style={{ transitionDelay: '.18s' }}>
           <div className="db-tile-label">02 &mdash; Buy Me a Coffee</div>
           <div className="db-tile-heading">Global <em>Support</em></div>
-          <div className="db-bmc-desc" style={{ fontSize: '.75rem', lineHeight: '1.85', letterSpacing: '.05em', color: 'rgba(232, 228, 220, 1)', fontFamily: "'Alan Sans',sans-serif", marginTop: '4px' }}>
+          <div className="db-bmc-desc" style={{ fontSize: '.75rem', lineHeight: '1.85', letterSpacing: '.05em', fontFamily: "'Alan Sans',sans-serif", marginTop: '4px' }}>
             Support my work from anywhere in the world via card, PayPal, or UPI.
           </div>
           <a className="db-btn db-btn-bmc" id="bmcPayBtn" href={bmcLink} target="_blank" rel="noopener" onMouseEnter={e => startHearts('bmc', e.currentTarget)} onMouseLeave={() => stopHearts('bmc')} style={{ position: 'relative' }}>
@@ -130,15 +130,6 @@ export default function Donate() {
           <div className="db-tile-badge"><span className="db-dot db-dot-yellow"></span>Global &middot; Card &middot; PayPal</div>
         </div>
       </div>
-
-      {/* Dark mode override for description text */}
-      <style>{`
-        @media (prefers-color-scheme: dark) {
-          .db-bmc-desc {
-            color: rgba(232, 228, 220, 1) !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }
