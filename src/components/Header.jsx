@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-export default function Header({ toggleTheme }) {
+export default function Header({ isLight, toggleTheme }) {
   const [logoText, setLogoText] = useState('')
   const [musicPlaying, setMusicPlaying] = useState(false)
   const [themeSpin, setThemeSpin] = useState(false)
@@ -25,9 +25,8 @@ export default function Header({ toggleTheme }) {
   useEffect(() => {
     const heart = document.getElementById('donateNavIcon')
     const wrap = document.querySelector('.donate-text')
-    const baseColor = () => '#ff004c'
-    if (heart) { heart.textContent = '♥'; heart.style.color = baseColor(); heart.style.transform = 'scale(1.3)' }
-    if (wrap) {
+    const baseColor = () => (document.body.classList.contains('light') ? '#ffffff' : '#000000')
+    if (heart) { heart.textContent = '♥'; heart.style.color = isLight ? '#ffffff' : '#000000'; heart.style.transform = 'scale(1.3)' }    if (wrap) {
       wrap.innerHTML = 'Donate'.split('').map(l => `<span class="dl">${l}</span>`).join('')
     }
     const letters = wrap ? wrap.querySelectorAll('.dl') : []
@@ -66,7 +65,7 @@ export default function Header({ toggleTheme }) {
     setTimeout(() => setThemeSpin(false), 520)
     toggleTheme()
     const heart = document.getElementById('donateNavIcon')
-    if (heart) heart.style.color = '#ff004c'
+    if (heart) heart.style.color = isLight ? '#000000' : '#ffffff'
   }
 
   const handleToggleMusic = () => {
