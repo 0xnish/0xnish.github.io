@@ -19,7 +19,6 @@ export default function Features({ isLight, toggleTheme }) {
     <>
       <AnimatedFavicon />
       <Loader />
-      <div id="sp"></div>
       <CustomCursor />
       <StarCanvas isLight={isLight} />
       <div className="grid-bg"></div>

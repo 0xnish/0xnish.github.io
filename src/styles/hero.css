@@ -102,7 +102,7 @@ h1 {
   animation: fUp 0.9s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 .typed-wrap {
-  color: #ffffff;
+  color: #00eaff;
 }
 .hero-cta {
   display: flex;

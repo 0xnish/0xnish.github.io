@@ -4,7 +4,6 @@ import { roles, links } from '../helper/constants'
 export default function Hero() {
   const h1Ref = useRef(null)
   const typedRef = useRef(null)
-  const photoContainerRef = useRef(null)
 
 
   // Name animation
@@ -89,7 +88,6 @@ export default function Hero() {
     let timeout
     function type() {
       const word = roles[ri]
-      tel.style.color = document.body.classList.contains('light') ? '' : '#00eaff'
       if (!deleting) {
         tel.textContent = word.slice(0, ++ci)
         if (ci === word.length) { deleting = true; timeout = setTimeout(type, 1900); return }
@@ -110,7 +108,7 @@ export default function Hero() {
           <div className="photo-main">
             <div className="photo-wrap">
               <div className="photo-ring"></div>
-              <div className="photo-img-container" ref={photoContainerRef}>
+              <div className="photo-img-container">
                 <img src="/comic.webp" alt="Nishanth J P" loading="eager" />
               </div>
             </div>

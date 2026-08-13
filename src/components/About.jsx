@@ -1,10 +1,7 @@
 import { useEffect } from 'react'
-import { useScrollReveal } from '../hooks/useScrollReveal'
 import { links, profile } from '../helper/constants'
 
 export default function About() {
-  useScrollReveal()
-
   useEffect(() => {
     const termIO = new IntersectionObserver(e => {
       e.forEach(x => {

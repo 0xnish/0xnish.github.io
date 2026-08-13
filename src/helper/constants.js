@@ -9,8 +9,6 @@ export const stats = [
 
 export const marqueeItems = ['Software Engineering', 'Yottron Solutions', 'Clean Architecture', 'Problem Solving', 'Innovation', 'Scalable Systems', 'Full Stack Dev', 'Open Source']
 
-export const techs = ['C#', 'Java', 'JavaScript', 'HTML', 'CSS', 'SQL', '.NET', 'React', 'Tailwind CSS', 'Git', 'jQuery', 'TypeScript', 'Angular', 'Vue.js', 'Bootstrap', 'SASS', 'Node.js', 'PostgreSQL', 'MongoDB', 'Docker', 'Kubernetes', 'GitHub Actions', 'npm', 'Webpack', 'Vite', 'Redis', 'GitHub', 'Vercel']
-
 export const links = {
   email: 'mailto:mailtonishii@gmail.com',
   emailDisplay: 'mailtonishii@gmail.com',
@@ -88,5 +86,4 @@ export const profile = {
   company: 'Yottron Solutions',
   github: 'coder-nishanth',
   instagram: '@ni.sh.x',
-  headline: 'Software Engineer \u00b7 Yottron Solutions',
 }
