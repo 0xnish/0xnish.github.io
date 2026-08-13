@@ -116,6 +116,9 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+body:not(.light) .sk-iw svg {
+  stroke: #ff004c;
+}
 .sk-name {
   font-size: 0.95rem;
   color: var(--fg);

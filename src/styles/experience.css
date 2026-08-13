@@ -425,6 +425,10 @@ body:not(.light) .eb-role--featured:hover .eb-highlights-row {
   color: #ffffff;
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
 }
+body:not(.light) .eb-role-location svg {
+  color: #33ff99;
+  filter: drop-shadow(0 0 6px rgba(51, 255, 153, 0.8));
+}
 .eb-tag {
   font-size: 0.5rem;
   letter-spacing: 0.18em;
