@@ -16,8 +16,6 @@
   .nav-music,
   .nav-theme
 ) {
-  will-change: transform;
-  backface-visibility: hidden;
   transition:
     background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -26,4 +24,9 @@
     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.3s ease;
+}
+
+:where(.mq-item, .stat, .sk, .eb-tile, .tl, .ci, .db-btn, .db-btn-upi, .db-btn-bmc, .nav-music, .nav-theme) {
+  will-change: transform;
+  backface-visibility: hidden;
 }

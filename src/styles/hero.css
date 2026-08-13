@@ -432,7 +432,7 @@ body:not(.light) .btn-g:hover span {
   inset: 0;
   overflow: hidden;
   z-index: 1;
-  animation: ringBlob 19s ease-in-out infinite -3s;
+  animation: ringBlob 26s ease-in-out infinite -3s;
 }
 .photo-ring::before {
   content: "";
@@ -459,13 +459,13 @@ body:not(.light) .photo-ring::before {
     border-radius: 45% 55% 48% 52% / 55% 45% 52% 48%;
   }
   25% {
-    border-radius: 60% 40% 55% 45% / 40% 62% 38% 60%;
+    border-radius: 52% 48% 51% 49% / 48% 54% 46% 52%;
   }
   50% {
-    border-radius: 40% 60% 42% 58% / 58% 40% 60% 42%;
+    border-radius: 48% 52% 49% 51% / 54% 46% 53% 47%;
   }
   75% {
-    border-radius: 52% 48% 60% 40% / 45% 55% 42% 58%;
+    border-radius: 51% 49% 53% 47% / 47% 51% 49% 53%;
   }
 }
 .photo-img-container {
@@ -474,7 +474,7 @@ body:not(.light) .photo-ring::before {
   border-radius: 58% 42% 62% 38% / 55% 60% 40% 45%;
   overflow: hidden;
   z-index: 2;
-  animation: blobMorph 14s ease-in-out infinite;
+  animation: blobMorph 22s ease-in-out infinite;
 }
 @keyframes blobMorph {
   0%,
@@ -482,16 +482,16 @@ body:not(.light) .photo-ring::before {
     border-radius: 58% 42% 62% 38% / 55% 60% 40% 45%;
   }
   20% {
-    border-radius: 40% 60% 45% 55% / 62% 40% 60% 38%;
+    border-radius: 54% 46% 58% 42% / 58% 52% 48% 42%;
   }
   40% {
-    border-radius: 55% 45% 38% 62% / 42% 58% 45% 55%;
+    border-radius: 60% 40% 52% 48% / 50% 58% 42% 50%;
   }
   60% {
-    border-radius: 45% 55% 60% 40% / 58% 42% 60% 40%;
+    border-radius: 56% 44% 60% 40% / 56% 46% 54% 44%;
   }
   80% {
-    border-radius: 62% 38% 55% 45% / 40% 62% 38% 60%;
+    border-radius: 60% 40% 56% 44% / 48% 56% 44% 52%;
   }
 }
 .photo-img-container img {

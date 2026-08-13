@@ -52,6 +52,9 @@
   height: 2px;
   background: linear-gradient(to right, #00eaff, #ffffff, #ff004c);
   z-index: 9995;
-  width: 0;
-  transition: width 0.1s;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+  pointer-events: none;
 }
