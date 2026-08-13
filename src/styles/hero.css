@@ -36,6 +36,22 @@
   content: "//";
   opacity: 1;
 }
+body:not(.light) .eyebrow::before {
+  color: #00eaff;
+}
+body:not(.light) .pulse-dot {
+  background: #ff004c;
+  animation: pdotRed 2s ease-in-out infinite;
+}
+@keyframes pdotRed {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 76, 0.7);
+  }
+  60% {
+    box-shadow: 0 0 0 10px rgba(255, 0, 76, 0);
+  }
+}
 .pulse-dot {
   width: 8px;
   height: 8px;
@@ -47,10 +63,10 @@
 @keyframes pdot {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(126, 200, 154, 0.7);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
   }
   60% {
-    box-shadow: 0 0 0 10px rgba(126, 200, 154, 0);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
   }
 }
 h1 {
@@ -69,7 +85,7 @@ h1 {
 }
 .italic-span {
   font-style: italic;
-  color: var(--a);
+  color: #ff004c;
 }
 .gap-span {
   margin: 0 0.08em;
@@ -86,7 +102,7 @@ h1 {
   animation: fUp 0.9s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 .typed-wrap {
-  color: #87ceeb;
+  color: #ffffff;
 }
 .hero-cta {
   display: flex;
@@ -189,7 +205,42 @@ h1 {
   box-shadow: 0 8px 40px rgba(255, 255, 255, 0.3);
 }
 .btn-g:hover span {
-  text-shadow: 0 0 20px rgba(255, 179, 71, 0.5);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+body:not(.light) .btn-p {
+  background: transparent;
+  color: var(--a);
+  border-color: var(--a);
+}
+body:not(.light) .btn-p::before {
+  background: #ff004c;
+}
+body:not(.light) .btn-p::after {
+  background: linear-gradient(to top, rgba(255, 0, 76, 0.3), transparent);
+}
+body:not(.light) .btn-p:hover {
+  color: var(--a);
+  border-color: #ff004c;
+  box-shadow: 0 8px 40px rgba(255, 0, 76, 0.45);
+}
+body:not(.light) .btn-g {
+  background: transparent;
+  color: var(--a);
+  border-color: var(--a);
+}
+body:not(.light) .btn-g::before {
+  background: #00eaff;
+}
+body:not(.light) .btn-g::after {
+  background: linear-gradient(to top, rgba(0, 234, 255, 0.3), transparent);
+}
+body:not(.light) .btn-g:hover {
+  color: var(--bg);
+  border-color: #00eaff;
+  box-shadow: 0 8px 40px rgba(0, 234, 255, 0.4);
+}
+body:not(.light) .btn-g:hover span {
+  text-shadow: none;
 }
 @keyframes fUp {
   from {
@@ -245,7 +296,7 @@ h1 {
 .orbit-ring-1 {
   width: 500px;
   height: 500px;
-  border: 1px solid rgba(255, 179, 71, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   animation: orbitSpin 32s linear infinite;
 }
 .orbit-ring-1::before {
@@ -259,13 +310,13 @@ h1 {
   transform: translateX(-50%);
   background: var(--a);
   box-shadow:
-    0 0 22px 5px rgba(255, 179, 71, 0.95),
-    0 0 60px 14px rgba(255, 179, 71, 0.3);
+    0 0 22px 5px rgba(255, 255, 255, 0.95),
+    0 0 60px 14px rgba(255, 255, 255, 0.3);
 }
 .orbit-ring-2 {
   width: 430px;
   height: 430px;
-  border: 1px solid rgba(255, 179, 71, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   animation: orbitSpin 22s linear infinite reverse;
 }
 .orbit-ring-2::before {
@@ -279,8 +330,8 @@ h1 {
   transform: translateX(-50%);
   background: var(--a2);
   box-shadow:
-    0 0 16px 4px rgba(126, 184, 200, 0.95),
-    0 0 40px 8px rgba(126, 184, 200, 0.28);
+    0 0 16px 4px rgba(255, 255, 255, 0.95),
+    0 0 40px 8px rgba(255, 255, 255, 0.28);
 }
 @keyframes orbitSpin {
   from {
@@ -340,7 +391,7 @@ h1 {
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255, 179, 71, 0.45),
+    rgba(255, 255, 255, 0.45),
     transparent
   );
   left: -20px;
@@ -393,6 +444,9 @@ h1 {
   transform: translate(-50%, -50%) rotate(0deg);
   background: conic-gradient(from 0deg, var(--a), var(--a2), var(--a3), var(--a));
   animation: ringSpin 5s linear infinite;
+}
+body:not(.light) .photo-ring::before {
+  background: conic-gradient(from 0deg, #ff004c, #00eaff, #ffffff, #ff004c);
 }
 @keyframes ringSpin {
   to {
@@ -466,6 +520,18 @@ h1 {
       transparent 62%,
       rgba(6, 6, 15, 0.2) 100%
     ),
-    linear-gradient(135deg, rgba(255, 179, 71, 0.05) 0%, transparent 38%);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 38%);
   z-index: 1;
+}
+body:not(.light) .photo-img-container::after {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(6, 6, 15, 0.05) 0%,
+      transparent 28%,
+      transparent 62%,
+      rgba(6, 6, 15, 0.2) 100%
+    ),
+    linear-gradient(135deg, rgba(0, 234, 255, 0.1) 0%, transparent 38%),
+    linear-gradient(315deg, rgba(255, 0, 76, 0.1) 0%, transparent 38%);
 }

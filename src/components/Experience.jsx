@@ -65,7 +65,7 @@ export default function Experience() {
           <div className="eb-glow"></div>
           <div className="eb-role-num">01</div>
           <div className="eb-role-period"><span className="eb-dot"></span>Jan 2021 — Jun 2021 &nbsp;&middot;&nbsp; 6 months</div>
-          <div className="eb-role-title">Front Office <em>Assistant</em></div>
+          <div className="eb-role-title">Front Office <em className="role-red">Assistant</em></div>
           <div className="eb-role-company">RowanTree by Poppys</div>
           <div className="eb-role-location">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" width="11" height="11">
@@ -92,7 +92,7 @@ export default function Experience() {
           <div className="eb-glow"></div>
           <div className="eb-role-num">02</div>
           <div className="eb-role-period"><span className="eb-dot eb-dot--active"></span>Aug 2021 — Jul 2024 &nbsp;&middot;&nbsp; 3 years</div>
-          <div className="eb-role-title">Front Office <em>Executive</em></div>
+          <div className="eb-role-title">Front Office <em className="role-cyan">Executive</em></div>
           <div className="eb-role-company">Germanus Springs</div>
           <div className="eb-role-location">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" width="11" height="11">

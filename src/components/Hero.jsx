@@ -88,6 +88,7 @@ export default function Hero() {
     let timeout
     function type() {
       const word = roles[ri]
+      tel.style.color = document.body.classList.contains('light') ? '' : '#00eaff'
       if (!deleting) {
         tel.textContent = word.slice(0, ++ci)
         if (ci === word.length) { deleting = true; timeout = setTimeout(type, 1900); return }

@@ -2,7 +2,7 @@
    DONATE SECTION — bento grid
 ═══════════════════════════════════ */
 .donate-section {
-  border-top: 1px solid rgba(255, 179, 71, 0.18);
+  border-top: 1px solid rgba(255, 0, 76, 0.18);
   padding: var(--section-y) var(--gutter);
   position: relative;
   z-index: 2;
@@ -95,7 +95,7 @@ body.light .db-tile::after {
   font-size: 0.52rem;
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: rgba(255, 179, 71, 1);
+  color: rgba(255, 255, 255, 1);
 }
 .db-header-title {
   font-family: "Alan Sans", sans-serif;
@@ -106,6 +106,9 @@ body.light .db-tile::after {
 }
 .db-header-title em {
   font-style: italic;
+  color: #00eaff;
+}
+body.light .db-header-title em {
   color: var(--a);
 }
 .db-header-desc {
@@ -135,7 +138,10 @@ body.light .db-tile::after {
   color: var(--a);
 }
 .db-bmc .db-tile-heading em {
-  color: #87ceeb;
+  color: #ffffff;
+}
+body:not(.light) .db-tile-heading em {
+  color: #00eaff;
 }
 
 /* ── Pay buttons ── */
@@ -153,8 +159,8 @@ body.light .db-tile::after {
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 179, 71, 0.28);
-  color: rgba(255, 179, 71, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.92);
   background: transparent;
   transition:
     color 0.35s,
@@ -184,7 +190,7 @@ body.light .db-tile::after {
 .db-btn:hover {
   color: var(--bg);
   border-color: var(--a);
-  box-shadow: 0 8px 40px rgba(255, 179, 71, 0.22);
+  box-shadow: 0 8px 40px rgba(255, 255, 255, 0.22);
   transform: translateY(-1px);
 }
 .db-btn:active {
@@ -200,7 +206,7 @@ body.light .db-tile::after {
 
 .db-btn-bmc {
   border: none;
-  background: #ffdd00;
+  background: #ffffff;
   color: #1a1200;
   font-weight: 600;
 }
@@ -209,8 +215,34 @@ body.light .db-tile::after {
 }
 .db-btn-bmc:hover {
   color: #1a1200;
-  box-shadow: 0 8px 32px rgba(255, 221, 0, 0.5);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
+}
+body:not(.light) .db-btn-upi {
+  background: #ff004c;
+  border-color: #ff004c;
+  color: #fff;
+}
+body:not(.light) .db-btn-upi::before {
+  display: none;
+}
+body:not(.light) .db-btn-upi:hover {
+  border-color: #ff004c;
+  color: var(--bg);
+  box-shadow: 0 8px 40px rgba(255, 0, 76, 0.4);
+}
+body:not(.light) .db-btn-bmc {
+  background: #ff004c;
+  border: 1px solid #ff004c;
+  color: #fff;
+}
+body:not(.light) .db-btn-bmc::before {
+  display: none;
+}
+body:not(.light) .db-btn-bmc:hover {
+  border-color: #ff004c;
+  color: var(--bg);
+  box-shadow: 0 8px 40px rgba(255, 0, 76, 0.4);
 }
 
 /* ── Badge ── */
@@ -232,18 +264,18 @@ body.light .db-tile::after {
   flex-shrink: 0;
 }
 .db-dot-green {
-  background: rgba(126, 200, 154, 0.7);
-  box-shadow: 0 0 6px rgba(126, 200, 154, 0.5);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
 }
 .db-dot-yellow {
-  background: rgba(255, 210, 0, 0.7);
-  box-shadow: 0 0 6px rgba(255, 210, 0, 0.4);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
 }
 
 /* ── Heart sparkle on button hover ── */
 .db-heart {
   position: fixed;
-  color: #ff2b2b;
+  color: #ff004c;
   text-shadow:
     0 0 10px rgba(255, 43, 43, 0.95),
     0 0 22px rgba(255, 43, 43, 0.7);
@@ -286,12 +318,12 @@ body.light .db-tile::after {
    UPI ID display + copy
 ═══════════════════════════════════ */
 .db-btn-upi.copied {
-  background: #22c55e;
+  background: #ffffff;
   color: #fff;
 }
 .db-btn-upi.copied:hover {
   color: #fff;
-  box-shadow: 0 8px 32px rgba(34, 197, 94, 0.4);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.4);
 }
 .db-btn-upi {
   transition:

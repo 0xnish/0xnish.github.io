@@ -13,7 +13,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.45em;
   text-transform: uppercase;
-  color: rgba(255, 179, 71, 0.9);
+  color: rgba(255, 255, 255, 0.9);
 }
 .loader-dots::after {
   content: "";

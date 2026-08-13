@@ -4,8 +4,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0;
-  background: rgba(255, 179, 71, 0.13);
-  border: 1px solid rgba(255, 179, 71, 0.7);
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 999px;
   padding: 0;
   height: 32px;
@@ -21,19 +21,19 @@
     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-music:not(.music-playing):hover {
-  border-color: rgba(255, 179, 71, 0.7);
-  background: rgba(255, 179, 71, 0.13);
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.13);
   box-shadow:
-    0 0 18px rgba(255, 179, 71, 0.22),
-    0 0 6px rgba(255, 179, 71, 0.22);
+    0 0 18px rgba(255, 255, 255, 0.22),
+    0 0 6px rgba(255, 255, 255, 0.22);
   transform: scale(1.05);
 }
 .nav-music.music-playing:hover {
-  border-color: rgba(126, 184, 200, 0.75);
-  background: rgba(126, 184, 200, 0.13);
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.13);
   box-shadow:
-    0 0 18px rgba(126, 184, 200, 0.25),
-    0 0 6px rgba(126, 184, 200, 0.13);
+    0 0 18px rgba(255, 255, 255, 0.25),
+    0 0 6px rgba(255, 255, 255, 0.13);
   transform: scale(1.05);
 }
 .nav-music:active {
@@ -41,9 +41,9 @@
   transition-duration: 0.1s;
 }
 .nav-music.music-playing {
-  border-color: rgba(126, 184, 200, 0.5);
-  background: rgba(126, 184, 200, 0.07);
-  box-shadow: 0 0 14px rgba(126, 184, 200, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.15);
 }
 .mnote svg {
   display: block;
@@ -83,12 +83,12 @@
 .mdiv {
   width: 1px;
   height: 16px;
-  background: rgba(255, 179, 71, 0.7);
+  background: rgba(255, 255, 255, 0.7);
   flex-shrink: 0;
   transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-music.music-playing .mdiv {
-  background: rgba(126, 184, 200, 0.3);
+  background: rgba(255, 255, 255, 0.3);
 }
 .mplay {
   position: relative;

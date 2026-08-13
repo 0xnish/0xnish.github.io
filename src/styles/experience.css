@@ -1,5 +1,5 @@
 .exp-section {
-  border-top: 1px solid rgba(255, 179, 71, 0.18);
+  border-top: 1px solid rgba(255, 0, 76, 0.18);
   padding: var(--section-y) var(--gutter);
 }
 .exp-bento {
@@ -11,7 +11,7 @@
   padding: clamp(28px, 3.5vw, 44px) clamp(24px, 3vw, 40px);
   position: relative;
   overflow: hidden;
-  background: rgba(255, 179, 71, 0);
+  background: rgba(255, 255, 255, 0);
   transition: background 0.35s ease;
 }
 .eb-tile.rv {
@@ -68,10 +68,10 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background-color: rgba(255, 179, 71, 0.28);
+  background-color: rgba(255, 255, 255, 0.28);
   background-image: radial-gradient(
     circle at 25% 40%,
-    rgba(255, 179, 71, 0.09),
+    rgba(255, 255, 255, 0.09),
     transparent 65%
   );
   opacity: 0;
@@ -109,7 +109,7 @@
   font-size: 0.6rem;
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: rgba(255, 179, 71, 1);
+  color: rgba(255, 255, 255, 1);
 }
 .eb-header-title {
   font-family: "Alan Sans", sans-serif;
@@ -126,7 +126,7 @@
 }
 .eb-header-title em {
   font-style: italic;
-  color: var(--a);
+  color: #00eaff;
 }
 .eb-header-desc {
   font-size: 0.68rem;
@@ -139,7 +139,7 @@
   display: flex;
   gap: 32px;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 179, 71, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
 }
 .eb-stat {
   display: flex;
@@ -170,7 +170,7 @@
   font-size: 0.6rem;
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: rgba(255, 179, 71, 1);
+  color: rgba(255, 255, 255, 1);
   margin-bottom: 28px;
 }
 .eb-journey-track {
@@ -188,9 +188,9 @@
   width: 1px;
   background: linear-gradient(
     to bottom,
-    rgba(255, 179, 71, 0.15),
-    rgba(126, 200, 154, 0.5) 50%,
-    rgba(255, 77, 77, 0.6)
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.6)
   );
 }
 .eb-journey-step {
@@ -216,21 +216,21 @@
 .eb-journey-dot--mid {
   border-color: var(--a4);
   background: var(--a4);
-  box-shadow: 0 0 8px rgba(126, 200, 154, 0.55);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.55);
 }
 .eb-journey-dot--now {
-  border-color: #ff1a1a;
-  background: #ff1a1a;
-  box-shadow: 0 0 12px rgba(255, 26, 26, 0.85);
+  border-color: #ffffff;
+  background: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.85);
   animation: redPulse 2.5s ease-in-out infinite;
 }
 @keyframes redPulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 26, 26, 0.8);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8);
   }
   60% {
-    box-shadow: 0 0 0 8px rgba(255, 26, 26, 0);
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
   }
 }
 .eb-journey:hover .eb-journey-dot {
@@ -251,6 +251,28 @@
   font-size: 0.88rem;
   color: rgba(232, 228, 220, 1);
   letter-spacing: 0.04em;
+}
+.role-red {
+  color: #ff004c;
+}
+.role-cyan {
+  color: #00eaff;
+}
+body.light .role-red,
+body.light .role-cyan {
+  color: var(--a);
+}
+.eb-role-title em.role-red {
+  color: #ff004c;
+}
+.eb-role-title em.role-cyan,
+.eb-role--featured .eb-role-title em.role-cyan {
+  color: #00eaff;
+}
+body.light .eb-role-title em.role-red,
+body.light .eb-role-title em.role-cyan,
+body.light .eb-role--featured .eb-role-title em.role-cyan {
+  color: var(--a);
 }
 .eb-role {
   grid-column: 1;
@@ -282,12 +304,12 @@
   height: 6px;
   border-radius: 50%;
   background: var(--a);
-  box-shadow: 0 0 8px rgba(255, 179, 71, 0.8);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
   flex-shrink: 0;
 }
 .eb-dot--active {
   background: var(--a4);
-  box-shadow: 0 0 7px rgba(126, 200, 154, 0.7);
+  box-shadow: 0 0 7px rgba(255, 255, 255, 0.7);
   animation: activePulse 2.5s ease-in-out infinite;
 }
 .eb-role-title {
@@ -308,7 +330,7 @@
 .eb-role-company {
   font-size: 0.62rem;
   letter-spacing: 0.18em;
-  color: #87ceeb;
+  color: #ffffff;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
@@ -327,31 +349,39 @@
   display: flex;
   gap: 24px;
   padding: 16px 20px;
-  background: rgba(255, 179, 71, 0.02);
-  border: 1px solid rgba(255, 179, 71, 0.7);
-  border-left: 4px solid rgba(255, 179, 71, 0.7);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-left: 4px solid rgba(255, 255, 255, 0.7);
   margin-bottom: 22px;
   transition:
     border-left-color 0.35s,
     background 0.35s;
 }
 .eb-role .eb-highlights-row {
-  background: rgba(255, 179, 71, 0.02);
-  border-color: rgba(255, 179, 71, 0.7);
-  border-left-color: rgba(255, 179, 71, 0.7);
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.7);
+  border-left-color: rgba(255, 255, 255, 0.7);
 }
 .eb-role:hover .eb-highlights-row {
   border-left-color: var(--a);
-  background: rgba(255, 179, 71, 0.045);
+  background: rgba(255, 255, 255, 0.045);
 }
 .eb-role--featured .eb-highlights-row {
-  background: rgba(126, 200, 154, 0.02);
-  border-color: rgba(126, 200, 154, 0.7);
-  border-left-color: rgba(126, 200, 154, 0.7);
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.7);
+  border-left-color: rgba(255, 255, 255, 0.7);
 }
 .eb-role--featured:hover .eb-highlights-row {
   border-left-color: var(--a4);
-  background: rgba(126, 200, 154, 0.045);
+  background: rgba(255, 255, 255, 0.045);
+}
+body:not(.light) .eb-role:hover .eb-highlights-row {
+  border-color: #ff004c;
+  border-left-color: #ff004c;
+}
+body:not(.light) .eb-role--featured:hover .eb-highlights-row {
+  border-color: #00eaff;
+  border-left-color: #00eaff;
 }
 .eb-hl {
   display: flex;
@@ -393,14 +423,14 @@
   opacity: 1;
   flex-shrink: 0;
   color: #ffffff;
-  filter: drop-shadow(0 0 6px rgba(255, 179, 71, 0.8));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
 }
 .eb-tag {
   font-size: 0.5rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(232, 228, 220, 1);
-  border: 1px solid rgba(255, 179, 71, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   padding: 4px 12px;
   transition:
     color 0.3s,
@@ -410,14 +440,14 @@
 .eb-tag:hover {
   color: var(--a);
   border-color: var(--a);
-  background: rgba(255, 179, 71, 0.05);
+  background: rgba(255, 255, 255, 0.05);
 }
 .eb-pivot-inline {
   display: flex;
   align-items: center;
   gap: 10px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 179, 71, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
   margin-top: auto;
 }
 .eb-pivot-inline-from {
@@ -427,7 +457,7 @@
   text-transform: uppercase;
 }
 .eb-pivot-inline svg {
-  color: rgba(255, 179, 71, 0.85);
+  color: rgba(255, 255, 255, 0.85);
   flex-shrink: 0;
 }
 .eb-pivot-inline-to {

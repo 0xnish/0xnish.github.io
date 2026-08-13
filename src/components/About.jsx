@@ -35,7 +35,7 @@ export default function About() {
       <div className="about-grid">
         <div className="about-text rl">
           <h2>I build things<br />that <em>live</em> on the web.</h2>
-          <p>Hey, I'm Nishanth &mdash; a software engineer currently working at <strong style={{ color: 'var(--a)' }}>{profile.company}</strong>, where I build robust and scalable software. I care deeply about the craft &mdash; from backend systems to pixel-perfect interfaces.</p>
+          <p>Hey, I'm Nishanth &mdash; a software engineer currently working at <strong className="company-accent">{profile.company}</strong>, where I build robust and scalable software. I care deeply about the craft &mdash; from backend systems to pixel-perfect interfaces.</p>
           <p>When I'm not writing code, you'll find me on <a href={links.instagram} className="pill" target="_blank" rel="noopener">&#64;{links.instagramDisplay.slice(1)}</a> or building open-source on <a href={links.github} className="pill" target="_blank" rel="noopener">GitHub</a>.</p>
         </div>
         <div className="rr" style={{ transitionDelay: '.15s' }}>
@@ -55,7 +55,7 @@ export default function About() {
               <div className="tl">&nbsp;&nbsp;<span className="tk">"status"</span>: <span className="tv">available</span>,</div>
               <div className="tl">&nbsp;&nbsp;<span className="tk">"passion"</span>: [<span className="ts">"clean code"</span>, <span className="ts">"great UX"</span>, <span className="ts">"scalable systems"</span>]</div>
               <div className="tl">{'}'}</div>
-              <div style={{ marginTop: '14px' }}><span className="tp">~ $</span> <span className="cblink"></span></div>
+              <div style={{ marginTop: '14px' }}><span className="tp">~ <span className="dollar">$</span></span> <span className="cblink"></span></div>
             </div>
           </div>
         </div>

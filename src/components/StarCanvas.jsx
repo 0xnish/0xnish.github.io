@@ -31,7 +31,7 @@ export default function StarCanvas({ isLight }) {
       const light = isLight
       const cols = light
         ? ['rgba(193,61,16,', 'rgba(220,50,30,']
-        : ['rgba(255,179,71,', 'rgba(255,179,71,']
+        : ['rgba(255,255,255,', 'rgba(255,255,255,']
       stars.forEach(s => {
         s.a += s.da
         if (s.a > 1 || s.a < 0) s.da *= -1

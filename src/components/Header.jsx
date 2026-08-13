@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-export default function Header({ isLight, toggleTheme }) {
+export default function Header({ toggleTheme }) {
   const [logoText, setLogoText] = useState('')
   const [musicPlaying, setMusicPlaying] = useState(false)
   const [themeSpin, setThemeSpin] = useState(false)
@@ -25,8 +25,8 @@ export default function Header({ isLight, toggleTheme }) {
   useEffect(() => {
     const heart = document.getElementById('donateNavIcon')
     const wrap = document.querySelector('.donate-text')
-    const baseColor = () => document.body.classList.contains('light') ? '#fff' : '#000'
-    if (heart) { heart.textContent = '♥'; heart.style.color = baseColor() }
+    const baseColor = () => '#ff004c'
+    if (heart) { heart.textContent = '♥'; heart.style.color = baseColor(); heart.style.transform = 'scale(1.3)' }
     if (wrap) {
       wrap.innerHTML = 'Donate'.split('').map(l => `<span class="dl">${l}</span>`).join('')
     }
@@ -37,11 +37,11 @@ export default function Header({ isLight, toggleTheme }) {
     function animateBeat() {
       if (heart) {
         heart.style.transition = 'transform .18s ease, color .18s ease'
-        heart.style.transform = 'scale(1.4)'
-        heart.style.color = '#ff1a1a'
+        heart.style.transform = 'scale(1.8)'
+        heart.style.color = '#ff004c'
         setTimeout(() => {
           heart.style.transition = 'transform .22s ease, color .3s ease'
-          heart.style.transform = 'scale(1)'
+          heart.style.transform = 'scale(1.3)'
           heart.style.color = baseColor()
         }, 200)
       }
@@ -66,7 +66,7 @@ export default function Header({ isLight, toggleTheme }) {
     setTimeout(() => setThemeSpin(false), 520)
     toggleTheme()
     const heart = document.getElementById('donateNavIcon')
-    if (heart) heart.style.color = !isLight ? '#fff' : '#000'
+    if (heart) heart.style.color = '#ff004c'
   }
 
   const handleToggleMusic = () => {
@@ -86,7 +86,7 @@ export default function Header({ isLight, toggleTheme }) {
   return (
     <header>
       <a href="#home" className="logo">
-        <span className="logo-prompt">~$</span>&nbsp;
+        <span className="logo-prompt">~<span className="dollar">$</span></span>&nbsp;
         <span className="logo-text" id="logoText">{logoText}</span>
         <span className="logo-cursor">&#9611;</span>
       </a>

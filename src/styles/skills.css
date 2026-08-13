@@ -1,5 +1,5 @@
 .skills-section {
-  border-top: 1px solid rgba(255, 179, 71, 0.25);
+  border-top: 1px solid rgba(255, 0, 76, 0.25);
 }
 
 .skills-grid {
@@ -8,7 +8,7 @@
   gap: 0;
 }
 .sk {
-  background: rgba(255, 179, 71, 0);
+  background: rgba(255, 255, 255, 0);
   padding: clamp(28px, 3vw, 40px) clamp(24px, 3vw, 32px);
   position: relative;
   overflow: hidden;
@@ -53,10 +53,10 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background-color: rgba(255, 179, 71, 0.28);
+  background-color: rgba(255, 255, 255, 0.28);
   background-image: radial-gradient(
     circle at 25% 40%,
-    rgba(255, 179, 71, 0.09),
+    rgba(255, 255, 255, 0.09),
     transparent 65%
   );
   opacity: 0;
@@ -91,7 +91,7 @@
 .sk-iw {
   width: 50px;
   height: 50px;
-  border: 1px solid rgba(255, 179, 71, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -104,7 +104,7 @@
 }
 .sk:hover .sk-iw {
   border-color: var(--a);
-  box-shadow: 0 0 24px rgba(255, 179, 71, 0.22);
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.22);
   transform: rotate(5deg) scale(1.08);
 }
 .sk-iw svg {

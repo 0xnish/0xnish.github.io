@@ -19,7 +19,7 @@ section {
 .sec-label-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(to right, rgba(255, 179, 71, 0.7), transparent);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.7), transparent);
   max-width: 260px;
 }
 .about-grid {
@@ -37,7 +37,7 @@ section {
 }
 .about-text h2 em {
   font-style: italic;
-  color: var(--a);
+  color: #ff004c;
 }
 .about-text p {
   color: rgba(232, 228, 220, 1);
@@ -45,21 +45,34 @@ section {
   line-height: 2.15;
   margin-bottom: 22px;
 }
+.company-accent {
+  color: #ff004c;
+}
+body.light .company-accent {
+  color: var(--a);
+}
 .pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-size: 0.66rem;
   color: var(--a);
-  border: 1px solid rgba(255, 179, 71, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   padding: 3px 10px;
   border-radius: 2px;
   text-decoration: none;
   transition: all 0.3s;
 }
+body:not(.light) .pill {
+  color: #00eaff;
+  border-color: #00eaff;
+}
 .pill:hover {
-  background: rgba(255, 179, 71, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-color: var(--a);
+}
+body:not(.light) .pill:hover {
+  border-color: #00eaff;
 }
 .term {
   background: rgba(18, 18, 30, 0.95);
@@ -76,7 +89,7 @@ section {
   inset: 0;
   background: radial-gradient(
     ellipse at 50% 0%,
-    rgba(255, 179, 71, 0.06),
+    rgba(255, 255, 255, 0.06),
     transparent 60%
   );
   pointer-events: none;
@@ -118,16 +131,22 @@ section {
   color: #7aaf7a;
 }
 .tk {
-  color: var(--a2);
+  color: #7eb8c8;
 }
 .tv {
-  color: var(--a);
+  color: #ffffff;
 }
 .ts {
   color: #9ac89a;
 }
 .tp {
   color: rgba(232, 228, 220, 1);
+}
+.dollar {
+  color: #00eaff;
+}
+body.light .dollar {
+  color: inherit;
 }
 .tl {
   padding: 1px 4px;
@@ -136,16 +155,19 @@ section {
   cursor: default;
 }
 .tl:hover {
-  background: rgba(255, 179, 71, 0.07);
+  background: rgba(255, 255, 255, 0.07);
 }
 .cblink {
   display: inline-block;
   width: 8px;
   height: 13px;
-  background: var(--a);
+  background: #ff004c;
   animation: cblink 1s step-end infinite;
   vertical-align: middle;
   margin-left: 3px;
+}
+body.light .cblink {
+  background: var(--a);
 }
 @keyframes cblink {
   0%,

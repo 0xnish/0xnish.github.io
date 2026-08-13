@@ -1,5 +1,5 @@
 footer {
-  border-top: 1px solid rgba(255, 179, 71, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
   padding: clamp(20px, 2.5vw, 32px) var(--gutter);
   display: flex;
   justify-content: space-between;

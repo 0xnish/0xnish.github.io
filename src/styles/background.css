@@ -22,7 +22,7 @@
   height: 700px;
   background: radial-gradient(
     circle,
-    rgba(255, 179, 71, 0.09),
+    rgba(255, 255, 255, 0.09),
     transparent 70%
   );
   top: -200px;
@@ -33,7 +33,7 @@
   height: 500px;
   background: radial-gradient(
     circle,
-    rgba(126, 184, 200, 0.07),
+    rgba(255, 255, 255, 0.07),
     transparent 70%
   );
   bottom: 50px;
@@ -44,7 +44,7 @@
   height: 350px;
   background: radial-gradient(
     circle,
-    rgba(184, 126, 200, 0.06),
+    rgba(255, 255, 255, 0.06),
     transparent 70%
   );
   top: 35%;
@@ -55,7 +55,7 @@
   height: 250px;
   background: radial-gradient(
     circle,
-    rgba(126, 200, 154, 0.05),
+    rgba(255, 255, 255, 0.05),
     transparent 70%
   );
   top: 60%;

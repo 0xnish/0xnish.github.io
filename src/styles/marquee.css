@@ -1,9 +1,9 @@
 .mq-wrap {
-  border-top: 1px solid rgba(255, 179, 71, 0.7);
-  border-bottom: 1px solid rgba(255, 179, 71, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
   overflow: hidden;
   padding: 10px 0;
-  background: rgba(255, 179, 71, 0.012);
+  background: rgba(255, 255, 255, 0.012);
   position: relative;
   z-index: 2;
 }
@@ -35,6 +35,9 @@
   color: var(--a);
   font-style: normal;
   margin-left: 8px;
+}
+body:not(.light) .md {
+  color: #00eaff;
 }
 @keyframes mqA {
   from {

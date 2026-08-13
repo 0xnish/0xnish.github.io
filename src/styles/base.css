@@ -8,10 +8,10 @@
 :root {
   --bg: #06060f;
   --fg: #e8e4dc;
-  --a: #ffb347;
-  --a2: #7eb8c8;
-  --a3: #b87ec8;
-  --a4: #7ec89a;
+  --a: #ffffff;
+  --a2: #ffffff;
+  --a3: #ffffff;
+  --a4: #ffffff;
   --dim: #c8c0b8;
   --dim2: #12121e;
   --gutter: clamp(24px, 5vw, 80px);
@@ -215,7 +215,7 @@ body.light .eb-journey-line {
     to bottom,
     rgba(193, 61, 16, 0.2),
     rgba(58, 138, 85, 0.5) 50%,
-    rgba(255, 26, 26, 0.5)
+    rgba(255, 0, 76, 0.5)
   );
 }
 body.light .eb-journey-dot {
