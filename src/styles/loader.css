@@ -50,7 +50,7 @@
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(to right, var(--a), var(--a2), var(--a3));
+  background: linear-gradient(to right, #00eaff, #ffffff, #ff004c);
   z-index: 9995;
   width: 0;
   transition: width 0.1s;
