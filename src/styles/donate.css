@@ -137,9 +137,6 @@ body.light .db-header-title em {
   font-style: italic;
   color: var(--a);
 }
-.db-bmc .db-tile-heading em {
-  color: #ffffff;
-}
 body:not(.light) .db-tile-heading em {
   color: #00eaff;
 }

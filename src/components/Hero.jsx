@@ -111,7 +111,7 @@ export default function Hero() {
             <div className="photo-wrap">
               <div className="photo-ring"></div>
               <div className="photo-img-container" ref={photoContainerRef}>
-                <img src="/comic.jpg" alt="Nishanth J P" loading="eager" />
+                <img src="/comic.webp" alt="Nishanth J P" loading="eager" />
               </div>
             </div>
           </div>
