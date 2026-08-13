@@ -3,12 +3,9 @@
 ═══════════════════════════════════ */
 .donate-section {
   border-top: 1px solid rgba(255, 179, 71, 0.18);
-  padding: clamp(60px, 8vw, 100px) var(--gutter);
+  padding: var(--section-y) var(--gutter);
   position: relative;
   z-index: 2;
-}
-.donate-section .sec-label {
-  margin-bottom: 52px;
 }
 .donate-bento {
   display: grid;

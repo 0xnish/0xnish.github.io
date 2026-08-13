@@ -1,6 +1,6 @@
 .exp-section {
   border-top: 1px solid rgba(255, 179, 71, 0.18);
-  padding: clamp(60px, 8vw, 100px) var(--gutter);
+  padding: var(--section-y) var(--gutter);
 }
 .exp-bento {
   display: grid;

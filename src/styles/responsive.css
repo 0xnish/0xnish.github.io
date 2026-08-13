@@ -251,9 +251,6 @@
   .sk {
     padding: 20px 16px;
   }
-  .exp-section {
-    padding: 40px var(--gutter);
-  }
   .contact-section h2 {
     font-size: clamp(2rem, 9vw, 3.8rem);
     margin-bottom: 28px;
@@ -290,9 +287,6 @@
   .fl a {
     margin-left: 10px;
     margin-right: 10px;
-  }
-  .donate-section {
-    padding: 40px var(--gutter);
   }
   .donate-bento {
     grid-template-columns: 1fr;
