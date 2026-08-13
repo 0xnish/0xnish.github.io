@@ -432,24 +432,40 @@ body:not(.light) .btn-g:hover span {
   inset: 0;
   overflow: hidden;
   z-index: 1;
-  animation: blobMorph 22s ease-in-out infinite;
+  animation: ringBlob 19s ease-in-out infinite -3s;
+}
+.photo-ring::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background: conic-gradient(from 0deg, var(--a), var(--a2), var(--a3), var(--a));
+  animation: ringSpin 5s linear infinite;
+}
+body:not(.light) .photo-ring::before {
+  background: conic-gradient(from 0deg, #ff004c, #00eaff, #ffffff, #ff004c);
+}
+@keyframes ringSpin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 @keyframes ringBlob {
   0%,
   100% {
-    border-radius: 58% 42% 62% 38% / 55% 60% 40% 45%;
+    border-radius: 45% 55% 48% 52% / 55% 45% 52% 48%;
   }
-  20% {
-    border-radius: 40% 60% 45% 55% / 62% 40% 60% 38%;
+  25% {
+    border-radius: 60% 40% 55% 45% / 40% 62% 38% 60%;
   }
-  40% {
-    border-radius: 55% 45% 38% 62% / 42% 58% 45% 55%;
+  50% {
+    border-radius: 40% 60% 42% 58% / 58% 40% 60% 42%;
   }
-  60% {
-    border-radius: 45% 55% 60% 40% / 58% 42% 60% 40%;
-  }
-  80% {
-    border-radius: 62% 38% 55% 45% / 40% 62% 38% 60%;
+  75% {
+    border-radius: 52% 48% 60% 40% / 45% 55% 42% 58%;
   }
 }
 .photo-img-container {
