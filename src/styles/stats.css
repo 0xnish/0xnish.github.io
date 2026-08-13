@@ -1,68 +1,37 @@
+/* ── Neo Brutalism stats (uiverse.io alexruix/loud-baboon-79) ── */
 .stats-bar {
-  border-top: 1px solid rgba(255, 179, 71, 0.18);
-  border-bottom: 1px solid rgba(255, 179, 71, 0.18);
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px, 2vw, 26px);
+  padding: clamp(32px, 4vw, 56px) var(--gutter);
   position: relative;
   z-index: 2;
-  overflow: hidden;
 }
 .stat {
-  flex: 1;
-  padding: clamp(40px, 5vw, 64px) var(--gutter);
-  text-align: center;
-  border-right: 1px solid rgba(255, 179, 71, 0.16);
+  --rot: 0deg;
+  background: rgba(10, 10, 16, 0.45);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  backdrop-filter: blur(16px) saturate(170%);
+  color: var(--a);
+  border: 0.5vmin solid var(--a);
+  border-radius: 1.1rem;
+  box-shadow: 0.35rem 0.35rem 0 var(--a);
+  padding: clamp(20px, 2.5vw, 34px) clamp(18px, 2vw, 30px);
   position: relative;
   overflow: hidden;
-  background: rgba(255, 179, 71, 0);
-  transition:
-    background 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+  will-change: transform;
 }
-.stat:last-child {
-  border-right: none;
+.stat:nth-child(odd) {
+  --rot: -1.5deg;
 }
-.stat.rv {
-  transition:
-    opacity 0.9s ease,
-    transform 0.9s ease,
-    background 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.stat::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(to right, transparent, var(--a), transparent);
-  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.stat::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 179, 71, 0.28);
-  opacity: 0;
-  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-}
-.stat:hover {
-  transform: translateY(-3px);
-}
-.stat:hover::before {
-  opacity: 1;
-}
-.stat:hover::after {
-  width: 70%;
-}
-.stat:hover .stat-num {
-  text-shadow: 0 0 26px rgba(255, 179, 71, 0.5);
+.stat:nth-child(even) {
+  --rot: 1.5deg;
 }
 .stat-ripple {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 179, 71, 0.15);
+  background: color-mix(in srgb, var(--a) 18%, transparent);
   transform: scale(0);
   animation: rippleA 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
@@ -75,21 +44,78 @@
 }
 .stat-num {
   font-family: "Alan Sans", sans-serif;
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
-  font-weight: 300;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 800;
   color: var(--a);
   line-height: 1;
-  margin-bottom: 12px;
-  will-change: transform;
-  backface-visibility: hidden;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 10px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .stat:hover .stat-num {
-  transform: scale(1.06) translateZ(0);
+  transform: translateY(-2px) scale(1.05);
 }
 .stat-label {
-  font-size: 0.59rem;
-  letter-spacing: 0.3em;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(232, 228, 220, 1);
+  font-weight: 700;
+  color: var(--a);
+  opacity: 0.85;
+}
+/* reveal (from .rv) */
+.stat.rv {
+  opacity: 0;
+  transform: translateY(48px) rotate(var(--rot));
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease,
+    box-shadow 0.25s ease;
+}
+.stat.rv.on {
+  opacity: 1;
+  transform: translateY(0) rotate(var(--rot));
+}
+.stat.rv.on:hover {
+  transform: translate(-5px, -5px) rotate(0deg);
+  box-shadow: 0.6rem 0.6rem 0 var(--a);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+/* light mode: keep the fixed cream/red palette (guards vs old theme tints) */
+body.light .stat {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: var(--a);
+}
+body.light .stat-label {
+  color: var(--a);
+}
+body.light .stats-bar {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+body.light .stat-ripple {
+  background: rgba(193, 61, 16, 0.15);
+}
+@media (max-width: 900px) {
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(10px, 3vw, 14px);
+  }
+  .stat {
+    padding: clamp(16px, 4vw, 22px) clamp(10px, 3vw, 16px);
+  }
+  .stat-num {
+    font-size: clamp(1.6rem, 9vw, 2.2rem);
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.14em;
+  }
 }

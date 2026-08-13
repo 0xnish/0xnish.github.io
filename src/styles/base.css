@@ -144,9 +144,6 @@ body.light .stat::before {
 body.light .skills-section {
   border-top-color: rgba(193, 61, 16, 0.12);
 }
-body.light .skills-grid {
-  background: rgba(193, 61, 16, 0.08);
-}
 body.light .sk {
   background: var(--bg);
 }
@@ -182,9 +179,6 @@ body.light .sk::after {
 }
 body.light .exp-section {
   border-top-color: rgba(193, 61, 16, 0.12);
-}
-body.light .exp-bento {
-  background: rgba(193, 61, 16, 0.08);
 }
 body.light .eb-tile {
   background: var(--bg);
@@ -289,22 +283,11 @@ body.light .eb-pivot-inline svg {
 body.light .contact-section {
   border-top-color: rgba(193, 61, 16, 0.12);
 }
-body.light .ci {
-  border-color: rgba(193, 61, 16, 0.7);
-  background: rgba(193, 61, 16, 0.02);
-}
-body.light .ci:hover {
-  border-color: rgba(193, 61, 16, 0.35);
-}
 body.light .ci-label {
-  color: rgba(28, 24, 20, 0.55);
+  color: rgba(28, 24, 20, 0.85);
 }
 body.light .ci-val {
-  color: rgba(28, 24, 20, 0.9);
-}
-body.light .ci:hover .ci-label,
-.ci:hover .ci-val {
-  color: var(--a);
+  color: rgba(28, 24, 20, 0.85);
 }
 body.light footer {
   border-top-color: rgba(193, 61, 16, 0.12);
@@ -318,9 +301,6 @@ body.light .fl a:hover {
 }
 body.light .donate-section {
   border-top-color: rgba(193, 61, 16, 0.12);
-}
-body.light .donate-bento {
-  background: rgba(193, 61, 16, 0.08);
 }
 body.light .db-tile {
   background: var(--bg);
@@ -522,18 +502,6 @@ body.light .eb-pivot-inline-label {
 }
 body.light .eb-dot {
   background: rgba(193, 61, 16, 0.4);
-}
-body.light .ci.ci-email .ci-iw {
-  background: rgba(234, 67, 53, 0.12);
-}
-body.light .ci.ci-github .ci-iw {
-  background: rgba(0, 0, 0, 0.08);
-}
-body.light .ci.ci-linkedin .ci-iw {
-  background: rgba(10, 102, 194, 0.1);
-}
-body.light .ci.ci-instagram .ci-iw {
-  background: rgba(220, 39, 67, 0.08);
 }
 body.light #cur-ring {
   border-color: rgba(193, 61, 16, 0.35);

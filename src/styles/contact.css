@@ -1,3 +1,10 @@
+/* ═══════════════════════════════════════════════
+   CONTACT — "Let's Connect" snap cards
+   adapted from uiverse.io ElSombrero2/orange-newt-83:
+   two-layer snap card (red back rotated +5deg,
+   cream front rotated -5deg, both straighten on hover)
+════════════════════════════════════════════════ */
+
 .contact-section {
   border-top: 1px solid rgba(255, 179, 71, 0.18);
   text-align: center;
@@ -16,92 +23,165 @@
 .contact-links {
   display: flex;
   justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.ci {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 13px;
-  text-decoration: none;
-  padding: 34px 38px;
-  border: 1px solid rgba(255, 179, 71, 0.7);
-  min-width: 182px;
-  width: 182px;
-  height: 180px;
+  flex-wrap: wrap;
+  gap: clamp(20px, 3vw, 40px);
+}
+
+/* ── Snap-card shell ── */
+.ci {
   position: relative;
-  overflow: hidden;
-  transition:
-    border-color 0.35s,
-    transform 0.35s,
-    box-shadow 0.35s,
-    opacity 0.65s ease;
-  background: rgba(255, 179, 71, 0.01);
+  display: block;
+  width: clamp(170px, 18vw, 200px);
+  height: clamp(170px, 18vw, 200px);
+  overflow: visible;
+  cursor: pointer;
+  text-decoration: none;
   opacity: 0;
-  transform: translateY(28px);
+  transition: opacity 0.6s ease;
 }
 .ci.visible {
   opacity: 1;
-  transform: translateY(0);
 }
+
+/* ── Colored back layer ── */
 .ci::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.05) 50%,
-    transparent 60%
-  );
-  transform: translateX(-200%);
-  transition: transform 0.7s ease;
+  background: #c13d10;
+  transform: rotateZ(5deg);
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.13);
+  transition: transform 300ms, box-shadow 200ms;
 }
-.ci:hover::before {
-  transform: translateX(200%);
-}
-.ci::after {
-  content: "";
+
+/* ── Cream front layer ── */
+.ci-content {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.4s ease;
+  inset: 0;
+  background: #ebe9e1;
+  border: 2px solid #c13d10;
+  border-radius: 5px;
+  transform: rotateZ(-5deg);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.13);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px;
+  transition: transform 300ms, box-shadow 200ms;
 }
-.ci:hover {
-  border-color: var(--a);
-  transform: translateY(-5px);
+
+/* ── Snap on hover / press ── */
+.ci:hover::before,
+.ci:hover .ci-content {
+  transform: rotateZ(0deg);
 }
-.ci.ci-email:hover::after {
-  background: var(--a);
-  transform: scaleX(1);
+.ci:active::before,
+.ci:active .ci-content {
+  box-shadow: none;
 }
-.ci.ci-github:hover {
-  border-color: rgba(255, 255, 255, 0.7);
+
+/* ── Brand theming per card ── */
+.ci.ci-email::before {
+  background: #ea4335;
 }
-.ci.ci-github:hover::after {
-  background: #fff;
-  transform: scaleX(1);
+.ci.ci-email .ci-content {
+  border-color: #ea4335;
 }
-.ci.ci-linkedin:hover {
-  border-color: rgba(10, 102, 194, 0.7);
+.ci.ci-email .ci-iw {
+  background: rgba(234, 67, 53, 0.08);
+  border-color: rgba(234, 67, 53, 0.3);
 }
-.ci.ci-linkedin:hover::after {
+.ci.ci-email:hover .ci-iw {
+  background: rgba(234, 67, 53, 0.16);
+  border-color: rgba(234, 67, 53, 0.6);
+}
+.ci.ci-email:hover .ci-label,
+.ci.ci-email:hover .ci-val {
+  color: #ea4335;
+}
+
+.ci.ci-github::before {
+  background: #ffffff;
+}
+.ci.ci-github .ci-content {
+  border-color: #888b90;
+}
+.ci.ci-github .ci-iw {
+  background: rgba(36, 41, 46, 0.08);
+  border-color: rgba(36, 41, 46, 0.3);
+}
+.ci.ci-github:hover .ci-iw {
+  background: rgba(36, 41, 46, 0.16);
+  border-color: rgba(36, 41, 46, 0.6);
+}
+.ci.ci-github:hover .ci-label,
+.ci.ci-github:hover .ci-val {
+  color: #888b90;
+}
+
+/* Light mode: restore the original near-black GitHub brand look */
+body.light .ci.ci-github::before {
+  background: #24292e;
+}
+body.light .ci.ci-github .ci-content {
+  border-color: #24292e;
+}
+body.light .ci.ci-github .ci-iw {
+  background: rgba(36, 41, 46, 0.08);
+  border-color: rgba(36, 41, 46, 0.3);
+}
+body.light .ci.ci-github:hover .ci-iw {
+  background: rgba(36, 41, 46, 0.16);
+  border-color: rgba(36, 41, 46, 0.6);
+}
+body.light .ci.ci-github:hover .ci-label,
+body.light .ci.ci-github:hover .ci-val {
+  color: #24292e;
+}
+
+.ci.ci-linkedin::before {
   background: #0a66c2;
-  transform: scaleX(1);
 }
-.ci.ci-instagram:hover {
-  border-color: rgba(225, 48, 108, 0.7);
+.ci.ci-linkedin .ci-content {
+  border-color: #0a66c2;
 }
-.ci.ci-instagram:hover::after {
-  background: linear-gradient(to right, #f09433, #dc2743, #bc1888);
-  transform: scaleX(1);
+.ci.ci-linkedin .ci-iw {
+  background: rgba(10, 102, 194, 0.08);
+  border-color: rgba(10, 102, 194, 0.3);
 }
+.ci.ci-linkedin:hover .ci-iw {
+  background: rgba(10, 102, 194, 0.16);
+  border-color: rgba(10, 102, 194, 0.6);
+}
+.ci.ci-linkedin:hover .ci-label,
+.ci.ci-linkedin:hover .ci-val {
+  color: #0a66c2;
+}
+
+.ci.ci-instagram::before {
+  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+}
+.ci.ci-instagram .ci-content {
+  border-color: #dc2743;
+}
+.ci.ci-instagram .ci-iw {
+  background: rgba(220, 39, 67, 0.08);
+  border-color: rgba(220, 39, 67, 0.3);
+}
+.ci.ci-instagram:hover .ci-iw {
+  background: rgba(220, 39, 67, 0.16);
+  border-color: rgba(220, 39, 67, 0.6);
+}
+.ci.ci-instagram:hover .ci-label,
+.ci.ci-instagram:hover .ci-val {
+  color: #dc2743;
+}
+
+/* ── Icon circle ── */
 .ci-iw {
   width: 56px;
   height: 56px;
@@ -109,72 +189,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.35s;
-  position: relative;
-}
-.ci-iw::after {
-  content: "";
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  border: 1px solid transparent;
+  background: rgba(193, 61, 16, 0.08);
+  border: 1px solid rgba(193, 61, 16, 0.25);
   transition:
-    border-color 0.35s,
-    transform 0.5s;
+    background 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
-.ci:hover .ci-iw::after {
-  transform: rotate(180deg);
-}
-.ci.ci-email:hover {
-  border-color: rgba(234, 67, 53, 0.7);
-}
-.ci.ci-email:hover::after {
-  background: linear-gradient(to right, #4285f4, #34a853, #fbbc05, #ea4335);
-  transform: scaleX(1);
-}
-.ci.ci-email .ci-iw {
-  background: rgba(234, 67, 53, 0.1);
-}
-.ci.ci-email:hover .ci-iw {
-  background: rgba(234, 67, 53, 0.18);
-  box-shadow: 0 0 35px rgba(234, 67, 53, 0.22);
-}
-.ci.ci-email:hover .ci-iw::after {
-  border-color: rgba(234, 67, 53, 0.4);
-}
-.ci.ci-email:hover .ci-label,
-.ci.ci-email:hover .ci-val {
-  color: #ea4335;
-}
-.ci.ci-github .ci-iw {
-  background: rgba(255, 255, 255, 0.05);
-}
-.ci.ci-github:hover .ci-iw {
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 35px rgba(255, 255, 255, 0.18);
-}
-.ci.ci-github:hover .ci-iw::after {
-  border-color: rgba(255, 255, 255, 0.3);
-}
-.ci.ci-linkedin .ci-iw {
-  background: rgba(10, 102, 194, 0.1);
-}
-.ci.ci-linkedin:hover .ci-iw {
-  background: rgba(10, 102, 194, 0.22);
-  box-shadow: 0 0 35px rgba(10, 102, 194, 0.22);
-}
-.ci.ci-linkedin:hover .ci-iw::after {
-  border-color: rgba(10, 102, 194, 0.4);
-}
-.ci.ci-instagram .ci-iw {
-  background: rgba(220, 39, 67, 0.1);
-}
-.ci.ci-instagram:hover .ci-iw {
-  background: rgba(220, 39, 67, 0.18);
-  box-shadow: 0 0 35px rgba(220, 39, 67, 0.22);
-}
-.ci.ci-instagram:hover .ci-iw::after {
-  border-color: rgba(220, 39, 67, 0.4);
+.ci:hover .ci-iw {
+  background: rgba(193, 61, 16, 0.16);
+  border-color: rgba(193, 61, 16, 0.55);
 }
 .ci-iw svg {
   width: 28px;
@@ -182,34 +206,38 @@
   transition: transform 0.35s;
 }
 .ci:hover .ci-iw svg {
-  transform: scale(1.18) rotate(-5deg);
+  transform: scale(1.15) rotate(-5deg);
 }
+
+/* ── Label / value ── */
 .ci-label {
   font-size: 0.54rem;
   text-transform: uppercase;
   letter-spacing: 0.32em;
-  color: #ffffff;
+  color: rgba(28, 24, 20, 0.85);
   transition: color 0.3s;
 }
 .ci-val {
   font-size: 0.68rem;
-  color: #ffffff;
-  transition: color 0.3s;
   letter-spacing: 0.06em;
+  color: rgba(28, 24, 20, 0.85);
+  text-align: center;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+  line-height: 1.3;
+  transition: color 0.3s;
 }
 .ci:hover .ci-label,
 .ci:hover .ci-val {
-  color: var(--a);
+  color: #c13d10;
 }
-.ci.ci-github:hover .ci-label,
-.ci.ci-github:hover .ci-val {
-  color: #fff;
+
+/* ── Light mode: keep cream front + brand borders ── */
+body.light .ci-content {
+  background: #ebe9e1;
 }
-.ci.ci-linkedin:hover .ci-label,
-.ci.ci-linkedin:hover .ci-val {
-  color: #5aacff;
-}
-.ci.ci-instagram:hover .ci-label,
-.ci.ci-instagram:hover .ci-val {
-  color: #f06;
+body.light .ci-label,
+body.light .ci-val {
+  color: rgba(28, 24, 20, 0.85);
 }

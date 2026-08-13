@@ -1,13 +1,15 @@
 export const roles = ['Software Engineer', 'Full Stack Developer', 'System Architect', 'Problem Solver', 'Code Craftsman']
 
 export const stats = [
-  { target: 50, label: 'Projects Shipped', delay: '0s' },
-  { target: 1, label: 'Years Coding', delay: '.1s' },
-  { target: 24, label: 'Hours / Day Dedicated', delay: '.2s' },
-  { isInfinity: true, label: 'Cups of Coffee', delay: '.3s' },
+  { target: 50, label: 'Projects Shipped' },
+  { target: 1, label: 'Years Coding' },
+  { target: 24, label: 'Hours / Day Dedicated' },
+  { isInfinity: true, label: 'Cups of Coffee' },
 ]
 
 export const marqueeItems = ['Software Engineering', 'Yottron Solutions', 'Clean Architecture', 'Problem Solving', 'Innovation', 'Scalable Systems', 'Full Stack Dev', 'Open Source']
+
+export const techs = ['C#', 'Java', 'JavaScript', 'HTML', 'CSS', 'SQL', '.NET', 'React', 'Tailwind CSS', 'Git', 'jQuery', 'TypeScript', 'Angular', 'Vue.js', 'Bootstrap', 'SASS', 'Node.js', 'PostgreSQL', 'MongoDB', 'Docker', 'Kubernetes', 'GitHub Actions', 'npm', 'Webpack', 'Vite', 'Redis', 'GitHub', 'Vercel']
 
 export const links = {
   email: 'mailto:mailtonishii@gmail.com',

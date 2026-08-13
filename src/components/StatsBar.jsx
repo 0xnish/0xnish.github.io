@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { stats } from '../helper/constants'
 
-function StatItem({ target, label, isInfinity, delay }) {
+function StatItem({ target, label, isInfinity }) {
   const numRef = useRef(null)
   const itemRef = useRef(null)
 
@@ -43,7 +43,7 @@ function StatItem({ target, label, isInfinity, delay }) {
   }
 
   return (
-    <div className="stat rv" style={{ transitionDelay: delay }} ref={itemRef} onClick={handleClick}>
+    <div className="stat rv" ref={itemRef} onClick={handleClick}>
       <div className="stat-num" ref={numRef} data-target={target}>
         {isInfinity ? '\u221e' : '0'}
       </div>
@@ -56,7 +56,7 @@ export default function StatsBar() {
   return (
     <div className="stats-bar">
       {stats.map((s, i) => (
-        <StatItem key={i} target={s.target} label={s.label} isInfinity={s.isInfinity} delay={s.delay} />
+        <StatItem key={i} target={s.target} label={s.label} isInfinity={s.isInfinity} />
       ))}
     </div>
   )

@@ -1,4 +1,25 @@
 /* RESPONSIVE */
+
+/* ── Donate bento: 2-col tablet layout ── */
+@media (max-width: 1024px) {
+  .donate-bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .db-header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .db-upi {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .db-bmc {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
 @media (max-width: 500px) {
   .donate-bento {
     grid-template-columns: 1fr;
@@ -214,11 +235,7 @@
     font-size: 0.66rem;
     line-height: 1.95;
   }
-  .stats-bar {
-    flex-wrap: wrap;
-  }
   .stat {
-    flex: 50%;
     padding: 20px 12px;
   }
   .stat-num {
@@ -242,28 +259,27 @@
     margin-bottom: 28px;
   }
   .contact-links {
-    gap: 8px;
+    gap: 16px;
   }
   .ci {
-    min-width: calc(50% - 4px);
-    width: calc(50% - 4px);
-    height: 155px;
+    width: clamp(110px, 38vw, 150px);
+    height: clamp(110px, 38vw, 150px);
     padding: 18px 12px;
     gap: 9px;
   }
   .ci-iw {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
   }
   .ci-iw svg {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
   }
   .ci-label {
-    font-size: 0.49rem;
+    font-size: 0.44rem;
   }
   .ci-val {
-    font-size: 0.6rem;
+    font-size: 0.54rem;
   }
   footer {
     flex-direction: column;
@@ -313,6 +329,23 @@
     gap: 16px;
     padding: 12px 14px;
   }
+  .eb-highlights-row {
+    flex-wrap: wrap;
+  }
+  .eb-header-stats {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .eb-pivot-inline {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .eb-pivot-inline-label {
+    margin-left: 0;
+  }
+  .eb-role-tags {
+    gap: 6px;
+  }
   .db-upi-id-wrap {
     padding: 12px 14px;
   }
@@ -352,27 +385,25 @@
     padding: 10px 18px;
     font-size: 0.59rem;
   }
-  .stat {
-    flex: 100%;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 179, 71, 0.16);
-  }
-  .stat:last-child {
-    border-bottom: none;
-  }
   .skills-grid {
     grid-template-columns: 1fr;
   }
   .ci {
-    min-width: calc(50% - 4px);
-    width: calc(50% - 4px);
-    height: 140px;
+    width: clamp(100px, 36vw, 135px);
+    height: clamp(100px, 36vw, 135px);
     padding: 16px 10px;
     gap: 8px;
   }
   .ci-iw {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
+  }
+  .ci-iw svg {
+    width: 16px;
+    height: 16px;
+  }
+  .contact-links {
+    gap: 18px;
   }
   .contact-section h2 {
     font-size: clamp(1.8rem, 11vw, 2.8rem);
@@ -410,11 +441,10 @@
     justify-content: center;
   }
   .ci {
-    min-width: 100%;
-    width: 100%;
+    width: clamp(90px, 34vw, 120px);
+    height: clamp(90px, 34vw, 120px);
   }
   .contact-links {
-    flex-direction: column;
-    align-items: center;
+    gap: 18px;
   }
 }

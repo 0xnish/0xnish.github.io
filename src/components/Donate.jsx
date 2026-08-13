@@ -93,7 +93,7 @@ export default function Donate() {
         </div>
 
         {/* UPI tile */}
-        <div className="db-tile db-upi rv" style={{ transitionDelay: '.09s' }}>
+        <div className="db-tile db-upi rv">
           <div className="db-tile-label">01 &mdash; UPI Payment</div>
           <div className="db-tile-heading">Pay via <em>UPI</em></div>
           <div className="db-bmc-desc" style={{ fontSize: '.75rem', lineHeight: '1.85', letterSpacing: '.05em', fontFamily: "'Alan Sans',sans-serif", marginTop: '4px' }}>
@@ -115,7 +115,7 @@ export default function Donate() {
         </div>
 
         {/* BMC tile */}
-        <div className="db-tile db-bmc rv" style={{ transitionDelay: '.18s' }}>
+        <div className="db-tile db-bmc rv">
           <div className="db-tile-label">02 &mdash; Buy Me a Coffee</div>
           <div className="db-tile-heading">Global <em>Support</em></div>
           <div className="db-bmc-desc" style={{ fontSize: '.75rem', lineHeight: '1.85', letterSpacing: '.05em', fontFamily: "'Alan Sans',sans-serif", marginTop: '4px' }}>
