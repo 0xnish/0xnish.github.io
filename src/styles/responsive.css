@@ -359,9 +359,10 @@
   .db-upi-id-wrap {
     padding: 12px 14px;
   }
-  .db-upi-id-text {
-    font-size: 0.66rem;
-  }
+   .db-upi-id-text {
+     font-size: 0.66rem;
+     text-transform: lowercase;
+   }
   .db-upi-copy-btn {
     padding: 6px 10px;
     font-size: 0.52rem;

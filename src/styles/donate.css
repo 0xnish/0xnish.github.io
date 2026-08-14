@@ -314,6 +314,10 @@ body:not(.light) .db-btn-bmc:hover {
 /* ═══════════════════════════════════
    UPI ID display + copy
 ═══════════════════════════════════ */
+.upi-id-text {
+  text-transform: lowercase;
+  font-weight: 600;
+}
 .db-btn-upi.copied {
   background: #ffffff;
   color: #fff;
