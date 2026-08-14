@@ -226,9 +226,9 @@ body.light .ci.ci-github:hover .ci-val {
   color: rgba(28, 24, 20, 0.85);
   text-align: center;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
+  overflow: visible;
+  text-overflow: clip;
+  max-width: none;
   line-height: 1.3;
   transition: color 0.3s;
 }
