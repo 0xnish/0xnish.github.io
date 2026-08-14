@@ -142,17 +142,14 @@ body:not(.light) .db-tile-heading em {
 }
 
 /* ── Pay buttons ── */
-.db-btn-upi {
-  box-sizing: border-box;
-  height: 2.5rem;
-  padding: 9px 16px;
-}
 .db-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   width: 100%;
+  box-sizing: border-box;
+  height: 2.5rem;
   padding: 13px 16px;
   text-decoration: none;
   font-family: "Alan Sans", sans-serif;
@@ -170,6 +167,9 @@ body:not(.light) .db-tile-heading em {
     transform 0.2s,
     border-color 0.35s;
   margin-top: auto;
+}
+.db-btn-upi {
+  padding: 9px 16px;
 }
 .db-btn::before {
   content: "";
