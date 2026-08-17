@@ -3,10 +3,9 @@ import { useEffect } from 'react'
 export default function AnimatedFavicon() {
   useEffect(() => {
     const S = 64
-    const CHAR = '\u0BA8\u0BBF'
-    const FLIP_DUR = 500
-    const PAUSE_DUR = 2500
-    const CYCLE = FLIP_DUR + PAUSE_DUR
+    const TEXT = 'நிஷாந்த்'
+    const FONT = "bold 36px 'Noto Sans Tamil', 'Latha', 'Vijaya', sans-serif"
+    const SPEED = 50
 
     const old = document.getElementById('faviconEl')
     if (old) old.remove()
@@ -21,28 +20,29 @@ export default function AnimatedFavicon() {
     const ctx = canvas.getContext('2d')
     const start = performance.now()
 
+    ctx.font = FONT
+    const textWidth = ctx.measureText(TEXT).width
+
     let rafId
     function draw() {
-      const e = performance.now() - start
-      const cp = e % CYCLE
-      const scaleX = cp < FLIP_DUR ? Math.cos((cp / FLIP_DUR) * Math.PI) : 1
+      const t = (performance.now() - start) / 1000
+      const offset = (t * SPEED) % (textWidth + S)
+
       ctx.clearRect(0, 0, S, S)
-      ctx.save()
-      ctx.translate(S / 2, S / 2)
-      ctx.scale(scaleX, 1)
-      ctx.font = "bold 44px 'Noto Sans Tamil', sans-serif"
-      ctx.textAlign = 'center'
+      ctx.font = FONT
       ctx.textBaseline = 'middle'
       ctx.fillStyle = '#ff6600'
-      ctx.fillText(CHAR, 0, 2)
-      ctx.restore()
+      ctx.fillText(TEXT, S - offset, S / 2)
+
       link.href = canvas.toDataURL('image/png')
     }
 
     function loop() { draw(); rafId = requestAnimationFrame(loop) }
-    document.fonts.load("bold 44px 'Noto Sans Tamil'").then(() => {
+    document.fonts.load(FONT).then(() => {
       rafId = requestAnimationFrame(loop)
-    }).catch(() => { rafId = requestAnimationFrame(loop) })
+    }).catch(() => {
+      rafId = requestAnimationFrame(loop)
+    })
 
     return () => cancelAnimationFrame(rafId)
   }, [])
