@@ -12,8 +12,8 @@ export const marqueeItems = ['Software Engineering', 'Yottron Solutions', 'Clean
 export const links = {
   email: 'mailto:mailtonishii@gmail.com',
   emailDisplay: 'mailtonishii@gmail.com',
-  github: 'https://github.com/coder-nishanth',
-  githubDisplay: 'coder-nishanth',
+  github: 'https://github.com/0xnish',
+  githubDisplay: '0xnish',
   linkedin: 'https://www.linkedin.com/in/nishanth-jp',
   linkedinDisplay: 'Nishanth J P',
   instagram: 'https://instagram.com/ni.sh.x',
@@ -21,7 +21,7 @@ export const links = {
 }
 
 export const upiId = 'coder-nishanth@airtel'
-export const bmcLink = 'https://buymeacoffee.com/coder.nishanth'
+export const bmcLink = 'https://buymeacoffee.com/0xnish'
 
 export const skills = [
   {
@@ -84,6 +84,6 @@ export const profile = {
   name: 'Nishanth J P',
   role: 'Software Engineer',
   company: 'Yottron Solutions',
-  github: 'coder-nishanth',
+  github: '0xnish',
   instagram: '@ni.sh.x',
 }
