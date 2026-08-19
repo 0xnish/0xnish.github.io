@@ -464,7 +464,7 @@
 @media (max-width: 768px) {
   .techstacks-section h2 {
     white-space: nowrap;
-    font-size: clamp(1.8rem, 7vw, 3rem);
+    font-size: clamp(2.5rem, 9vw, 4rem);
   }
   .ts-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
@@ -481,7 +481,7 @@
 @media (max-width: 480px) {
   .techstacks-section h2 {
     white-space: nowrap;
-    font-size: clamp(1.4rem, 6vw, 2.2rem);
+    font-size: clamp(2rem, 8vw, 3rem);
   }
   .ts-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
