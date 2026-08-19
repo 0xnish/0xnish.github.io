@@ -32,3 +32,8 @@ body.light-init #cur {
 body.light-init #cur.h {
   background: #c13d10;
 }
+@media (max-width: 768px) {
+  .inkbleed-cursor {
+    display: none !important;
+  }
+}

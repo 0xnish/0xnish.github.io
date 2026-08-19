@@ -143,6 +143,7 @@ export default function InkbleedCursor() {
     useEffect(() => {
         const frameEl = frameRef.current;
         if (!frameEl) return;
+        if (window.innerWidth <= 768 || navigator.maxTouchPoints > 0) return;
 
         const previousCursor = document.documentElement.style.cursor;
         let cursorHidden = false;
@@ -302,6 +303,7 @@ export default function InkbleedCursor() {
     return (
         <div
             ref={frameRef}
+            className="inkbleed-cursor"
             style={{
                 position: "fixed",
                 inset: 0,
