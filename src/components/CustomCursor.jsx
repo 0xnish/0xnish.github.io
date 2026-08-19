@@ -4,26 +4,17 @@ export default function CustomCursor() {
   const dotRef = useRef(null)
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768 || navigator.maxTouchPoints > 0
+    if (isMobile) return
+
     const dot = dotRef.current
     let mx = 0, my = 0
 
     const onMove = e => {
       mx = e.clientX; my = e.clientY
       dot.style.left = mx + 'px'; dot.style.top = my + 'px'
-      dot.style.opacity = '1'
     }
     document.addEventListener('mousemove', onMove)
-
-    const onTouchMove = e => {
-      const t = e.touches[0]
-      mx = t.clientX; my = t.clientY
-      dot.style.left = mx + 'px'; dot.style.top = my + 'px'
-      dot.style.opacity = '1'
-    }
-    const onTouchEnd = () => { dot.style.opacity = '0' }
-
-    document.addEventListener('touchmove', onTouchMove, { passive: true })
-    document.addEventListener('touchend', onTouchEnd)
 
     function addHover() {
       document.querySelectorAll('a,button,input,[role="button"],.donate-card').forEach(el => {
@@ -37,8 +28,6 @@ export default function CustomCursor() {
 
     return () => {
       document.removeEventListener('mousemove', onMove)
-      document.removeEventListener('touchmove', onTouchMove)
-      document.removeEventListener('touchend', onTouchEnd)
       observer.disconnect()
     }
   }, [])

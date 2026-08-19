@@ -15,9 +15,9 @@
     background 0.2s ease,
     opacity 0.15s ease;
 }
-@media (min-width: 769px) {
+@media (max-width: 768px) {
   #cur {
-    opacity: 1;
+    display: none;
   }
 }
 body.light-init #cur {
