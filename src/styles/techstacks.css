@@ -1,0 +1,22 @@
+.techstacks-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  padding: var(--section-y) var(--gutter);
+}
+.techstacks-section h2 {
+  font-family: "Alan Sans", sans-serif;
+  font-size: clamp(3rem, 7vw, 7.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  margin-bottom: 28px;
+}
+.techstacks-section h2 em {
+  font-style: italic;
+  color: #ff004c;
+}
+
+body.light .techstacks-section {
+  border-top-color: rgba(193, 61, 16, 0.12);
+}
+body.light .techstacks-section h2 em {
+  color: var(--a);
+}

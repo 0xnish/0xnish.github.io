@@ -94,6 +94,7 @@ export default function Header({ isLight, toggleTheme }) {
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
           <a href="#experience">Experience</a>
+          <a href="#techstacks">Stacks</a>
           <a href="#contact">Contact</a>
         </span>
         <button

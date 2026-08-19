@@ -10,6 +10,7 @@ import About from '../components/About'
 import StatsBar from '../components/StatsBar'
 import Skills from '../components/Skills'
 import Experience from '../components/Experience'
+import TechStacks from '../components/TechStacks'
 import Contact from '../components/Contact'
 import Donate from '../components/Donate'
 import Footer from '../components/Footer'
@@ -35,6 +36,7 @@ export default function Features({ isLight, toggleTheme }) {
       <StatsBar />
       <Skills />
       <Experience />
+      <TechStacks />
       <Contact />
       <Donate />
       <Footer />
