@@ -20,6 +20,11 @@
     display: none;
   }
 }
+@media (min-width: 769px) {
+  #cur {
+    opacity: 1;
+  }
+}
 body.light-init #cur {
   background: #c13d10;
 }
