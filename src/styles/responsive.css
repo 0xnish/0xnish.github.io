@@ -118,10 +118,6 @@
   body {
     cursor: auto;
   }
-  #cur,
-  #cur-ring {
-    display: none;
-  }
   .nav-hidden-mobile {
     display: none;
   }

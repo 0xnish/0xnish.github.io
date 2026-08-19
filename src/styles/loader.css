@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: none;
+  cursor: default;
 }
 .loader-text {
   font-family: "Alan Sans", sans-serif;

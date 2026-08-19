@@ -1,6 +1,7 @@
 import AnimatedFavicon from '../components/AnimatedFavicon'
 import Loader from '../components/Loader'
 import StarCanvas from '../components/StarCanvas'
+import InkbleedCursor from '../components/InkbleedCursor'
 import CustomCursor from '../components/CustomCursor'
 import ScrollProgress from '../components/ScrollProgress'
 import Header from '../components/Header'
@@ -20,6 +21,7 @@ export default function Features({ isLight, toggleTheme }) {
     <>
       <AnimatedFavicon />
       <Loader />
+      <InkbleedCursor />
       <CustomCursor />
       <StarCanvas isLight={isLight} />
       <div className="grid-bg"></div>

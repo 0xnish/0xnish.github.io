@@ -532,6 +532,9 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+* {
+  cursor: none !important;
+}
 body {
   background: var(--bg);
   color: var(--fg);

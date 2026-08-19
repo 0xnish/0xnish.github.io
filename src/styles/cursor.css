@@ -1,52 +1,32 @@
 #cur {
   position: fixed;
-  width: 12px;
-  height: 12px;
-  background: var(--a);
+  width: 14px;
+  height: 14px;
+  background: #0ff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 999999;
   transform: translate(-50%, -50%);
-  mix-blend-mode: screen;
   transition:
-    width 0.2s,
-    height 0.2s,
-    background 0.2s,
-    border-radius 0.2s;
+    width 0.2s ease,
+    height 0.2s ease,
+    border-radius 0.2s ease,
+    background 0.2s ease;
 }
-#cur-ring {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 999998;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.3s,
-    height 0.3s,
-    border-color 0.3s;
+body.light-init #cur {
+  background: #c13d10;
 }
 #cur.h {
-  width: 24px;
-  height: 24px;
-  background: var(--a2);
-  border-radius: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  background: #0ff;
 }
-#cur-ring.h {
-  width: 56px;
-  height: 56px;
-  border-color: rgba(255, 255, 255, 0.5);
+body.light-init #cur.h {
+  background: #c13d10;
 }
-@media (min-width: 769px) {
-  a,
-  button,
-  [role="button"],
-  input[type="submit"],
-  button.nav-theme,
-  button.nav-music,
-  .donate-card {
-    cursor: none;
+@media (max-width: 768px) {
+  #cur {
+    display: none;
   }
 }
