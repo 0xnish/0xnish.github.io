@@ -7,11 +7,18 @@
   pointer-events: none;
   z-index: 999999;
   transform: translate(-50%, -50%);
+  opacity: 0;
   transition:
     width 0.2s ease,
     height 0.2s ease,
     border-radius 0.2s ease,
-    background 0.2s ease;
+    background 0.2s ease,
+    opacity 0.15s ease;
+}
+@media (min-width: 769px) {
+  #cur {
+    opacity: 1;
+  }
 }
 body.light-init #cur {
   background: #c13d10;
@@ -24,9 +31,4 @@ body.light-init #cur {
 }
 body.light-init #cur.h {
   background: #c13d10;
-}
-@media (max-width: 768px) {
-  #cur {
-    display: none;
-  }
 }
