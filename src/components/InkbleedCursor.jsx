@@ -70,10 +70,10 @@ const IDLE_FADE_SECONDS = Math.max(0.1, IDLE_FADE.duration ?? 1.5);
 const idleEase = makeEaseFn(IDLE_FADE);
 
 const DARK_COLOR = "#FFFFFF";
-const LIGHT_COLOR = "#c13d10";
+const LIGHT_COLOR = "#000000";
 
 function isLightMode() {
-    return document.documentElement.classList.contains("light-init");
+    return document.body.classList.contains("light");
 }
 
 export default function InkbleedCursor() {

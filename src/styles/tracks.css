@@ -1,0 +1,205 @@
+.tracks-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  padding: var(--section-y) var(--gutter);
+  overflow: hidden;
+}
+
+.tracks-section h2 {
+  font-family: "Alan Sans", sans-serif;
+  font-size: clamp(3rem, 7vw, 7.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  margin-bottom: 48px;
+}
+
+.tracks-section h2 em {
+  font-style: italic;
+  color: #ff004c;
+}
+
+/* ── Carousel ── */
+
+.tracks-carousel {
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  min-height: 400px;
+  max-height: 560px;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* ── 3D Scene ── */
+
+.tracks-scene {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 100vw;
+  height: 25vw;
+  transform: translate(-50%, -50%);
+  perspective: 1600px;
+  transform-style: preserve-3d;
+}
+
+.tracks-ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ── Drag layer ── */
+
+.tracks-drag {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  cursor: grab;
+}
+
+.tracks-drag:active {
+  cursor: grabbing;
+}
+
+/* ── Edge fade ── */
+
+.tracks-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tracks-fade--left {
+  left: 0;
+  background: linear-gradient(to right, var(--bg, #06060f), transparent);
+}
+
+.tracks-fade--right {
+  right: 0;
+  background: linear-gradient(to left, var(--bg, #06060f), transparent);
+}
+
+/* ── Cards ── */
+
+.tracks-card {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 20px;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.tracks-card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tracks-card-num {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.06);
+}
+
+.tracks-card-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.tracks-card-artist {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+}
+
+.tracks-card-dur {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Light mode ── */
+
+body.light .tracks-carousel {
+  background: var(--bg);
+}
+
+body.light .tracks-fade--left {
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+
+body.light .tracks-fade--right {
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+
+body.light .tracks-card-inner {
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.01));
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light .tracks-card-num {
+  color: rgba(0, 0, 0, 0.06);
+}
+
+body.light .tracks-card-title {
+  color: #1c1814;
+}
+
+body.light .tracks-card-artist {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body.light .tracks-card-dur {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+body.light .tracks-section h2 em {
+  color: var(--a);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .tracks-carousel {
+    height: 55vh;
+    min-height: 320px;
+  }
+
+  .tracks-scene {
+    top: 35%;
+    height: 32vw;
+  }
+}
+
+@media (max-width: 540px) {
+  .tracks-carousel {
+    height: 50vh;
+    min-height: 280px;
+  }
+
+  .tracks-scene {
+    top: 35%;
+    height: 40vw;
+  }
+}

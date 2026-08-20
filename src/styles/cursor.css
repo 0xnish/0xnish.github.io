@@ -25,7 +25,7 @@
     opacity: 1;
   }
 }
-body.light-init #cur {
+body.light #cur {
   background: #c13d10;
 }
 #cur.h {
@@ -33,8 +33,9 @@ body.light-init #cur {
   height: 26px;
   border-radius: 4px;
   background: #0ff;
+  opacity: 0.5;
 }
-body.light-init #cur.h {
+body.light #cur.h {
   background: #c13d10;
 }
 @media (max-width: 768px) {

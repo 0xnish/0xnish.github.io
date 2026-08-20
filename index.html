@@ -7,9 +7,11 @@
     <link rel="icon" type="image/png" id="faviconEl" />
     <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Noto+Sans+Tamil:wght@700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
+    <link rel="preload" as="image" href="/comic.webp" type="image/webp" />
     <script>if(localStorage.getItem('theme')!=='dark')document.documentElement.classList.add('light-init');</script>
   </head>
   <body>
+    <script>if(document.documentElement.classList.contains('light-init'))document.body.classList.add('light');</script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

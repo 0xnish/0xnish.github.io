@@ -45,16 +45,6 @@ body.light .theme-icon-dark {
 body.light .theme-icon-light {
   display: flex;
 }
-.theme-icon-dark svg {
-  transition:
-    filter 0.3s ease,
-    transform 0.3s ease;
-}
-body.light .theme-icon-light svg {
-  transition:
-    filter 0.3s ease,
-    transform 0.3s ease;
-}
 body.light .nav-theme {
   background: rgba(160, 120, 64, 0.1);
   border-color: rgba(160, 120, 64, 0.35);

@@ -477,3 +477,123 @@ body:not(.light) .eb-role-location svg {
   text-transform: uppercase;
   margin-left: auto;
 }
+
+/* ── Light mode overrides ── */
+body.light .exp-section {
+  border-top-color: rgba(193, 61, 16, 0.12);
+}
+body.light .eb-tile {
+  background: var(--bg);
+}
+body.light .eb-glow {
+  background-image: radial-gradient(
+    circle at 25% 40%,
+    rgba(193, 61, 16, 0.08),
+    transparent 65%
+  );
+  background-color: rgba(193, 61, 16, 0.04);
+}
+body.light .eb-tile::before {
+  background: linear-gradient(to right, transparent, var(--a), transparent);
+}
+body.light .eb-tile::after {
+  background: linear-gradient(to bottom, transparent, var(--a), transparent);
+}
+body.light .eb-header-label,
+body.light .eb-journey-label {
+  color: rgba(193, 61, 16, 0.9);
+}
+body.light .eb-header-desc {
+  color: rgba(28, 24, 20, 0.72);
+}
+body.light .eb-header-title em {
+  color: var(--a);
+}
+body.light .eb-header-stats {
+  border-top-color: rgba(193, 61, 16, 0.12);
+}
+body.light .eb-stat-key {
+  color: rgba(28, 24, 20, 0.9);
+}
+body.light .eb-journey-line {
+  background: linear-gradient(
+    to bottom,
+    rgba(193, 61, 16, 0.2),
+    rgba(58, 138, 85, 0.5) 50%,
+    rgba(255, 0, 76, 0.5)
+  );
+}
+body.light .eb-journey-dot {
+  border-color: var(--a);
+  background: var(--a);
+}
+body.light .eb-journey-year {
+  color: rgba(28, 24, 20, 0.9);
+}
+body.light .eb-journey-role {
+  color: rgba(28, 24, 20, 0.9);
+}
+body.light .eb-role-num {
+  color: rgba(28, 24, 20, 0.9);
+}
+body.light .eb-role-period {
+  color: rgba(28, 24, 20, 0.9);
+}
+body.light .eb-dot {
+  background: rgba(193, 61, 16, 0.4);
+}
+body.light .eb-role-title em {
+  color: var(--a);
+}
+body.light .eb-role--featured .eb-role-title em {
+  color: var(--a4);
+}
+body.light .eb-role-desc {
+  color: rgba(28, 24, 20, 0.7);
+}
+body.light .eb-role:hover .eb-role-desc,
+body.light .eb-role--featured:hover .eb-role-desc {
+  color: rgba(28, 24, 20, 0.92);
+}
+body.light .eb-highlights-row {
+  background: rgba(193, 61, 16, 0.03);
+  border-color: rgba(193, 61, 16, 0.12);
+  border-left-color: rgba(193, 61, 16, 0.4);
+}
+body.light .eb-role:hover .eb-highlights-row {
+  background: rgba(193, 61, 16, 0.06);
+}
+body.light .eb-hl-key {
+  color: rgba(28, 24, 20, 0.9);
+}
+body.light .eb-role-location {
+  color: rgba(28, 24, 20, 0.9);
+}
+body.light .eb-role-location svg {
+  color: var(--a);
+  filter: drop-shadow(0 0 6px rgba(193, 61, 16, 0.8));
+}
+body.light .eb-tag {
+  color: rgba(28, 24, 20, 0.9);
+  border-color: rgba(193, 61, 16, 0.22);
+}
+body.light .eb-tag:hover {
+  color: var(--a);
+  border-color: rgba(193, 61, 16, 0.5);
+  background: rgba(193, 61, 16, 0.06);
+}
+body.light .eb-role-company {
+  color: var(--a2);
+}
+body.light .eb-pivot-inline {
+  border-top-color: rgba(193, 61, 16, 0.12);
+}
+body.light .eb-pivot-inline-from {
+  color: rgba(28, 24, 20, 0.9);
+}
+body.light .eb-pivot-inline svg {
+  color: rgba(193, 61, 16, 0.4);
+}
+body.light .eb-pivot-inline-label {
+  color: rgba(28, 24, 20, 0.9);
+}

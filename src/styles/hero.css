@@ -432,7 +432,7 @@ body:not(.light) .btn-g:hover span {
   inset: 0;
   overflow: hidden;
   z-index: 1;
-  animation: ringBlob 19s ease-in-out infinite -3s;
+  animation: morphRing 14s ease-in-out infinite;
 }
 .photo-ring::before {
   content: "";
@@ -453,28 +453,23 @@ body:not(.light) .photo-ring::before {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-@keyframes ringBlob {
+@keyframes morphRing {
   0%,
   100% {
-    border-radius: 45% 55% 48% 52% / 55% 45% 52% 48%;
+    border-radius: 62% 38% 45% 55% / 48% 65% 35% 52%;
   }
-  25% {
-    border-radius: 60% 40% 55% 45% / 40% 62% 38% 60%;
+  20% {
+    border-radius: 35% 65% 58% 42% / 55% 35% 65% 45%;
   }
-  50% {
-    border-radius: 40% 60% 42% 58% / 58% 40% 60% 42%;
+  40% {
+    border-radius: 48% 52% 35% 65% / 65% 48% 52% 35%;
   }
-  75% {
-    border-radius: 52% 48% 60% 40% / 45% 55% 42% 58%;
+  60% {
+    border-radius: 55% 45% 65% 35% / 35% 55% 45% 65%;
   }
-}
-.photo-img-container {
-  position: absolute;
-  inset: 5px;
-  border-radius: 58% 42% 62% 38% / 55% 60% 40% 45%;
-  overflow: hidden;
-  z-index: 2;
-  animation: blobMorph 14s ease-in-out infinite;
+  80% {
+    border-radius: 38% 62% 42% 58% / 52% 38% 62% 48%;
+  }
 }
 @keyframes blobMorph {
   0%,
@@ -493,6 +488,17 @@ body:not(.light) .photo-ring::before {
   80% {
     border-radius: 62% 38% 55% 45% / 40% 62% 38% 60%;
   }
+}
+.photo-img-container {
+  position: absolute;
+  inset: 5px;
+  border-radius: 58% 42% 62% 38% / 55% 60% 40% 45%;
+  border: none;
+  overflow: hidden;
+  z-index: 2;
+  animation: blobMorph 18s ease-in-out infinite;
+}
+body.light .photo-img-container {
 }
 .photo-img-container img {
   width: 100%;
