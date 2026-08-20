@@ -492,11 +492,11 @@ body:not(.light) .photo-ring::before {
 .photo-img-container {
   position: absolute;
   inset: 5px;
-  border-radius: 58% 42% 62% 38% / 55% 60% 40% 45%;
+  border-radius: 62% 38% 45% 55% / 48% 65% 35% 52%;
   border: none;
   overflow: hidden;
   z-index: 2;
-  animation: blobMorph 18s ease-in-out infinite;
+  animation: morphRing 14s ease-in-out infinite;
 }
 body.light .photo-img-container {
 }
