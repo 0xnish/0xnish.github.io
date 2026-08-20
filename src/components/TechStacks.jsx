@@ -150,7 +150,7 @@ const Cell = memo(function Cell({ i, stack, onEnter }) {
       className="ts-cell"
       data-i={i}
       onPointerEnter={onEnter}
-      title={stack.name}
+
       style={{ zIndex: i + 1 }}
     >
       <div className="ts-logo">
