@@ -75,7 +75,6 @@ const CSS = `
   gap: 0;
   width: 100%;
   perspective: 1600px;
-  transform-style: preserve-3d;
 }
 .ts-cell {
   background: #e0e0e0;
@@ -90,7 +89,7 @@ const CSS = `
   min-width: 0;
   min-height: 0;
   overflow: visible;
-  transition: transform ${DURATION}ms cubic-bezier(0.16, 1, 0.3, 1), background ${DURATION}ms ease;
+  transition: transform ${DURATION}ms cubic-bezier(0.65, 0, 0.35, 1), background ${DURATION}ms ease;
 }
 @media (hover: hover) and (pointer: fine) {
   .ts-cell:hover {
@@ -122,8 +121,7 @@ const CSS = `
   height: 100% !important;
   object-fit: contain;
   filter: grayscale(0);
-  transform: translateZ(0);
-  transition: transform ${DURATION}ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform ${DURATION}ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 .ts-cell-big .ts-logo span,
 .ts-cell-big .ts-logo svg,
@@ -181,24 +179,45 @@ const Cell = memo(function Cell({ i, stack, onEnter }) {
 export default function TechStacks() {
   const gridRef = useRef(null)
   const leaveTimer = useRef(null)
+  const bigRef = useRef(null)
+  const smallRef = useRef([])
+  const coarseRef = useRef(
+    typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(pointer: coarse)').matches
+  )
 
   useEffect(() => {
     return () => { if (leaveTimer.current) clearTimeout(leaveTimer.current) }
   }, [])
 
+  const clearFx = useCallback(() => {
+    if (bigRef.current) {
+      bigRef.current.classList.remove('ts-cell-big')
+      bigRef.current.style.zIndex = ''
+      bigRef.current = null
+    }
+    for (const c of smallRef.current) {
+      c.classList.remove('ts-cell-small')
+      c.style.zIndex = ''
+    }
+    smallRef.current = []
+  }, [])
+
   const onEnter = useCallback((e) => {
+    if (coarseRef.current) return
     if (leaveTimer.current) { clearTimeout(leaveTimer.current); leaveTimer.current = null }
     const cell = e.currentTarget
-    const i = +cell.dataset.i
+    if (bigRef.current === cell) return
     const grid = gridRef.current
     if (!grid) return
 
+    clearFx()
+
+    const i = +cell.dataset.i
     const cols = grid.children[0] ? Math.round(grid.getBoundingClientRect().width / grid.children[0].getBoundingClientRect().width) : COLS
 
-    const prevBig = grid.querySelector('.ts-cell-big')
-    if (prevBig) prevBig.classList.remove('ts-cell-big')
-    grid.querySelectorAll('.ts-cell-small').forEach(c => c.classList.remove('ts-cell-small'))
-
+    bigRef.current = cell
     cell.classList.add('ts-cell-big')
     cell.style.zIndex = 60
 
@@ -215,21 +234,17 @@ export default function TechStacks() {
         if (nc) {
           nc.classList.add('ts-cell-small')
           nc.style.zIndex = 55
+          smallRef.current.push(nc)
         }
       }
     }
-  }, [])
+  }, [clearFx])
 
   const onLeave = useCallback(() => {
+    if (coarseRef.current) return
     if (leaveTimer.current) clearTimeout(leaveTimer.current)
-    leaveTimer.current = setTimeout(() => {
-      const grid = gridRef.current
-      if (!grid) return
-      const big = grid.querySelector('.ts-cell-big')
-      if (big) { big.classList.remove('ts-cell-big'); big.style.zIndex = '' }
-      grid.querySelectorAll('.ts-cell-small').forEach(c => { c.classList.remove('ts-cell-small'); c.style.zIndex = '' })
-    }, LEAVE_DELAY)
-  }, [])
+    leaveTimer.current = setTimeout(clearFx, LEAVE_DELAY)
+  }, [clearFx])
 
   return (
     <section className="techstacks-section" id="techstacks">
