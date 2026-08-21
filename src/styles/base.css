@@ -278,9 +278,6 @@ body.light .loader-text {
 .light-init .loader-text {
   color: rgba(193, 61, 16, 0.75);
 }
-body.light .ripple-click {
-  border-color: rgba(193, 61, 16, 0.45);
-}
 body.light .scroll-progress {
   background: linear-gradient(to right, var(--a), var(--a2), var(--a3));
 }
@@ -339,42 +336,6 @@ body.light nav a.nav-donate {
   background: var(--a);
   border-color: var(--a);
   color: #fff;
-}
-body.light .orbit-ring-1 {
-  border-color: rgba(193, 61, 16, 0.18);
-}
-body.light .orbit-ring-1::before {
-  box-shadow:
-    0 0 18px 5px rgba(193, 61, 16, 0.7),
-    0 0 50px 12px rgba(193, 61, 16, 0.2);
-}
-body.light .orbit-ring-2 {
-  border-color: rgba(184, 68, 90, 0.15);
-}
-body.light .orbit-ring-2::before {
-  box-shadow:
-    0 0 14px 4px rgba(184, 68, 90, 0.7),
-    0 0 36px 8px rgba(184, 68, 90, 0.2);
-}
-body.light .photo-dots-tl {
-  opacity: 0.5;
-}
-body.light .photo-dots-br {
-  opacity: 0.4;
-}
-body.light .pdot {
-  background: var(--a);
-}
-body.light .pdot:nth-child(even) {
-  background: var(--a2);
-}
-body.light .photo-bar {
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(193, 61, 16, 0.45),
-    transparent
-  );
 }
 body.light h1 {
   color: var(--fg);

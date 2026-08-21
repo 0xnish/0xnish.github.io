@@ -84,16 +84,10 @@ export default function InkbleedCursor() {
 
     const live = useRef({
         pixelSize: DEFAULTS.pixelSize,
-        trailColor: isLightMode() ? LIGHT_COLOR : DARK_COLOR,
+        trailColor: DARK_COLOR,
         trailStyle: DEFAULTS.trailStyle,
         trailSpacing: DEFAULTS.trailSpacing,
     });
-    live.current = {
-        pixelSize: DEFAULTS.pixelSize,
-        trailColor: isLightMode() ? LIGHT_COLOR : DARK_COLOR,
-        trailStyle: DEFAULTS.trailStyle,
-        trailSpacing: DEFAULTS.trailSpacing,
-    };
 
     useEffect(() => {
         const host = hostRef.current;
@@ -123,14 +117,7 @@ export default function InkbleedCursor() {
             });
         }
 
-        return () => {
-            for (const p of pool) p.node.remove();
-            poolRef.current = [];
-        };
-    }, []);
-
-    useEffect(() => {
-        for (const p of poolRef.current) {
+        for (const p of pool) {
             const s = p.node.style;
             s.width = `${DEFAULTS.pixelSize}px`;
             s.height = `${DEFAULTS.pixelSize}px`;
@@ -138,6 +125,11 @@ export default function InkbleedCursor() {
             s.backgroundColor = DEFAULTS.trailColor;
             p.color = DEFAULTS.trailColor;
         }
+
+        return () => {
+            for (const p of pool) p.node.remove();
+            poolRef.current = [];
+        };
     }, []);
 
     useEffect(() => {

@@ -88,10 +88,6 @@
     }
   }
 
-.eq-bar {
-  transform-box: fill-box;
-  transform-origin: center bottom;
-}
 .mdiv {
   width: 1px;
   height: 16px;

@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Particles } from './magicui/particles'
 
 export default function StarCanvas({ isLight }) {
-  const [isMobile, setIsMobile] = useState(true)
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth <= 768 || navigator.maxTouchPoints > 0)
-  }, [])
+  const [isMobile] = useState(
+    () => window.innerWidth <= 768 || navigator.maxTouchPoints > 0
+  )
 
   if (isMobile) return null
 
