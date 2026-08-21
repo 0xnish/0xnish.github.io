@@ -37,7 +37,6 @@
   transform: translateX(-100%);
   transition: transform 0.7s ease;
   pointer-events: none;
-  will-change: transform;
 }
 .eb-tile::after {
   content: "";
@@ -50,7 +49,6 @@
   transform: translateY(-100%);
   transition: transform 0.7s ease;
   pointer-events: none;
-  will-change: transform;
 }
 @media (hover: hover) and (pointer: fine) {
     .eb-tile:hover::before {
@@ -235,18 +233,29 @@
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.55);
 }
 .eb-journey-dot--now {
+  position: relative;
   border-color: #ffffff;
   background: #ffffff;
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.85);
-  animation: redPulse 2.5s ease-in-out infinite;
 }
-@keyframes redPulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8);
+.eb-journey-dot--now::after {
+  content: "";
+  position: absolute;
+  inset: -2.5px;
+  border-radius: 50%;
+  border: 1.5px solid #ffffff;
+  pointer-events: none;
+  animation: dotRing 2.5s ease-out infinite;
+}
+@keyframes dotRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
   }
-  60% {
-    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+  70%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
   }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -319,6 +328,7 @@ body.light .eb-role--featured .eb-role-title em.role-cyan {
   margin-bottom: 16px;
 }
 .eb-dot {
+  position: relative;
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -329,7 +339,15 @@ body.light .eb-role--featured .eb-role-title em.role-cyan {
 .eb-dot--active {
   background: var(--a4);
   box-shadow: 0 0 7px rgba(255, 255, 255, 0.7);
-  animation: activePulse 2.5s ease-in-out infinite;
+}
+.eb-dot--active::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1px solid var(--a4);
+  pointer-events: none;
+  animation: dotRing 2.5s ease-out infinite;
 }
 .eb-role-title {
   font-family: "Alan Sans", sans-serif;
