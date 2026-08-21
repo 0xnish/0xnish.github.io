@@ -8,7 +8,7 @@ import {
   Kubernetes, Azure, HTML5, CSS3, Google, Canva, Android, Dart, Microsoft,
 } from 'developer-icons'
 
-const DURATION = 200
+const DURATION = 260
 const LEAVE_DELAY = 200
 
 const stacks = [
@@ -90,8 +90,7 @@ const CSS = `
   min-width: 0;
   min-height: 0;
   overflow: visible;
-  will-change: transform;
-  transition: transform ${DURATION}ms ease, background ${DURATION}ms ease;
+  transition: transform ${DURATION}ms cubic-bezier(0.16, 1, 0.3, 1), background ${DURATION}ms ease;
 }
 @media (hover: hover) and (pointer: fine) {
   .ts-cell:hover {
@@ -115,7 +114,6 @@ const CSS = `
   transition: opacity ${DURATION}ms ease;
   user-select: none;
   pointer-events: none;
-  will-change: transform;
 }
 .ts-logo span,
 .ts-logo svg,
@@ -124,6 +122,8 @@ const CSS = `
   height: 100% !important;
   object-fit: contain;
   filter: grayscale(0);
+  transform: translateZ(0);
+  transition: transform ${DURATION}ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .ts-cell-big .ts-logo span,
 .ts-cell-big .ts-logo svg,
