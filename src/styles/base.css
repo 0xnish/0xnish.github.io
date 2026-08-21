@@ -47,10 +47,15 @@ body.light header {
 body.light nav a {
   color: #5c4a3a;
 }
-body.light nav a:hover,
 body.light nav a.active {
   color: var(--a);
 }
+@media (hover: hover) and (pointer: fine) {
+    body.light nav a:hover {
+      color: var(--a);
+    }
+  }
+
 body.light nav a::after {
   background: var(--a);
 }
@@ -101,9 +106,12 @@ body.light .btn-g {
   color: rgba(28, 24, 20, 0.75);
   border-color: var(--a);
 }
-body.light .btn-g:hover {
-  color: var(--a);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .btn-g:hover {
+      color: var(--a);
+    }
+  }
+
 body.light .mq-wrap {
   background: rgba(193, 61, 16, 0.04);
   border-top-color: rgba(193, 61, 16, 0.12);
@@ -112,9 +120,12 @@ body.light .mq-wrap {
 body.light .mq-item {
   color: rgba(28, 24, 20, 0.65);
 }
-body.light .mq-item:hover {
-  color: var(--a);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .mq-item:hover {
+      color: var(--a);
+    }
+  }
+
 body.light .md {
   color: var(--a);
 }
@@ -125,9 +136,12 @@ body.light .pill {
   color: var(--a);
   border-color: rgba(193, 61, 16, 0.7);
 }
-body.light .pill:hover {
-  background: rgba(193, 61, 16, 0.08);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .pill:hover {
+      background: rgba(193, 61, 16, 0.08);
+    }
+  }
+
 body.light .stats-bar {
   border-top-color: rgba(193, 61, 16, 0.12);
   border-bottom-color: rgba(193, 61, 16, 0.12);
@@ -164,10 +178,13 @@ body.light .sk-desc {
 body.light .sk-iw {
   border-color: rgba(193, 61, 16, 0.2);
 }
-body.light .sk:hover .sk-iw {
-  border-color: rgba(193, 61, 16, 0.5);
-  box-shadow: 0 0 20px rgba(193, 61, 16, 0.1);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .sk:hover .sk-iw {
+      border-color: rgba(193, 61, 16, 0.5);
+      box-shadow: 0 0 20px rgba(193, 61, 16, 0.1);
+    }
+  }
+
 body.light .sk-iw svg {
   stroke: var(--a);
 }
@@ -194,9 +211,12 @@ body.light footer {
 body.light .fl a {
   color: rgba(28, 24, 20, 0.55);
 }
-body.light .fl a:hover {
-  color: var(--a);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .fl a:hover {
+      color: var(--a);
+    }
+  }
+
 body.light .donate-section {
   border-top-color: rgba(193, 61, 16, 0.12);
 }
@@ -216,11 +236,14 @@ body.light .db-btn {
   border-color: rgba(193, 61, 16, 0.3);
   color: rgba(193, 61, 16, 0.8);
 }
-body.light .db-btn:hover {
-  color: #fff;
-  border-color: var(--a);
-  box-shadow: 0 8px 30px rgba(193, 61, 16, 0.2);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .db-btn:hover {
+      color: #fff;
+      border-color: var(--a);
+      box-shadow: 0 8px 30px rgba(193, 61, 16, 0.2);
+    }
+  }
+
 body.light .db-btn-bmc {
   background: #ffdd00;
   color: #1a1200;
@@ -230,10 +253,13 @@ body.light .db-btn-bmc {
 body.light .db-btn-bmc::before {
   display: none;
 }
-body.light .db-btn-bmc:hover {
-  color: #1a1200;
-  box-shadow: 0 8px 32px rgba(255, 221, 0, 0.45);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .db-btn-bmc:hover {
+      color: #1a1200;
+      box-shadow: 0 8px 32px rgba(255, 221, 0, 0.45);
+    }
+  }
+
 body.light .db-bmc-desc {
   color: rgba(28, 24, 20, 0.9);
 }
@@ -280,10 +306,13 @@ body.light .mplay {
 body.light .mdiv {
   background: rgba(193, 61, 16, 0.22);
 }
-body.light .nav-music:not(.music-playing):hover {
-  border-color: rgba(193, 61, 16, 0.6);
-  background: rgba(193, 61, 16, 0.13);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .nav-music:not(.music-playing):hover {
+      border-color: rgba(193, 61, 16, 0.6);
+      background: rgba(193, 61, 16, 0.13);
+    }
+  }
+
 body.light .nav-music.music-playing {
   border-color: rgba(184, 68, 90, 0.5);
   background: rgba(184, 68, 90, 0.08);
@@ -298,11 +327,14 @@ body.light .nav-music.music-playing .mplay {
 body.light .nav-music.music-playing .mdiv {
   background: rgba(184, 68, 90, 0.3);
 }
-body.light .nav-music.music-playing:hover {
-  border-color: rgba(184, 68, 90, 0.75);
-  background: rgba(184, 68, 90, 0.14);
-  box-shadow: 0 0 18px rgba(184, 68, 90, 0.25);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .nav-music.music-playing:hover {
+      border-color: rgba(184, 68, 90, 0.75);
+      background: rgba(184, 68, 90, 0.14);
+      box-shadow: 0 0 18px rgba(184, 68, 90, 0.25);
+    }
+  }
+
 body.light nav a.nav-donate {
   background: var(--a);
   border-color: var(--a);
@@ -360,10 +392,13 @@ body.light .btn-p {
   color: var(--a);
   border-color: var(--a);
 }
-body.light .btn-p:hover {
-  color: #fff;
-  box-shadow: 0 8px 40px rgba(193, 61, 16, 0.3);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .btn-p:hover {
+      color: #fff;
+      box-shadow: 0 8px 40px rgba(193, 61, 16, 0.3);
+    }
+  }
+
 body.light .btn-p::before {
   background: var(--a);
 }

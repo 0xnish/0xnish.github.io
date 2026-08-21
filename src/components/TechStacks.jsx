@@ -93,8 +93,10 @@ const CSS = `
   will-change: transform;
   transition: transform ${DURATION}ms ease, background ${DURATION}ms ease;
 }
-.ts-cell:hover {
-  background: #ffffff !important;
+@media (hover: hover) and (pointer: fine) {
+  .ts-cell:hover {
+    background: #ffffff !important;
+  }
 }
 .ts-cell-small {
   transform: scale(1.05) translate(-5px, -5px) translateZ(0);
@@ -123,24 +125,34 @@ const CSS = `
   object-fit: contain;
   filter: grayscale(0);
 }
-.ts-cell:hover .ts-logo span,
-.ts-cell:hover .ts-logo svg,
-.ts-cell:hover .ts-logo img,
 .ts-cell-big .ts-logo span,
 .ts-cell-big .ts-logo svg,
 .ts-cell-big .ts-logo img {
   transform: scale(1.15);
 }
-.ts-cell:hover .ts-logo,
+@media (hover: hover) and (pointer: fine) {
+  .ts-cell:hover .ts-logo span,
+  .ts-cell:hover .ts-logo svg,
+  .ts-cell:hover .ts-logo img {
+    transform: scale(1.15);
+  }
+}
 .ts-cell-big .ts-logo {
   opacity: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ts-cell:hover .ts-logo {
+    opacity: 1;
+  }
 }
 body.light .ts-cell {
   background: #f0ece6;
   border-color: rgba(193,61,16,0.12);
 }
-body.light .ts-cell:hover {
-  background: #e8e4dc;
+@media (hover: hover) and (pointer: fine) {
+  body.light .ts-cell:hover {
+    background: #e8e4dc;
+  }
 }
 `
 

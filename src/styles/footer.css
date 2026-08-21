@@ -18,7 +18,10 @@ footer {
   display: inline-flex;
   line-height: 0;
 }
-.fl a:hover {
-  color: var(--a);
-  transform: translateY(-2px);
-}
+@media (hover: hover) and (pointer: fine) {
+    .fl a:hover {
+      color: var(--a);
+      transform: translateY(-2px);
+    }
+  }
+

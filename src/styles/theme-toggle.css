@@ -20,12 +20,15 @@
     transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.nav-theme:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
-  transform: scale(1.08);
-}
+@media (hover: hover) and (pointer: fine) {
+    .nav-theme:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+      transform: scale(1.08);
+    }
+  }
+
 .nav-theme:active {
   transform: scale(0.94);
 }
@@ -50,10 +53,13 @@ body.light .nav-theme {
   border-color: rgba(160, 120, 64, 0.35);
   color: var(--a);
 }
-body.light .nav-theme:hover {
-  background: rgba(160, 120, 64, 0.2);
-  border-color: var(--a);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .nav-theme:hover {
+      background: rgba(160, 120, 64, 0.2);
+      border-color: var(--a);
+    }
+  }
+
 @media (max-width: 768px) {
   .nav-theme {
     width: 32px;

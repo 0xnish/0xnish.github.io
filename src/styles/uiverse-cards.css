@@ -40,9 +40,12 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   pointer-events: none;
 }
-.sk:hover::after {
-  inset: 0;
-}
+@media (hover: hover) and (pointer: fine) {
+    .sk:hover::after {
+      inset: 0;
+    }
+  }
+
 .sk > *:not(.sk-glow) {
   position: relative;
   z-index: 2;
@@ -50,23 +53,29 @@
 .sk-glow {
   z-index: 2;
 }
-.sk.on:hover {
-  transform: translateY(-5px) rotateX(5deg) rotateY(-5deg) scale(1.02);
-  box-shadow:
-    0 30px 70px -28px var(--a),
-    0 18px 45px -22px rgba(0, 0, 0, 0.6);
-}
+@media (hover: hover) and (pointer: fine) {
+    .sk.on:hover {
+      transform: translateY(-5px) rotateX(5deg) rotateY(-5deg) scale(1.02);
+      box-shadow:
+        0 30px 70px -28px var(--a),
+        0 18px 45px -22px rgba(0, 0, 0, 0.6);
+    }
+  }
+
 .sk-iw {
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
   box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.6);
 }
-.sk:hover .sk-iw {
-  border-color: var(--a);
-  box-shadow: 0 0 24px -6px var(--a);
-  transform: rotate(5deg) scale(1.08);
-}
+@media (hover: hover) and (pointer: fine) {
+    .sk:hover .sk-iw {
+      border-color: var(--a);
+      box-shadow: 0 0 24px -6px var(--a);
+      transform: rotate(5deg) scale(1.08);
+    }
+  }
+
 
 /* ── Light mode frosted surfaces ── */
 body.light .sk {
@@ -84,17 +93,23 @@ body.light .sk::after {
   border: none;
   box-shadow: none;
 }
-body.light .sk:hover {
-  box-shadow:
-    0 30px 70px -28px var(--a),
-    0 18px 45px -22px rgba(0, 0, 0, 0.3);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .sk:hover {
+      box-shadow:
+        0 30px 70px -28px var(--a),
+        0 18px 45px -22px rgba(0, 0, 0, 0.3);
+    }
+  }
+
 body.light .sk-iw {
   border-color: rgba(0, 0, 0, 0.12);
   background: rgba(0, 0, 0, 0.04);
   box-shadow: 0 8px 24px -14px rgba(0, 0, 0, 0.3);
 }
-body.light .sk:hover .sk-iw {
-  border-color: var(--a);
-  box-shadow: 0 0 24px -6px var(--a);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .sk:hover .sk-iw {
+      border-color: var(--a);
+      box-shadow: 0 0 24px -6px var(--a);
+    }
+  }
+

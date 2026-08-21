@@ -69,12 +69,15 @@ body.light .db-tile::after {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-.db-tile.rv.on:hover {
-  transform: translateY(-5px) rotateX(5deg) rotateY(-5deg) scale(1.02);
-  box-shadow:
-    0 30px 70px -28px var(--a),
-    0 18px 45px -22px rgba(0, 0, 0, 0.6);
-}
+@media (hover: hover) and (pointer: fine) {
+    .db-tile.rv.on:hover {
+      transform: translateY(-5px) rotateX(5deg) rotateY(-5deg) scale(1.02);
+      box-shadow:
+        0 30px 70px -28px var(--a),
+        0 18px 45px -22px rgba(0, 0, 0, 0.6);
+    }
+  }
+
 
 /* ── Grid placement ── */
 .db-header {
@@ -186,15 +189,21 @@ body:not(.light) .db-tile-heading em {
   position: relative;
   z-index: 1;
 }
-.db-btn:hover::before {
-  height: 100%;
-}
-.db-btn:hover {
-  color: var(--bg);
-  border-color: var(--a);
-  box-shadow: 0 8px 40px rgba(255, 255, 255, 0.22);
-  transform: translateY(-1px);
-}
+@media (hover: hover) and (pointer: fine) {
+    .db-btn:hover::before {
+      height: 100%;
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    .db-btn:hover {
+      color: var(--bg);
+      border-color: var(--a);
+      box-shadow: 0 8px 40px rgba(255, 255, 255, 0.22);
+      transform: translateY(-1px);
+    }
+  }
+
 .db-btn:active {
   transform: scale(0.98);
 }
@@ -202,9 +211,12 @@ body:not(.light) .db-tile-heading em {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
 }
-.db-btn:hover svg {
-  transform: translateX(3px);
-}
+@media (hover: hover) and (pointer: fine) {
+    .db-btn:hover svg {
+      transform: translateX(3px);
+    }
+  }
+
 
 .db-btn-bmc {
   border: none;
@@ -215,11 +227,14 @@ body:not(.light) .db-tile-heading em {
 .db-btn-bmc::before {
   display: none;
 }
-.db-btn-bmc:hover {
-  color: #1a1200;
-  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-}
+@media (hover: hover) and (pointer: fine) {
+    .db-btn-bmc:hover {
+      color: #1a1200;
+      box-shadow: 0 8px 32px rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+  }
+
 body:not(.light) .db-btn-upi {
   background: #ff004c;
   border-color: #ff004c;
@@ -228,11 +243,14 @@ body:not(.light) .db-btn-upi {
 body:not(.light) .db-btn-upi::before {
   display: none;
 }
-body:not(.light) .db-btn-upi:hover {
-  border-color: #ff004c;
-  color: var(--bg);
-  box-shadow: 0 8px 40px rgba(255, 0, 76, 0.4);
-}
+@media (hover: hover) and (pointer: fine) {
+    body:not(.light) .db-btn-upi:hover {
+      border-color: #ff004c;
+      color: var(--bg);
+      box-shadow: 0 8px 40px rgba(255, 0, 76, 0.4);
+    }
+  }
+
 body:not(.light) .db-btn-bmc {
   background: #ff004c;
   border: 1px solid #ff004c;
@@ -241,11 +259,14 @@ body:not(.light) .db-btn-bmc {
 body:not(.light) .db-btn-bmc::before {
   display: none;
 }
-body:not(.light) .db-btn-bmc:hover {
-  border-color: #ff004c;
-  color: var(--bg);
-  box-shadow: 0 8px 40px rgba(255, 0, 76, 0.4);
-}
+@media (hover: hover) and (pointer: fine) {
+    body:not(.light) .db-btn-bmc:hover {
+      border-color: #ff004c;
+      color: var(--bg);
+      box-shadow: 0 8px 40px rgba(255, 0, 76, 0.4);
+    }
+  }
+
 
 /* ── Badge ── */
 .db-tile-badge {
@@ -328,10 +349,13 @@ body:not(.light) .db-btn-bmc:hover {
   background: #ffffff;
   color: #fff;
 }
-.db-btn-upi.copied:hover {
-  color: #fff;
-  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.4);
-}
+@media (hover: hover) and (pointer: fine) {
+    .db-btn-upi.copied:hover {
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(255, 255, 255, 0.4);
+    }
+  }
+
 .db-btn-upi {
   transition:
     background 0.4s ease,

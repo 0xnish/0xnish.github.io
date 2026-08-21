@@ -20,22 +20,28 @@
     background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.nav-music:not(.music-playing):hover {
-  border-color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.13);
-  box-shadow:
-    0 0 18px rgba(255, 255, 255, 0.22),
-    0 0 6px rgba(255, 255, 255, 0.22);
-  transform: scale(1.05);
-}
-.nav-music.music-playing:hover {
-  border-color: rgba(255, 255, 255, 0.75);
-  background: rgba(255, 255, 255, 0.13);
-  box-shadow:
-    0 0 18px rgba(255, 255, 255, 0.25),
-    0 0 6px rgba(255, 255, 255, 0.13);
-  transform: scale(1.05);
-}
+@media (hover: hover) and (pointer: fine) {
+    .nav-music:not(.music-playing):hover {
+      border-color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.13);
+      box-shadow:
+        0 0 18px rgba(255, 255, 255, 0.22),
+        0 0 6px rgba(255, 255, 255, 0.22);
+      transform: scale(1.05);
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    .nav-music.music-playing:hover {
+      border-color: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.13);
+      box-shadow:
+        0 0 18px rgba(255, 255, 255, 0.25),
+        0 0 6px rgba(255, 255, 255, 0.13);
+      transform: scale(1.05);
+    }
+  }
+
 .nav-music:active {
   transform: scale(0.96) !important;
   transition-duration: 0.1s;
@@ -64,18 +70,24 @@
     color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.nav-music:hover .mnote {
-  transform: scale(1.18);
-}
+@media (hover: hover) and (pointer: fine) {
+    .nav-music:hover .mnote {
+      transform: scale(1.18);
+    }
+  }
+
 .nav-music.music-playing .mnote {
   color: var(--a2);
 }
 .nav-music.music-playing .mnote-inner {
   transform: none;
 }
-.nav-music.music-playing:hover .mnote {
-  transform: scale(1.18);
-}
+@media (hover: hover) and (pointer: fine) {
+    .nav-music.music-playing:hover .mnote {
+      transform: scale(1.18);
+    }
+  }
+
 .eq-bar {
   transform-box: fill-box;
   transform-origin: center bottom;
@@ -130,12 +142,18 @@
   opacity: 1;
   transform: scale(1);
 }
-.nav-music:not(.music-playing):hover .ico-play {
-  transform: scale(1.2);
-}
-.nav-music.music-playing:hover .ico-pause {
-  transform: scale(1.2);
-}
+@media (hover: hover) and (pointer: fine) {
+    .nav-music:not(.music-playing):hover .ico-play {
+      transform: scale(1.2);
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    .nav-music.music-playing:hover .ico-pause {
+      transform: scale(1.2);
+    }
+  }
+
 @media (max-width: 900px) {
   .nav-music {
     height: 30px;

@@ -43,12 +43,18 @@
   background: linear-gradient(to bottom, transparent, var(--a), transparent);
   transition: top 0.7s ease;
 }
-.sk:hover::before {
-  left: 100%;
-}
-.sk:hover::after {
-  top: 100%;
-}
+@media (hover: hover) and (pointer: fine) {
+    .sk:hover::before {
+      left: 100%;
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    .sk:hover::after {
+      top: 100%;
+    }
+  }
+
 .sk-glow {
   position: absolute;
   inset: 0;
@@ -76,12 +82,18 @@
   transform: translateX(-200%);
   transition: transform 0.7s ease;
 }
-.sk:hover .sk-glow {
-  opacity: 1;
-}
-.sk:hover .sk-glow::before {
-  transform: translateX(200%);
-}
+@media (hover: hover) and (pointer: fine) {
+    .sk:hover .sk-glow {
+      opacity: 1;
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    .sk:hover .sk-glow::before {
+      transform: translateX(200%);
+    }
+  }
+
 .sk-num {
   font-size: 0.57rem;
   color: rgba(232, 228, 220, 1);
@@ -102,11 +114,14 @@
     box-shadow 0.35s,
     transform 0.35s;
 }
-.sk:hover .sk-iw {
-  border-color: var(--a);
-  box-shadow: 0 0 24px rgba(255, 255, 255, 0.22);
-  transform: rotate(5deg) scale(1.08);
-}
+@media (hover: hover) and (pointer: fine) {
+    .sk:hover .sk-iw {
+      border-color: var(--a);
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.22);
+      transform: rotate(5deg) scale(1.08);
+    }
+  }
+
 .sk-iw svg {
   width: 22px;
   height: 22px;

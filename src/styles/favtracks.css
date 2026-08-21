@@ -163,10 +163,13 @@
   padding: 0;
   transition: all 200ms;
 }
-.ft-play:hover {
-  border-color: var(--a);
-  color: var(--a);
-}
+@media (hover: hover) and (pointer: fine) {
+    .ft-play:hover {
+      border-color: var(--a);
+      color: var(--a);
+    }
+  }
+
 .ft-card[data-tier="2"] .ft-play {
   border-color: rgba(255, 255, 255, 0.2);
   color: rgba(232, 228, 220, 0.6);

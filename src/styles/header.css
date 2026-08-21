@@ -70,9 +70,12 @@ body.light .logo-cursor {
   transform-origin: left;
   transition: transform 0.45s ease;
 }
-.logo:hover::after {
-  transform: scaleX(1);
-}
+@media (hover: hover) and (pointer: fine) {
+    .logo:hover::after {
+      transform: scaleX(1);
+    }
+  }
+
 nav {
   display: flex;
   gap: 38px;
@@ -100,13 +103,19 @@ nav a::after {
   transform-origin: right;
   transition: transform 0.35s ease;
 }
-nav a:hover {
-  color: var(--a);
-}
-nav a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+@media (hover: hover) and (pointer: fine) {
+    nav a:hover {
+      color: var(--a);
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
 nav a.active {
   color: var(--a);
 }
@@ -146,10 +155,13 @@ nav a.nav-donate .donate-text .dl {
 nav a.nav-donate::before {
   display: none;
 }
-nav a.nav-donate:hover {
-  box-shadow: 0 0 36px rgba(255, 255, 255, 0.7);
-  transform: translateY(-1px);
-}
+@media (hover: hover) and (pointer: fine) {
+    nav a.nav-donate:hover {
+      box-shadow: 0 0 36px rgba(255, 255, 255, 0.7);
+      transform: translateY(-1px);
+    }
+  }
+
 nav a.nav-donate::after {
   display: none;
 }

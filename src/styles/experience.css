@@ -30,30 +30,40 @@
   content: "";
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 100%;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--a), transparent);
-  transition: left 0.7s ease;
+  transform: translateX(-100%);
+  transition: transform 0.7s ease;
   pointer-events: none;
+  will-change: transform;
 }
 .eb-tile::after {
   content: "";
   position: absolute;
-  top: -100%;
+  top: 0;
   right: 0;
   width: 1px;
   height: 100%;
   background: linear-gradient(to bottom, transparent, var(--a), transparent);
-  transition: top 0.7s ease;
+  transform: translateY(-100%);
+  transition: transform 0.7s ease;
   pointer-events: none;
+  will-change: transform;
 }
-.eb-tile:hover::before {
-  left: 100%;
-}
-.eb-tile:hover::after {
-  top: 100%;
-}
+@media (hover: hover) and (pointer: fine) {
+    .eb-tile:hover::before {
+      transform: translateX(100%);
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    .eb-tile:hover::after {
+      transform: translateY(100%);
+    }
+  }
+
 .eb-header::before,
 .eb-journey::before {
   top: auto;
@@ -91,12 +101,18 @@
   transform: translateX(-200%);
   transition: transform 0.7s ease;
 }
-.eb-tile:hover .eb-glow {
-  opacity: 1;
-}
-.eb-tile:hover .eb-glow::before {
-  transform: translateX(200%);
-}
+@media (hover: hover) and (pointer: fine) {
+    .eb-tile:hover .eb-glow {
+      opacity: 1;
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    .eb-tile:hover .eb-glow::before {
+      transform: translateX(200%);
+    }
+  }
+
 .eb-header {
   grid-column: 1;
   grid-row: 1;
@@ -233,9 +249,12 @@
     box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
   }
 }
-.eb-journey:hover .eb-journey-dot {
-  border-color: var(--a);
-}
+@media (hover: hover) and (pointer: fine) {
+    .eb-journey:hover .eb-journey-dot {
+      border-color: var(--a);
+    }
+  }
+
 .eb-journey-info {
   display: flex;
   flex-direction: column;
@@ -341,10 +360,13 @@ body.light .eb-role--featured .eb-role-title em.role-cyan {
   margin-bottom: 24px;
   transition: color 0.35s;
 }
-.eb-role:hover .eb-role-desc,
-.eb-role--featured:hover .eb-role-desc {
-  color: rgba(232, 228, 220, 1);
-}
+@media (hover: hover) and (pointer: fine) {
+    .eb-role:hover .eb-role-desc,
+    .eb-role--featured:hover .eb-role-desc {
+      color: rgba(232, 228, 220, 1);
+    }
+  }
+
 .eb-highlights-row {
   display: flex;
   gap: 24px;
@@ -362,27 +384,39 @@ body.light .eb-role--featured .eb-role-title em.role-cyan {
   border-color: rgba(255, 255, 255, 0.7);
   border-left-color: rgba(255, 255, 255, 0.7);
 }
-.eb-role:hover .eb-highlights-row {
-  border-left-color: var(--a);
-  background: rgba(255, 255, 255, 0.045);
-}
+@media (hover: hover) and (pointer: fine) {
+    .eb-role:hover .eb-highlights-row {
+      border-left-color: var(--a);
+      background: rgba(255, 255, 255, 0.045);
+    }
+  }
+
 .eb-role--featured .eb-highlights-row {
   background: rgba(255, 255, 255, 0.02);
   border-color: rgba(255, 255, 255, 0.7);
   border-left-color: rgba(255, 255, 255, 0.7);
 }
-.eb-role--featured:hover .eb-highlights-row {
-  border-left-color: var(--a4);
-  background: rgba(255, 255, 255, 0.045);
-}
-body:not(.light) .eb-role:hover .eb-highlights-row {
-  border-color: #ff004c;
-  border-left-color: #ff004c;
-}
-body:not(.light) .eb-role--featured:hover .eb-highlights-row {
-  border-color: #00eaff;
-  border-left-color: #00eaff;
-}
+@media (hover: hover) and (pointer: fine) {
+    .eb-role--featured:hover .eb-highlights-row {
+      border-left-color: var(--a4);
+      background: rgba(255, 255, 255, 0.045);
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    body:not(.light) .eb-role:hover .eb-highlights-row {
+      border-color: #ff004c;
+      border-left-color: #ff004c;
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    body:not(.light) .eb-role--featured:hover .eb-highlights-row {
+      border-color: #00eaff;
+      border-left-color: #00eaff;
+    }
+  }
+
 .eb-hl {
   display: flex;
   flex-direction: column;
@@ -441,11 +475,14 @@ body:not(.light) .eb-role-location svg {
     border-color 0.3s,
     background 0.3s;
 }
-.eb-tag:hover {
-  color: var(--a);
-  border-color: var(--a);
-  background: rgba(255, 255, 255, 0.05);
-}
+@media (hover: hover) and (pointer: fine) {
+    .eb-tag:hover {
+      color: var(--a);
+      border-color: var(--a);
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+
 .eb-pivot-inline {
   display: flex;
   align-items: center;
@@ -551,18 +588,24 @@ body.light .eb-role--featured .eb-role-title em {
 body.light .eb-role-desc {
   color: rgba(28, 24, 20, 0.7);
 }
-body.light .eb-role:hover .eb-role-desc,
-body.light .eb-role--featured:hover .eb-role-desc {
-  color: rgba(28, 24, 20, 0.92);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .eb-role:hover .eb-role-desc,
+    body.light .eb-role--featured:hover .eb-role-desc {
+      color: rgba(28, 24, 20, 0.92);
+    }
+  }
+
 body.light .eb-highlights-row {
   background: rgba(193, 61, 16, 0.03);
   border-color: rgba(193, 61, 16, 0.12);
   border-left-color: rgba(193, 61, 16, 0.4);
 }
-body.light .eb-role:hover .eb-highlights-row {
-  background: rgba(193, 61, 16, 0.06);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .eb-role:hover .eb-highlights-row {
+      background: rgba(193, 61, 16, 0.06);
+    }
+  }
+
 body.light .eb-hl-key {
   color: rgba(28, 24, 20, 0.9);
 }
@@ -577,11 +620,14 @@ body.light .eb-tag {
   color: rgba(28, 24, 20, 0.9);
   border-color: rgba(193, 61, 16, 0.22);
 }
-body.light .eb-tag:hover {
-  color: var(--a);
-  border-color: rgba(193, 61, 16, 0.5);
-  background: rgba(193, 61, 16, 0.06);
-}
+@media (hover: hover) and (pointer: fine) {
+    body.light .eb-tag:hover {
+      color: var(--a);
+      border-color: rgba(193, 61, 16, 0.5);
+      background: rgba(193, 61, 16, 0.06);
+    }
+  }
+
 body.light .eb-role-company {
   color: var(--a2);
 }

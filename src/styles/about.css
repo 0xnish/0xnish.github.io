@@ -67,13 +67,19 @@ body:not(.light) .pill {
   color: #00eaff;
   border-color: #00eaff;
 }
-.pill:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--a);
-}
-body:not(.light) .pill:hover {
-  border-color: #00eaff;
-}
+@media (hover: hover) and (pointer: fine) {
+    .pill:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--a);
+    }
+  }
+
+@media (hover: hover) and (pointer: fine) {
+    body:not(.light) .pill:hover {
+      border-color: #00eaff;
+    }
+  }
+
 .term {
   background: rgba(18, 18, 30, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -154,9 +160,12 @@ body.light .dollar {
   transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
 }
-.tl:hover {
-  background: rgba(255, 255, 255, 0.07);
-}
+@media (hover: hover) and (pointer: fine) {
+    .tl:hover {
+      background: rgba(255, 255, 255, 0.07);
+    }
+  }
+
 .cblink {
   display: inline-block;
   width: 8px;
