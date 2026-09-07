@@ -326,7 +326,7 @@ body:not(.light) .btn-g::after {
   inset: 0;
   overflow: hidden;
   z-index: 1;
-  border-radius: 52% 48% 52% 48% / 48% 52% 48% 52%;
+  border-radius: 46% 54% 54% 46% / 50% 50% 50% 50%;
   animation: ringMorph 9s ease-in-out infinite reverse;
 }
 .photo-ring::before {
@@ -351,37 +351,37 @@ body:not(.light) .photo-ring::before {
 @keyframes morphRing {
   0%,
   100% {
-    border-radius: 54% 46% 54% 46% / 46% 54% 46% 54%;
+    border-radius: 42% 58% 58% 42% / 54% 54% 46% 46%;
   }
   25% {
-    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    border-radius: 58% 42% 42% 58% / 46% 46% 54% 54%;
   }
   50% {
-    border-radius: 46% 54% 46% 54% / 54% 46% 54% 46%;
+    border-radius: 46% 54% 54% 46% / 42% 42% 58% 58%;
   }
   75% {
-    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    border-radius: 54% 46% 46% 54% / 58% 58% 42% 42%;
   }
 }
 @keyframes ringMorph {
   0%,
   100% {
-    border-radius: 52% 48% 52% 48% / 48% 52% 48% 52%;
+    border-radius: 46% 54% 54% 46% / 50% 50% 50% 50%;
   }
   25% {
-    border-radius: 48% 52% 48% 52% / 52% 48% 52% 48%;
+    border-radius: 54% 46% 46% 54% / 48% 48% 52% 52%;
   }
   50% {
-    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    border-radius: 44% 56% 56% 44% / 54% 54% 46% 46%;
   }
   75% {
-    border-radius: 48% 52% 48% 52% / 52% 48% 52% 48%;
+    border-radius: 56% 44% 44% 56% / 46% 46% 54% 54%;
   }
 }
 .photo-img-container {
   position: absolute;
   inset: 5px;
-  border-radius: 54% 46% 54% 46% / 46% 54% 46% 54%;
+  border-radius: 42% 58% 58% 42% / 54% 54% 46% 46%;
   border: none;
   overflow: hidden;
   z-index: 2;
