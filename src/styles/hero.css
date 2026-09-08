@@ -308,6 +308,15 @@ body:not(.light) .btn-g::after {
   width: 300px;
   height: 380px;
 }
+.hero-cat {
+  position: absolute;
+  bottom: 18px;
+  right: -30px;
+  width: 96px;
+  height: auto;
+  z-index: 4;
+  background: transparent;
+}
 .photo-main {
   position: absolute;
   inset: 0;

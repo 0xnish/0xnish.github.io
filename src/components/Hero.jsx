@@ -112,6 +112,7 @@ export default function Hero() {
                 <img src="/nishanth.jpg" alt="Nishanth J P" loading="eager" />
               </div>
             </div>
+            <img src="/cat.gif" alt="Cat" className="hero-cat" />
           </div>
         </div>
       </div>
