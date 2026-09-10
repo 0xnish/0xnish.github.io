@@ -100,7 +100,7 @@ export default function Donate() {
             Support my work instantly via UPI from any app — zero fees, India only.
           </div>
           <button className="db-btn db-btn-upi db-btn-bmc" id="upiCopyBtn" onClick={copyUPI} onMouseEnter={e => startHearts('upi', e.currentTarget)} onMouseLeave={() => stopHearts('upi')} aria-label="Copy UPI ID" style={{ position: 'relative' }}>
-            <span className="upi-id-text">coder-nishanth@airtel</span>
+            <span className="upi-id-text">{upiId}</span>
             <span className="upi-copy-action">
               <svg className="ico-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
