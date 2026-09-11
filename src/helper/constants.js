@@ -10,8 +10,8 @@ export const stats = [
 export const marqueeItems = ['Software Engineering', 'Yottron Solutions', 'Clean Architecture', 'Problem Solving', 'Innovation', 'Scalable Systems', 'Full Stack Dev', 'Open Source']
 
 export const links = {
-  email: 'mailto:mailtonishii@gmail.com',
-  emailDisplay: 'mailtonishii@gmail.com',
+  email: 'mailto:nishx.dev@gmail.com',
+  emailDisplay: 'nishx.dev@gmail.com',
   github: 'https://github.com/nish0x',
   githubDisplay: 'nish0x',
   linkedin: 'https://www.linkedin.com/in/nishanth-jp',
