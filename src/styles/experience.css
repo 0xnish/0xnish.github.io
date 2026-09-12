@@ -661,3 +661,23 @@ body.light .eb-pivot-inline svg {
 body.light .eb-pivot-inline-label {
   color: rgba(28, 24, 20, 0.9);
 }
+
+/* ── Mobile perf: expensive repaints are pointless on touch ── */
+@media (hover: none) and (pointer: coarse) {
+  .eb-journey-dot--now::after,
+  .eb-dot--active::after {
+    animation: none;
+  }
+  .eb-role-location svg {
+    filter: none;
+  }
+  .eb-journey-dot--now,
+  .eb-journey-dot--mid,
+  .eb-dot,
+  .eb-dot--active {
+    box-shadow: none;
+  }
+  .eb-glow {
+    display: none;
+  }
+}

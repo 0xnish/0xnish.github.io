@@ -135,3 +135,11 @@ body.light .stat-ripple {
     letter-spacing: 0.14em;
   }
 }
+
+/* ── Mobile perf: backdrop-filter is very expensive on touch ── */
+@media (hover: none) and (pointer: coarse) {
+  .stat {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}

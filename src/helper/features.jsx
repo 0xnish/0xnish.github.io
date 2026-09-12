@@ -1,8 +1,7 @@
 import AnimatedFavicon from '../components/AnimatedFavicon'
 import Loader from '../components/Loader'
 import StarCanvas from '../components/StarCanvas'
-import InkbleedCursor from '../components/InkbleedCursor'
-import CustomCursor from '../components/CustomCursor'
+import { SmoothCursor } from '../components/ui/smooth-cursor'
 import { ScrollProgress } from '../components/magicui/scroll-progress'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
@@ -21,8 +20,7 @@ export default function Features({ isLight, toggleTheme }) {
     <>
       <AnimatedFavicon />
       <Loader />
-      <InkbleedCursor />
-      <CustomCursor />
+      <SmoothCursor />
       <StarCanvas isLight={isLight} />
       <div className="grid-bg"></div>
       <div className="blob b1"></div>

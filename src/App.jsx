@@ -5,7 +5,6 @@ import useVisitorTracker from './hooks/useVisitorTracker'
 import Features from './helper/features'
 
 import './styles/base.css'
-import './styles/cursor.css'
 import './styles/background.css'
 import './styles/header.css'
 import './styles/hero.css'

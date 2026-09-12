@@ -17,6 +17,8 @@
   --gutter: clamp(24px, 5vw, 80px);
   --section-y: clamp(36px, 4vw, 56px);
   --header-h: 64px;
+  --cursor-fill: #ff004c;
+  --cursor-outline: #000000;
 }
 
 /* ── Light mode overrides ── */
@@ -29,6 +31,8 @@ body.light {
   --a4: #3a8a55;
   --dim: #5c4a3a;
   --dim2: #d8d4cc;
+  --cursor-fill: var(--a);
+  --cursor-outline: #ffffff;
 }
 body.light #starCanvas {
   opacity: 0.7;
@@ -381,17 +385,6 @@ body.light .sk-glow {
 }
 body.light .about-text h2 em {
   color: var(--a);
-}
-
-body.light #cur-ring {
-  border-color: rgba(193, 61, 16, 0.35);
-}
-body.light #cur {
-  background: #c13d10;
-  mix-blend-mode: normal;
-}
-body.light #cur.h {
-  background: var(--a);
 }
 
 #theme-overlay {
